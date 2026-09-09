@@ -654,6 +654,25 @@
             </div>
           </div>
 
+          <div class="form-row">
+            <div class="field">
+              <label for="f-cnpj">CNPJ</label>
+              <input type="text" id="f-cnpj" name="cnpj" placeholder="00.000.000/0001-00" inputmode="numeric" autocomplete="off" maxlength="18" required>
+              <span class="msg-err">Informe um CNPJ válido</span>
+            </div>
+            <div class="field">
+              <label for="f-func">Funcionários ativos</label>
+              <select id="f-func" name="funcionarios" required>
+                <option value="">Selecione</option>
+                <option>1 a 10</option>
+                <option>10 a 30</option>
+                <option>30 a 60</option>
+                <option>Mais de 60</option>
+              </select>
+              <span class="msg-err">Selecione a faixa</span>
+            </div>
+          </div>
+
           <div class="field">
             <label for="f-fat">Faturamento anual</label>
             <select id="f-fat" name="faturamento" required>
