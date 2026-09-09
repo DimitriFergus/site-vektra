@@ -1,5 +1,5 @@
 /* ============================================================
-   VEKTRA — NÚCLEO
+   VEKTRA - NÚCLEO
    Comportamentos presentes nas duas páginas: links de WhatsApp,
    barra de navegação, menu mobile, reveal ao rolar, botões
    magnéticos, rolagem suave e o ano do rodapé.
@@ -96,7 +96,7 @@
 
   /* ------------------------------------------------------------
      Botões magnéticos
-     Só com mouse de verdade — em toque não faz sentido.
+     Só com mouse de verdade, em toque não faz sentido.
   ------------------------------------------------------------ */
   if (window.matchMedia('(pointer: fine)').matches && !reduced) {
     document.querySelectorAll('.magnetic').forEach(function (btn) {

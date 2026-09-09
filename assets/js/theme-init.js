@@ -1,5 +1,5 @@
 /* ============================================================
-   VEKTRA — INICIALIZAÇÃO DO TEMA
+   VEKTRA - INICIALIZAÇÃO DO TEMA
 
    ATENÇÃO: este arquivo precisa continuar sendo carregado de
    forma SÍNCRONA dentro do <head>, ANTES do CSS renderizar.

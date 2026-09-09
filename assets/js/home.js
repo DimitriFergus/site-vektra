@@ -1,5 +1,5 @@
 /* ============================================================
-   VEKTRA — PÁGINA INICIAL
+   VEKTRA - PÁGINA INICIAL
    Contadores, ticker, conversa animada, toggle de escopo,
    FAQ, máscara de telefone e envio do formulário.
    ============================================================ */
@@ -145,7 +145,7 @@
     if (reduced) {
       roteiro.forEach(function (m, idx) { balao(m, idx); });
     } else if ('IntersectionObserver' in window) {
-      // Só roda enquanto visível — não gasta quadro fora da tela
+      // Só roda enquanto visível, não gasta quadro fora da tela
       var chatIO = new IntersectionObserver(function (entradas) {
         entradas.forEach(function (e) {
           if (e.isIntersecting) {
@@ -169,7 +169,7 @@
      ============================================================ */
   var escopos = {
     construtora: {
-      sub: 'Análise completa dos últimos 12 meses de apuração, relatório de oportunidades e proposta de honorários só depois — se fizer sentido para os dois lados.',
+      sub: 'Análise completa dos últimos 12 meses de apuração, relatório de oportunidades e proposta de honorários só depois, se fizer sentido para os dois lados.',
       itens: [
         'Revisão do regime e da presunção aplicada por tipo de contrato',
         'Levantamento de INSS de obra e ISS retido a maior',
@@ -229,7 +229,126 @@
   }
 
   /* ============================================================
-     FAQ (accordion — um aberto por vez)
+     PAINEL DE MARGEM POR PERÍODO (mockup 1)
+     Três botões: 1 mês, 6 meses e 1 ano. Nada gira sozinho,
+     o número só muda quando a pessoa clica.
+     ============================================================ */
+  var periodos = {
+    mes: {
+      label: 'Margem consolidada · 1 mês',
+      valor: '11,2%',
+      pill:  '▲ 1,4 p.p. vs. anterior',
+      barras: [38, 52, 26, 61, 44, 55],
+      obras: [
+        ['Residencial Vila Nova',    '+6,4%', 'pos'],
+        ['Galpão Logístico BR-050',  '−5,2%', 'neg'],
+        ['Edifício Alpha',           '+9,8%', 'pos']
+      ]
+    },
+    sem: {
+      label: 'Margem consolidada · 6 meses',
+      valor: '14,6%',
+      pill:  '▲ 3,8 p.p. vs. anterior',
+      barras: [44, 63, 30, 76, 53, 68],
+      obras: [
+        ['Residencial Vila Nova',    '+11,0%', 'pos'],
+        ['Galpão Logístico BR-050',  '−1,9%', 'neg'],
+        ['Edifício Alpha',           '+16,3%', 'pos']
+      ]
+    },
+    ano: {
+      label: 'Margem consolidada · 12 meses',
+      valor: '17,4%',
+      pill:  '▲ 6,1 p.p. vs. anterior',
+      barras: [46, 71, 34, 88, 60, 78],
+      obras: [
+        ['Residencial Vila Nova',    '+14,2%', 'pos'],
+        ['Galpão Logístico BR-050',  '+2,7%',  'pos'],
+        ['Edifício Alpha',           '+22,6%', 'pos']
+      ]
+    }
+  };
+
+  var m1Tabs = document.getElementById('m1Tabs');
+
+  if (m1Tabs) {
+    var m1Label  = document.getElementById('m1Label');
+    var m1Val    = document.getElementById('m1Val');
+    var m1Pill   = document.getElementById('m1Pill');
+    var m1Barras = document.querySelectorAll('#m1Bars .bar i');
+    var m1Linhas = document.querySelectorAll('#m1Rows .m1-row');
+
+    var renderPeriodo = function (chave) {
+      var d = periodos[chave];
+      m1Label.textContent = d.label;
+      m1Val.textContent   = d.valor;
+      m1Pill.textContent  = d.pill;
+
+      m1Barras.forEach(function (barra, i) { barra.style.height = d.barras[i] + '%'; });
+
+      m1Linhas.forEach(function (linha, i) {
+        var obra = d.obras[i];
+        linha.querySelector('em').textContent = obra[0];
+        var val = linha.querySelector('b');
+        val.textContent = obra[1];
+        val.className   = obra[2];
+      });
+    };
+
+    marcarAbas(m1Tabs, 'per', renderPeriodo);
+  }
+
+  /* ============================================================
+     COMPARATIVO TRIBUTÁRIO (mockup 2)
+     O visitante escolhe o regime e vê o que aquilo significa
+     em 12 meses. O RET fica sempre marcado como melhor opção.
+     ============================================================ */
+  var regimes = {
+    p32:  { label: 'Custo do cenário atual<br>em 12 meses', valor: 'R$ 501.600', neutro: true  },
+    p812: { label: 'Economia projetada<br>em 12 meses',     valor: 'R$ 190.800', neutro: false },
+    ret:  { label: 'Economia projetada<br>em 12 meses',     valor: 'R$ 356.400', neutro: false }
+  };
+
+  var m2Tabs = document.getElementById('m2Tabs');
+
+  if (m2Tabs) {
+    var m2Label  = document.getElementById('m2Label');
+    var m2Val    = document.getElementById('m2Val');
+    var m2Linhas = document.querySelectorAll('.m2-line');
+
+    var renderRegime = function (chave) {
+      var d = regimes[chave];
+      m2Label.innerHTML = d.label;
+      m2Val.textContent = d.valor;
+      m2Val.classList.toggle('flat', d.neutro);
+
+      m2Linhas.forEach(function (linha) {
+        linha.classList.toggle('on', linha.dataset.reg === chave);
+      });
+    };
+
+    marcarAbas(m2Tabs, 'reg', renderRegime);
+  }
+
+  /* Liga os botões de um seletor de abas dos mockups */
+  function marcarAbas(caixa, dado, render) {
+    var botoes = caixa.querySelectorAll('button');
+
+    botoes.forEach(function (b) {
+      b.addEventListener('click', function () {
+        botoes.forEach(function (x) {
+          x.classList.remove('on');
+          x.setAttribute('aria-pressed', 'false');
+        });
+        b.classList.add('on');
+        b.setAttribute('aria-pressed', 'true');
+        render(b.dataset[dado]);
+      });
+    });
+  }
+
+  /* ============================================================
+     FAQ (accordion, um aberto por vez)
      ============================================================ */
   document.querySelectorAll('.faq-item').forEach(function (item) {
     var btn = item.querySelector('.faq-q');

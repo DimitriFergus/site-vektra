@@ -1,5 +1,5 @@
 /* ============================================================
-   VEKTRA — PÁGINA DE SERVIÇOS
+   VEKTRA - PÁGINA DE SERVIÇOS
    Modal dos vídeos e simulador de carga tributária.
    ============================================================ */
 (function () {
@@ -34,7 +34,7 @@
         '</span>' +
         '<b>Gravação em produção</b>' +
         '<span>Este episódio ainda está sendo gravado. Enquanto isso, você pode tirar exatamente ' +
-        'essa dúvida com um especialista — sem custo e sem compromisso.</span>' +
+        'essa dúvida com um especialista, sem custo e sem compromisso.</span>' +
       '</div>';
 
     function abrirModal(btn) {
@@ -67,7 +67,7 @@
       modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('locked');
 
-      // Esvazia depois da transição — para o vídeo e libera memória
+      // Esvazia depois da transição, para o vídeo e libera memória
       setTimeout(function () { palco.innerHTML = ''; }, 320);
 
       if (ultimoFoco) ultimoFoco.focus();
@@ -169,7 +169,7 @@
     var ativos = cenarios.filter(function (c) { return c.on; });
 
     // A barra usa o maior valor geral como escala, inclusive dos
-    // cenários indisponíveis — assim a comparação visual não pula.
+    // cenários indisponíveis, assim a comparação visual não pula.
     var escala = Math.max.apply(null, cenarios.map(function (c) { return c.v; }));
     var melhor = Math.min.apply(null, ativos.map(function (c) { return c.v; }));
     var pior   = Math.max.apply(null, ativos.map(function (c) { return c.v; }));
@@ -189,7 +189,7 @@
     simEco.textContent = brl(economia);
     simSide.textContent = ativos.length > 1
       ? 'entre o cenário mais caro e o mais barato disponível para esta operação'
-      : 'nesta configuração só o Presumido cheio está disponível — o ganho vem de outras frentes';
+      : 'nesta configuração só o Presumido cheio está disponível, o ganho vem de outras frentes';
 
     /* O CTA leva a simulação inteira pronta para o WhatsApp */
     var msg =

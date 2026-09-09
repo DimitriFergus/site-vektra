@@ -1,4 +1,4 @@
-# Site Vektra — Inteligência Contábil
+# Site Vektra - Inteligência Contábil
 
 Site estático de duas páginas. Sem build, sem dependências: é só abrir o
 `index.html` no navegador (ou subir a pasta inteira em qualquer hospedagem).
@@ -15,7 +15,7 @@ SITE VEKTRA/
 │
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css      Cores, fontes e medidas — os dois temas
+│   │   ├── tokens.css      Cores, fontes e medidas, os dois temas
 │   │   ├── base.css        Reset, tipografia, container, grão, reveal
 │   │   ├── layout.css      Nav, menu mobile, rodapé, botão do WhatsApp
 │   │   ├── components.css  Botões, cabeçalho de seção, formulários, mockups
@@ -49,11 +49,11 @@ SITE VEKTRA/
 Abra `assets/js/config.js` e edite uma linha:
 
 ```js
-whatsapp: '5511987654321',   // 55 + DDD + número, só dígitos
+whatsapp: '5585991597451',   // 55 + DDD + número, só dígitos
 ```
 
 Vale para os dois arquivos HTML, todos os botões, o formulário e o simulador.
-O número que está lá hoje é **fictício**.
+O número configurado hoje é (85) 99159-7451.
 
 ### Publicar um vídeo na página de serviços
 
@@ -73,7 +73,7 @@ vira player nativo.
 
 Só em `assets/css/tokens.css`. As cores aparecem duas vezes: uma no bloco
 `[data-theme="dark"]` e outra em `[data-theme="light"]`. Nenhum outro arquivo
-tem valor de cor fixo — todos usam as variáveis.
+tem valor de cor fixo, todos usam as variáveis.
 
 ### Trocar textos
 
@@ -107,7 +107,7 @@ npx serve .
 
 ## Pendências antes de publicar
 
-- [ ] Trocar o número do WhatsApp em `assets/js/config.js`
+- [x] Trocar o número do WhatsApp em `assets/js/config.js`
 - [ ] Trocar CNPJ, CRC e e-mail no rodapé dos dois HTML
 - [ ] Substituir depoimentos e logotipos fictícios por casos reais
       (ou manter o aviso que já está no rodapé)

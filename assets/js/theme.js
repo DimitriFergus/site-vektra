@@ -1,5 +1,5 @@
 /* ============================================================
-   VEKTRA — ALTERNADOR DE TEMA
+   VEKTRA - ALTERNADOR DE TEMA
    Botão sol/lua da barra de navegação.
    A leitura inicial acontece em theme-init.js (no <head>).
    ============================================================ */

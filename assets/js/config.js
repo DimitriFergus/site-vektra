@@ -1,5 +1,5 @@
 /* ============================================================
-   VEKTRA — CONFIGURAÇÃO
+   VEKTRA - CONFIGURAÇÃO
 
    >>> É AQUI QUE VOCÊ TROCA O NÚMERO DO WHATSAPP. <<<
    Um lugar só, valendo para as duas páginas e para todos os
@@ -9,8 +9,8 @@ window.VEKTRA = {
 
   /* Número no formato internacional, só dígitos:
      55 (Brasil) + DDD + número.
-     O valor abaixo é FICTÍCIO — substitua pelo oficial. */
-  whatsapp: '5511987654321',
+     Hoje: (85) 99159-7451 */
+  whatsapp: '5585991597451',
 
   /* Mensagem usada quando o link não traz uma própria.
      Cada página pode sobrescrever com <body data-wa-msg="..."> */

@@ -1,5 +1,5 @@
 /* ============================================================
-   VEKTRA — PÁGINA INICIAL (index.html)
+   VEKTRA - PÁGINA INICIAL (index.html)
    Seções exclusivas da home, na ordem em que aparecem.
    ============================================================ */
 
@@ -335,6 +335,28 @@
 .feat-list li{ display:flex;gap:12px;align-items:flex-start;font-size:14.5px }
 .feat-list li svg{ flex:none;margin-top:4px;color:var(--clay) }
 
+/* --- Mockups 1 e 2: seletor de abas --- */
+.m1-tabs,
+.m2-toggle{
+  display:flex;margin-bottom:20px;
+  border:1px solid var(--line-soft);border-radius:8px;overflow:hidden;
+}
+.m1-tabs button,
+.m2-toggle button{
+  flex:1;padding:9px 4px;background:transparent;border:0;cursor:pointer;
+  font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-2);
+  transition:background .3s var(--ease), color .3s var(--ease);
+}
+.m1-tabs button + button,
+.m2-toggle button + button{ border-left:1px solid var(--line-soft) }
+.m1-tabs button:hover,
+.m2-toggle button:hover{ color:var(--text) }
+.m1-tabs button.on,
+.m2-toggle button.on{ background:var(--clay);color:var(--const-ink) }
+.m1-tabs button:focus-visible,
+.m2-toggle button:focus-visible{ outline:2px solid var(--clay);outline-offset:-3px }
+
 /* --- Mockup 1: margem por obra --- */
 .m1-head{ display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;gap:12px }
 .m1-head b{
@@ -352,20 +374,14 @@
 .bar{ flex:1;position:relative;height:100%;display:flex;align-items:flex-end }
 .bar i{
   display:block;width:100%;background:var(--teal);border-radius:3px;
-  transform-origin:bottom;transform:scaleY(.04);
-  animation:growBar 4.8s var(--ease) infinite;
+  transition:height .6s var(--ease);
 }
-.bar:nth-child(1) i{ height:46%;animation-delay:0s }
-.bar:nth-child(2) i{ height:71%;animation-delay:.12s }
-.bar:nth-child(3) i{ height:34%;animation-delay:.24s;background:rgba(140,151,154,.4) }
-.bar:nth-child(4) i{ height:88%;animation-delay:.36s;background:var(--clay) }
-.bar:nth-child(5) i{ height:60%;animation-delay:.48s }
-.bar:nth-child(6) i{ height:78%;animation-delay:.6s }
-@keyframes growBar{
-  0%{ transform:scaleY(.04) }
-  22%,78%{ transform:scaleY(1) }
-  100%{ transform:scaleY(.04) }
-}
+.bar:nth-child(1) i{ transition-delay:0s }
+.bar:nth-child(2) i{ transition-delay:.04s }
+.bar:nth-child(3) i{ transition-delay:.08s;background:rgba(140,151,154,.4) }
+.bar:nth-child(4) i{ transition-delay:.12s;background:var(--clay) }
+.bar:nth-child(5) i{ transition-delay:.16s }
+.bar:nth-child(6) i{ transition-delay:.2s }
 .bar-labels{ display:flex;gap:9px;margin-top:10px }
 .bar-labels span{
   flex:1;text-align:center;font-size:8.5px;font-weight:500;letter-spacing:.05em;color:var(--text-2);
@@ -377,54 +393,51 @@
 }
 .m1-row + .m1-row{ border-top:1px solid var(--line-soft) }
 .m1-row em{ font-style:normal;color:var(--text-2) }
-.m1-row b{ font-size:12.5px;font-weight:600 }
+.m1-row b{ font-size:12.5px;font-weight:600;transition:color .3s ease }
 .pos{ color:var(--clay) }
 .neg{ color:var(--text-2) }
 
 /* --- Mockup 2: comparativo tributário --- */
-.m2-toggle{
-  display:flex;margin-bottom:20px;
-  border:1px solid var(--line-soft);border-radius:8px;overflow:hidden;
+.m2-line{
+  margin-bottom:8px;padding:9px 10px;border-radius:9px;
+  border:1px solid transparent;
+  transition:background .3s var(--ease), border-color .3s var(--ease);
 }
-.m2-toggle span{
-  flex:1;text-align:center;padding:9px 4px;
-  font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--text-2);
-  animation:tgl 6s steps(1) infinite;
-}
-.m2-toggle span:nth-child(1){ animation-delay:0s }
-.m2-toggle span:nth-child(2){ animation-delay:2s }
-.m2-toggle span:nth-child(3){ animation-delay:4s }
-@keyframes tgl{
-  0%,33%{ background:var(--clay);color:var(--const-ink) }
-  33.01%,100%{ background:transparent;color:var(--text-2) }
-}
-.m2-line{ margin-bottom:15px }
+.m2-line.on{ background:var(--recess);border-color:var(--line-soft) }
 .m2-line .top{
-  display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px;
   font-size:12px;color:var(--text-2);
 }
-.m2-line .top b{ font-size:12px;font-weight:600;color:var(--text) }
+.m2-line .top b{ font-size:12px;font-weight:600;color:var(--text);transition:color .3s ease }
+.m2-line.on .top b{ color:var(--clay) }
+.m2-best{
+  font-style:normal;margin-left:6px;padding:2px 6px;border-radius:99px;
+  font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  background:rgba(193,102,57,.16);color:var(--clay);white-space:nowrap;
+}
 .track{ height:9px;background:var(--line-soft);border-radius:99px;overflow:hidden }
-.track i{
-  display:block;height:100%;border-radius:99px;
-  transform-origin:left;transform:scaleX(0);
-  animation:fillTrack 5s var(--ease) infinite;
-}
-.track.a i{ width:100%;background:rgba(140,151,154,.55);animation-delay:.2s }
-.track.b i{ width:62%; background:var(--teal);animation-delay:.45s }
-.track.c i{ width:29%; background:var(--clay);animation-delay:.7s }
-@keyframes fillTrack{
-  0%{ transform:scaleX(0) }
-  25%,80%{ transform:scaleX(1) }
-  100%{ transform:scaleX(0) }
-}
+.track i{ display:block;height:100%;border-radius:99px;transition:width .5s var(--ease) }
+.track i.a{ background:rgba(140,151,154,.55) }
+.track i.b{ background:var(--teal) }
+.track i.c{ background:var(--clay) }
 .m2-out{
   margin-top:20px;padding:16px;
   border:1px dashed var(--line);border-radius:10px;
   display:flex;justify-content:space-between;align-items:center;gap:12px;
 }
-.m2-out b{ font-size:26px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--clay) }
+.m2-out b{
+  font-size:26px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--clay);
+  transition:color .3s ease;
+}
+.m2-out b.flat{ color:var(--text-2) }
+
+/* Em tela estreita as abas e o cabeçalho do painel ficam apertados */
+@media (max-width:560px){
+  .m1-tabs button,
+  .m2-toggle button{ font-size:8.5px;letter-spacing:.04em;padding:9px 2px }
+  .m1-head{ flex-direction:column;align-items:flex-start;gap:12px }
+  .m1-head .mock-label{ font-size:9px;letter-spacing:.09em }
+}
 
 /* --- Mockup 3: obrigações --- */
 .m3-list{ border:1px solid var(--line-soft);border-radius:10px;overflow:hidden }
