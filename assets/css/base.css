@@ -121,6 +121,23 @@ h1,h2,h3,h4{
   content:"";width:26px;height:2px;flex:none;border-radius:2px;background:var(--clay);
 }
 
+/* Números que contam ou trocam de valor usam dígitos de largura fixa,
+   senão o texto "pula" a cada quadro da animação. */
+.count,
+.m1-head b,
+.m2-head b,
+.m2-out b,
+.roi-cols b,
+.roi-foot b,
+.m1-pill,
+.proof-stat .big,
+.sim-row .vl,
+.sim-total b,
+.tresult{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+}
+
 .hl{ color:var(--clay) }
 
 /* ---------- Reveal ao rolar ----------

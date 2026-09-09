@@ -261,7 +261,11 @@
   content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--clay);
   transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease);
 }
-.diff:hover{ transform:translateY(-5px); border-color:var(--line) }
+.diff:hover{
+  transform:translateY(-5px);
+  border-color:var(--line);
+  box-shadow:0 28px 64px -34px var(--glow-clay), var(--card-shadow);
+}
 .diff:hover::before{ transform:scaleX(1) }
 
 .diff-ic{
@@ -329,7 +333,10 @@
   display:flex;gap:10px;align-items:flex-start;line-height:1.55;
 }
 .step li::before{
-  content:"";width:5px;height:5px;border-radius:50%;background:var(--clay);flex:none;margin-top:8px;
+  content:"";width:15px;height:15px;flex:none;margin-top:2px;
+  background:var(--clay);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
 }
 
 /* ============================================================
@@ -393,7 +400,7 @@
 .bar{ flex:1;position:relative;height:100%;display:flex;align-items:flex-end }
 .bar i{
   display:block;width:100%;background:var(--teal);border-radius:3px;
-  transition:height .6s var(--ease);
+  transition:height .6s var(--ease), opacity .3s ease, filter .3s ease;
 }
 .bar:nth-child(1) i{ transition-delay:0s }
 .bar:nth-child(2) i{ transition-delay:.04s }
@@ -401,6 +408,8 @@
 .bar:nth-child(4) i{ transition-delay:.12s;background:var(--clay) }
 .bar:nth-child(5) i{ transition-delay:.16s }
 .bar:nth-child(6) i{ transition-delay:.2s }
+.bars:hover .bar i{ opacity:.42 }
+.bars .bar:hover i{ opacity:1;filter:brightness(1.22) }
 .bar-labels{ display:flex;gap:9px;margin-top:10px }
 .bar-labels span{
   flex:1;text-align:center;font-size:8.5px;font-weight:500;letter-spacing:.05em;color:var(--text-2);
@@ -452,10 +461,12 @@
 .m2-badge.neutro{ background:var(--line-soft);color:var(--text-2) }
 
 .m2-line{
-  margin-bottom:6px;padding:8px 10px;border-radius:9px;
+  margin-bottom:6px;padding:8px 10px;border-radius:9px;cursor:pointer;
   border:1px solid transparent;
   transition:background .3s var(--ease), border-color .3s var(--ease);
 }
+.m2-line:hover{ background:var(--recess) }
+.m2-line:focus-visible{ outline:2px solid var(--clay);outline-offset:2px }
 .m2-line.on{ background:var(--recess);border-color:var(--line-soft) }
 .m2-line .top{
   display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px;
@@ -626,9 +637,16 @@
 .offer-foot strong{ color:var(--text);font-weight:600 }
 
 .form-card{
+  position:relative;
   background:var(--card-sunken);
-  border:1px solid var(--line-soft);border-radius:16px;box-shadow:var(--card-shadow);
+  border:1px solid var(--line);border-radius:18px;
+  box-shadow:0 44px 90px -46px var(--glow-clay), 0 18px 44px -28px rgba(0,0,0,.35);
   padding:30px 24px;
+}
+/* fio de cobre no topo, para o formulário ser o ponto final da leitura */
+.form-card::before{
+  content:"";position:absolute;left:22px;right:22px;top:-1px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--clay),transparent);
 }
 .form-card h3{ font-size:clamp(23px,5.4vw,32px);font-weight:800;line-height:1.12;letter-spacing:-.035em }
 .form-card > p{ margin:14px 0 26px;color:var(--text-2);font-size:14.5px;font-weight:300;line-height:1.65 }
@@ -702,10 +720,41 @@
 .guarantee b{ display:block;font-size:15px;font-weight:600;margin-bottom:8px }
 .guarantee span{ font-size:14px;font-weight:300;line-height:1.65;color:rgba(255,255,255,.78) }
 
-.urgency{
-  display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 15px;
-  font-size:11.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
-  background:var(--const-ink);color:var(--clay);border-radius:99px;
+/* Vagas do mês: o número solto não pesava, virou barra + selo pulsando */
+.vagas{
+  margin-top:28px;max-width:400px;padding:18px 20px 16px;
+  background:var(--const-ink);border:1px solid var(--line);border-radius:14px;
+}
+.vagas-topo{ display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap }
+.vagas-selo{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--clay);
+}
+.vagas-conta{ font-size:11.5px;font-weight:500;color:var(--text-2) }
+.vagas-conta b{ color:var(--const-white);font-weight:700 }
+.vagas-barra{
+  height:7px;margin:13px 0 11px;border-radius:99px;overflow:hidden;
+  background:rgba(140,151,154,.22);
+}
+.vagas-barra i{
+  display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--teal),var(--clay));
+  width:0;transition:width 1.1s var(--ease);
+}
+.vagas.in .vagas-barra i{ width:var(--preenchido,62%) }
+.vagas-nota{ margin:0;font-size:11.5px;font-weight:300;line-height:1.5;color:var(--text-2) }
+
+.pulso{
+  width:9px;height:9px;border-radius:50%;flex:none;position:relative;
+  background:var(--clay);
+}
+.pulso::after{
+  content:"";position:absolute;inset:0;border-radius:50%;background:var(--clay);
+  animation:pulsoOnda 1.9s var(--ease) infinite;
+}
+@keyframes pulsoOnda{
+  0%{ transform:scale(1);opacity:.7 }
+  75%,100%{ transform:scale(2.9);opacity:0 }
 }
 
 /* ============================================================

@@ -258,21 +258,26 @@
   function pct(v)   { return v.toFixed(1).replace('.', ',') + '%'; }
   function vezes(v) { return v.toFixed(1).replace('.', ',') + 'x o investimento'; }
 
-  /* Liga os botoes de um seletor de abas dos mockups */
+  /* Liga os botões de um seletor de abas dos mockups.
+     Devolve a função de seleção, para outros elementos (as próprias
+     faixas do comparativo) poderem acionar a mesma troca. */
   function marcarAbas(caixa, dado, render) {
     var botoes = caixa.querySelectorAll('button');
 
-    botoes.forEach(function (b) {
-      b.addEventListener('click', function () {
-        botoes.forEach(function (x) {
-          x.classList.remove('on');
-          x.setAttribute('aria-pressed', 'false');
-        });
-        b.classList.add('on');
-        b.setAttribute('aria-pressed', 'true');
-        render(b.dataset[dado]);
+    function selecionar(chave) {
+      botoes.forEach(function (x) {
+        var meu = x.dataset[dado] === chave;
+        x.classList.toggle('on', meu);
+        x.setAttribute('aria-pressed', meu ? 'true' : 'false');
       });
+      render(chave);
+    }
+
+    botoes.forEach(function (b) {
+      b.addEventListener('click', function () { selecionar(b.dataset[dado]); });
     });
+
+    return selecionar;
   }
 
   /* ============================================================
@@ -375,11 +380,24 @@
       animarNum(m2Val, d.saida, moeda);
 
       m2Linhas.forEach(function (linha) {
-        linha.classList.toggle('on', linha.dataset.reg === chave);
+        var meu = linha.dataset.reg === chave;
+        linha.classList.toggle('on', meu);
+        linha.setAttribute('aria-pressed', meu ? 'true' : 'false');
       });
     };
 
-    marcarAbas(m2Tabs, 'reg', renderRegime);
+    var escolherRegime = marcarAbas(m2Tabs, 'reg', renderRegime);
+
+    /* A faixa inteira também troca o regime, não só a aba de cima */
+    m2Linhas.forEach(function (linha) {
+      linha.addEventListener('click', function () { escolherRegime(linha.dataset.reg); });
+      linha.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          escolherRegime(linha.dataset.reg);
+        }
+      });
+    });
   }
 
   /* ============================================================

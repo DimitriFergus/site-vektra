@@ -174,6 +174,54 @@
     });
   });
 
+  /* ------------------------------------------------------------
+     Siglas com explicação
+     O balão é um só, criado sob demanda e preso à viewport com
+     position:fixed. Assim ele nunca é cortado por um card que
+     tenha overflow:hidden, como os de "Diferenciais".
+  ------------------------------------------------------------ */
+  var siglas = document.querySelectorAll('.sigla');
+
+  if (siglas.length) {
+    var balao = null;
+
+    function mostrarDica(el) {
+      if (!balao) {
+        balao = document.createElement('div');
+        balao.className = 'dica';
+        balao.setAttribute('role', 'tooltip');
+        document.body.appendChild(balao);
+      }
+      balao.textContent = el.getAttribute('data-dica');
+      balao.classList.add('vis');
+
+      var alvo = el.getBoundingClientRect();
+      var cx = balao.getBoundingClientRect();
+      var margem = 12;
+
+      var x = alvo.left + alvo.width / 2 - cx.width / 2;
+      x = Math.max(margem, Math.min(x, window.innerWidth - cx.width - margem));
+
+      // acima da palavra; se não couber, embaixo
+      var y = alvo.top - cx.height - 10;
+      if (y < margem) y = alvo.bottom + 10;
+
+      balao.style.transform = 'translate3d(' + Math.round(x) + 'px,' + Math.round(y) + 'px,0)';
+    }
+
+    function esconderDica() { if (balao) balao.classList.remove('vis'); }
+
+    siglas.forEach(function (el) {
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+      el.addEventListener('mouseenter', function () { mostrarDica(el); });
+      el.addEventListener('focus',      function () { mostrarDica(el); });
+      el.addEventListener('mouseleave', esconderDica);
+      el.addEventListener('blur',       esconderDica);
+    });
+
+    window.addEventListener('scroll', esconderDica, { passive: true });
+  }
+
   /* Deixa disponível para os scripts de página */
   window.VEKTRA.fecharMenu = fecharMenu;
 })();
