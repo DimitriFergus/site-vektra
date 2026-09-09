@@ -1,0 +1,214 @@
+/* ============================================================
+   VEKTRA - COMPONENTES
+   Peças reutilizáveis por qualquer página: botões, cabeçalho
+   de seção, campos de formulário, chassi de mockup e o ponto
+   pulsante de "ao vivo".
+   ============================================================ */
+
+/* ---------- Botões ---------- */
+.btn{
+  --bg-b:var(--clay);
+  --fg:var(--const-ink);
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:16px 27px;
+  background:var(--bg-b);color:var(--fg);
+  font-weight:600;font-size:15px;letter-spacing:-.01em;
+  border:1px solid var(--bg-b);border-radius:8px;cursor:pointer;
+  overflow:hidden;isolation:isolate;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), color .3s ease;
+  will-change:transform;
+}
+.btn span{
+  position:relative;z-index:2;
+  display:inline-flex;align-items:center;gap:10px;
+}
+/* preenchimento que sobe no hover */
+.btn::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:var(--btn-fill);
+  transform:translateY(101%);
+  transition:transform .45s var(--ease);
+}
+.btn:hover::after{ transform:translateY(0) }
+.btn:hover{ color:var(--btn-fill-tx); box-shadow:0 16px 38px -18px rgba(193,102,57,.7) }
+.btn:active{ transform:scale(.985) }
+
+.btn-ghost{ --bg-b:transparent; --fg:var(--text); border-color:var(--line) }
+.btn-sm{ padding:11px 19px;font-size:13.5px;border-radius:7px }
+.btn-lg{ padding:19px 34px;font-size:16px;border-radius:9px }
+.btn-block{ width:100% }
+
+.btn .arw{ transition:transform .35s var(--ease) }
+.btn:hover .arw{ transform:translateX(4px) }
+
+/* ---------- Etiqueta da versão de teste ----------
+   Existe só na pasta /teste. Some junto com ela. */
+.marca-teste{
+  position:fixed;left:12px;bottom:12px;z-index:9997;
+  padding:5px 10px;border-radius:99px;
+  background:var(--card);border:1px dashed var(--clay);
+  font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--clay);opacity:.42;
+  transition:opacity .3s ease;
+}
+.marca-teste:hover{ opacity:1 }
+
+/* ---------- Selos de credencial (hero) ---------- */
+.selos{ display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0 }
+.selo{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 13px;border-radius:99px;
+  border:1px solid var(--line);background:var(--recess);
+  font-size:11.5px;font-weight:500;letter-spacing:.02em;color:var(--text-2);
+}
+.selo svg{ flex:none;color:var(--clay) }
+.selo b{ color:var(--text);font-weight:600 }
+
+/* ---------- Siglas com explicação ----------
+   O balão é criado uma vez pelo core.js e posicionado com position:fixed,
+   assim ele nunca é cortado por um card com overflow:hidden. */
+.sigla{
+  border-bottom:1px dashed var(--clay);
+  cursor:help;
+}
+.sigla:focus-visible{ outline:2px solid var(--clay);outline-offset:3px;border-radius:2px }
+
+.dica{
+  position:fixed;left:0;top:0;z-index:9998;pointer-events:none;
+  max-width:290px;padding:11px 14px;
+  background:var(--card);color:var(--text);
+  border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);
+  font-size:12.5px;font-weight:400;line-height:1.55;letter-spacing:0;text-transform:none;
+  opacity:0;transition:opacity .18s ease;
+}
+.dica.vis{ opacity:1 }
+
+/* ---------- Seção e cabeçalho ---------- */
+.sec{ padding:76px 0 }
+.sec-alt{ background:var(--bg-alt-sec) }
+
+.sec-head{ margin-bottom:46px; max-width:780px }
+.sec-head h2{
+  font-size:clamp(28px,6.8vw,48px);font-weight:800;
+  line-height:1.1;letter-spacing:-.038em;text-wrap:balance;
+}
+.sec-head p{
+  margin:20px 0 0;
+  font-size:16.5px;font-weight:300;line-height:1.68;
+  color:var(--text-2);max-width:58ch;
+}
+.sec-head.center{ margin-left:auto;margin-right:auto;text-align:center }
+.sec-head.center .eyebrow{ justify-content:center }
+.sec-head.center p{ margin-left:auto;margin-right:auto }
+
+/* ---------- Ponto "ao vivo" ---------- */
+.dot-live{
+  width:7px;height:7px;border-radius:50%;flex:none;
+  background:var(--clay);
+  box-shadow:0 0 0 0 rgba(193,102,57,.6);
+  animation:pulseDot 2.2s infinite;
+}
+@keyframes pulseDot{
+  0%  { box-shadow:0 0 0 0   rgba(193,102,57,.55) }
+  70% { box-shadow:0 0 0 9px rgba(193,102,57,0) }
+  100%{ box-shadow:0 0 0 0   rgba(193,102,57,0) }
+}
+
+/* ---------- Chassi dos mockups de interface ---------- */
+.mock{
+  background:var(--card);
+  border:1px solid var(--line-soft);border-radius:14px;
+  overflow:hidden;box-shadow:var(--shadow);position:relative;
+}
+.mock-bar{
+  display:flex;align-items:center;gap:7px;padding:12px 14px;
+  border-bottom:1px solid var(--line-soft);background:var(--recess);
+}
+.mock-bar i{ width:8px;height:8px;border-radius:50%;background:var(--line);display:block }
+.mock-bar i:first-child{ background:var(--clay);opacity:.75 }
+.mock-bar span{
+  margin-left:8px;
+  font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-2);
+}
+.mock-body{ padding:20px 18px }
+.mock-label{
+  margin:0;
+  font-size:9.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--text-2);
+}
+
+/* ---------- Campos de formulário ---------- */
+.field{ margin-bottom:16px }
+.field label{
+  display:block;margin-bottom:9px;
+  font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-2);
+}
+.field input,
+.field select{
+  width:100%;
+  background:var(--panel);
+  border:1px solid var(--line-soft);border-radius:9px;
+  padding:14px;font-size:15px;color:var(--text);
+  appearance:none;-webkit-appearance:none;
+  transition:border-color .25s ease, box-shadow .25s ease;
+}
+.field select,
+.sim-select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238C979A' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 15px center;
+  padding-right:40px;
+}
+.field input:focus,
+.field select:focus{
+  outline:none;border-color:var(--clay);
+  box-shadow:0 0 0 3px rgba(193,102,57,.18);
+}
+.field input::placeholder{ color:var(--text-2); opacity:.65 }
+
+.field.err input,
+.field.err select{ border-color:var(--clay) }
+.field .msg-err{
+  display:none;margin-top:8px;
+  font-size:11px;font-weight:500;color:var(--clay);
+}
+.field.err .msg-err{ display:block }
+
+.form-row{ display:grid; gap:0 }
+
+.consent{ display:flex;gap:12px;align-items:flex-start;margin:8px 0 22px }
+.consent input{
+  appearance:none;-webkit-appearance:none;
+  width:20px;height:20px;flex:none;margin-top:2px;
+  border:1.5px solid var(--line);border-radius:5px;
+  background:var(--panel);cursor:pointer;
+  display:grid;place-content:center;
+  transition:background .2s ease, border-color .2s ease;
+}
+.consent input:checked{ background:var(--clay); border-color:var(--clay) }
+.consent input:checked::after{
+  content:"";width:9px;height:5px;
+  border:2px solid var(--const-ink);border-top:0;border-right:0;
+  transform:rotate(-45deg) translate(1px,-1px);
+}
+.consent label{
+  font-size:12.5px;font-weight:300;line-height:1.55;
+  color:var(--text-2);cursor:pointer;
+}
+
+.form-status{
+  margin:16px 0 0;
+  font-size:12.5px;color:var(--text-2);text-align:center;line-height:1.6;
+}
+.form-status.ok{ color:var(--clay); font-weight:500 }
+
+/* ---------- Breakpoints ---------- */
+@media (min-width:600px){
+  .form-row{ grid-template-columns:1fr 1fr; gap:0 14px }
+}
+@media (min-width:900px){
+  .sec{ padding:104px 0 }
+}
