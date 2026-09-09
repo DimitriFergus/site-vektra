@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[TESTE] Vektra Inteligência Contábil para construtoras e incorporadoras</title>
+<meta name="description" content="Contabilidade especializada em construção civil. Reduza carga tributária, apure custo por obra e enxergue a margem real de cada projeto.">
+<meta name="theme-color" content="#0B0E10">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<!-- Define o tema antes da primeira pintura. NÃO adicionar defer/async. -->
+<script src="assets/js/theme-init.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Estilos: a ordem importa (tokens primeiro, página por último) -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/home.css">
+
+<!-- Scripts: defer mantém a ordem e roda depois do HTML pronto -->
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/theme.js"></script>
+<script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/home.js"></script>
+</head>
+
+<body data-wa-msg="Olá! Vim pelo site da Vektra e quero a análise gratuita da minha construtora.">
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#topo" class="brand" aria-label="Vektra Inteligência Contábil, ir para o início">
+      <svg class="brand-mark" viewBox="0 0 122 96" fill="none" aria-hidden="true">
+        <path d="M10 12 L44 80 L78 12" stroke="var(--logo-v)" stroke-width="21" stroke-linejoin="round"/>
+        <path d="M72 80 L109 6" stroke="var(--bg)" stroke-width="29"/>
+        <path d="M72 80 L94 36" stroke="#08383C" stroke-width="21"/>
+        <path d="M98 28 L109 6" stroke="#C16639" stroke-width="21"/>
+      </svg>
+      <span class="brand-txt"><b>VEKTRA</b><small>Inteligência Contábil</small></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#diagnostico">Diagnóstico</a>
+      <a href="#metodo">Método</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Alternar modo claro e escuro" title="Alternar tema">
+        <svg class="ic ic-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.9"/>
+          <path d="M12 1.8v2.6M12 19.6v2.6M22.2 12h-2.6M4.4 12H1.8M19.2 4.8l-1.9 1.9M6.7 17.3l-1.9 1.9M19.2 19.2l-1.9-1.9M6.7 6.7L4.8 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+        </svg>
+        <svg class="ic ic-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20.5 14.6A8.8 8.8 0 019.4 3.5a8.8 8.8 0 1011.1 11.1z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <a href="#orcamento" class="btn btn-sm nav-cta magnetic"><span>Análise gratuita</span></a>
+
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#diagnostico">Diagnóstico</a>
+  <a href="#metodo">Método</a>
+  <a href="servicos.html">Serviços</a>
+  <a href="#duvidas">Dúvidas</a>
+  <a href="#orcamento" class="btn"><span>Quero uma análise gratuita</span></a>
+</div>
+
+<main id="topo">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+
+    <div class="hero-copy">
+      <p class="eyebrow">Contabilidade especializada em construção civil</p>
+
+      <div class="selos">
+        <span class="selo"><i class="dot-live"></i>Atendimento em <b>todo o Brasil</b></span>
+        <span class="selo">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Só <b>construtoras e incorporadoras</b>
+        </span>
+      </div>
+
+      <h1>
+        <span class="line"><i>Sua construtora</i></span>
+        <span class="line"><i>entrega obras.</i></span>
+        <span class="line"><i>Mas o <span class="hl">lucro</span> aparece?</i></span>
+      </h1>
+
+      <p class="hero-sub">
+        Descubra o que pode estar comprometendo sua margem. Tenha uma contabilidade
+        especializada para avaliar sua tributação, organizar os custos por obra e
+        trazer mais clareza sobre seus resultados.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#orcamento" class="btn btn-lg magnetic" data-wa>
+          <span>Quero uma análise gratuita
+            <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+              <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <span class="hero-note"><i class="dot-live"></i> Conversa inicial gratuita e sem compromisso.</span>
+      </div>
+
+      <div class="hero-meta">
+        <div><span class="count" data-count="146" data-suffix="+">0</span><small>Obras acompanhadas</small></div>
+        <div><span class="count" data-count="31" data-suffix="%">0</span><small>Média de redução tributária</small></div>
+        <div><span class="count" data-count="12" data-suffix=" anos">0</span><small>Só em construção civil</small></div>
+      </div>
+    </div>
+
+    <div class="hero-midia">
+      <img src="assets/img/time-vektra.jpg"
+           alt="Time de contadores da Vektra"
+           width="538" height="302" fetchpriority="high" decoding="async">
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= TICKER ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- ================= PROVA SOCIAL ================= -->
+<section class="proof">
+  <div class="wrap">
+    <p class="proof-head reveal">Construtoras e incorporadoras que já enxergam a margem real</p>
+
+    <div class="esteira reveal" style="--d:80ms" role="img" aria-label="Construtoras e incorporadoras atendidas pela Vektra">
+      <div class="esteira-trilho">
+        <span class="marca"><b>MARCONDES</b><small>Engenharia</small></span>
+        <span class="marca"><b>VERTENTE</b><small>Construtora</small></span>
+        <span class="marca"><b>GRUPO PILAR</b><small>Incorporações</small></span>
+        <span class="marca"><b>OBRAX</b><small>Empreendimentos</small></span>
+        <span class="marca"><b>SANTA LUZ</b><small>Construções</small></span>
+        <span class="marca"><b>ALVORADA</b><small>Incorporadora</small></span>
+        <span class="marca"><b>CASTRO & FILHOS</b><small>Construções</small></span>
+        <span class="marca"><b>NOVA ENSEADA</b><small>Urbanismo</small></span>
+        <!-- a mesma lista de novo, para o ciclo não ter emenda -->
+        <span class="marca"><b>MARCONDES</b><small>Engenharia</small></span>
+        <span class="marca"><b>VERTENTE</b><small>Construtora</small></span>
+        <span class="marca"><b>GRUPO PILAR</b><small>Incorporações</small></span>
+        <span class="marca"><b>OBRAX</b><small>Empreendimentos</small></span>
+        <span class="marca"><b>SANTA LUZ</b><small>Construções</small></span>
+        <span class="marca"><b>ALVORADA</b><small>Incorporadora</small></span>
+        <span class="marca"><b>CASTRO & FILHOS</b><small>Construções</small></span>
+        <span class="marca"><b>NOVA ENSEADA</b><small>Urbanismo</small></span>
+      </div>
+    </div>
+
+    <div class="proof-stat reveal" style="--d:140ms">
+      <div class="big">R$ <span class="count" data-count="4.2" data-decimals="1">0,0</span> milhões</div>
+      <p>em vendas e tributos recuperados para nossos clientes</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEMA ================= -->
+<section class="sec sec-alt" id="diagnostico">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Faturar mais não é a mesma coisa que ganhar mais.</h2>
+      <p>Toda construtora que cresce rápido passa pelos mesmos três buracos. Eles não aparecem no
+        canteiro. Aparecem no balanço, quando já custaram caro.</p>
+    </div>
+
+    <div class="pains">
+      <article class="pain reveal">
+        <span class="pain-mark" aria-hidden="true"></span>
+        <h3>Você fecha o mês sem saber qual obra deu lucro.</h3>
+        <p>Material, mão de obra, locação e retrabalho entram tudo no mesmo caldeirão. No fim,
+          a obra boa paga o prejuízo da obra ruim, e ninguém percebe.</p>
+        <span class="pain-cost">Margem invisível</span>
+      </article>
+
+      <article class="pain reveal" style="--d:100ms">
+        <span class="pain-mark" aria-hidden="true"></span>
+        <h3>Paga imposto sobre um lucro que nunca viu.</h3>
+        <p>Presunção de 32% quando poderia ser 8%. <span class="sigla" data-dica="Regime Especial de Tributação: 4% sobre a receita, disponível para incorporações com patrimônio de afetação.">RET</span> ignorado na incorporação. INSS calculado
+          na folha quando a <span class="sigla" data-dica="Contribuição Previdenciária sobre a Receita Bruta: substitui os 20% patronais sobre a folha, quando a conta fecha melhor.">CPRB</span> sairia mais barata. Cada erro desses sangra todo mês.</p>
+        <span class="pain-cost">Dinheiro que sai sem precisar</span>
+      </article>
+
+      <article class="pain reveal" style="--d:200ms">
+        <span class="pain-mark" aria-hidden="true"></span>
+        <h3>Descobre o problema quando o fiscal descobre antes.</h3>
+        <p><span class="sigla" data-dica="Cadastro Nacional de Obras: o registro da obra na Receita Federal, aberto no começo e baixado no fim.">CNO</span> sem baixa, <span class="sigla" data-dica="Imposto Sobre Serviços: municipal, devido no município onde a obra está, não onde fica a sede.">ISS</span> retido errado, SPED com divergência. A notificação chega anos
+          depois, com multa e juros, no meio do fluxo apertado de uma obra nova.</p>
+        <span class="pain-cost">Passivo acumulando em silêncio</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIFERENCIAIS ================= -->
+<section class="sec" id="diferenciais">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">Diferenciais</p>
+      <h2>O que muda quando você aciona a Vektra.</h2>
+      <p>Não é atendimento mais rápido nem relatório mais bonito. São seis coisas que um escritório
+        contábil generalista não tem como enxergar na sua operação.</p>
+    </div>
+
+    <div class="diffs">
+
+      <article class="diff reveal">
+        <div class="diff-ic" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+            <path d="M4 3h11l5 5v13H4V3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M15 3v5h5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M8 15.5l2.5 2.5L16 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>A retenção de 11% que ninguém foi buscar</h3>
+        <p>Toda nota de subempreitada carrega 11% de INSS retido. Isso é crédito seu, não despesa.
+          Na maioria das construtoras esse valor nunca foi compensado uma única vez.
+          Levantamos os últimos cinco anos e trazemos de volta.</p>
+      </article>
+
+      <article class="diff reveal" style="--d:80ms">
+        <div class="diff-ic" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+            <path d="M3 20.5h18M5.5 20.5V9l6.5-5 6.5 5v11.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M9.5 20.5v-5h5v5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M2 2l20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Aferição indireta: quando a Receita arbitra a sua obra</h3>
+        <p>Sem o <span class="sigla" data-dica="Serviço Eletrônico para Aferição de Obras: onde a obra é declarada com folha e notas reais, no lugar de o fisco estimar pela área construída.">SERO</span> montado com folha e notas reais, o fisco calcula o INSS pela área construída
+          e cobra por uma mão de obra que você nunca contratou. Fechamos a aferição com prova
+          documental antes de virar dívida com o Habite-se travado.</p>
+      </article>
+
+      <article class="diff reveal" style="--d:160ms">
+        <div class="diff-ic" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M7 8h10M7 12.5h4M7 16.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M14.5 16.5l2 2 3.5-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Desoneração decidida contrato a contrato</h3>
+        <p>CPRB não é escolha de empresa, é conta de obra: depende do peso da folha dentro daquele
+          contrato específico. Rodamos a comparação com os 20% patronais antes da assinatura,
+          não em abril do ano seguinte, quando já não dá para mudar.</p>
+      </article>
+
+      <article class="diff reveal" style="--d:240ms">
+        <div class="diff-ic" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21.5s7.5-6.3 7.5-12A7.5 7.5 0 004.5 9.5c0 5.7 7.5 12 7.5 12z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="12" cy="9.3" r="2.8" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <h3>ISS recolhido no município errado</h3>
+        <p>Construção civil paga ISS onde a obra está, com alíquota, cadastro e regra de retenção
+          próprios de cada prefeitura. Mapeamos obra por obra, corrigimos o tomador que reteve a
+          mais e evitamos a cobrança dobrada de duas cidades pelo mesmo serviço.</p>
+      </article>
+
+      <article class="diff reveal" style="--d:320ms">
+        <div class="diff-ic" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+            <rect x="3.5" y="8" width="7" height="13" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="13.5" y="3" width="7" height="18" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M6 12h2M6 16h2M16 7h2M16 11h2M16 15h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>RET por torre, não por CNPJ</h3>
+        <p>Patrimônio de afetação e <span class="sigla" data-dica="Sociedade de Propósito Específico: uma empresa criada só para aquele empreendimento.">SPE</span> por empreendimento derrubam a tributação de 32% de presunção
+          para 4% sobre a receita daquela torre. Só que a estrutura precisa existir antes da primeira
+          venda. Depois do primeiro contrato assinado, a porta fecha.</p>
+      </article>
+
+      <article class="diff reveal" style="--d:400ms">
+        <div class="diff-ic" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+            <path d="M3 20h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M4 16.5l5-5.5 4 3.5 7-8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.5 6H20v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Medição não é faturamento, e nenhum dos dois é lucro</h3>
+        <p>Receita de obra se reconhece pelo avanço físico do contrato, não pela data em que a nota
+          saiu. Quem fecha o mês pela emissão lê um resultado que não existe: lucro em obra que ainda
+          vai custar, prejuízo em obra que já foi paga.</p>
+      </article>
+
+    </div>
+
+    <div class="diff-note reveal" style="--d:120ms">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.3" stroke="currentColor" stroke-width="1.9"/>
+        <path d="M12 11v6M12 7.4v.9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+      </svg>
+      <span>Reconheceu sua empresa em dois ou mais desses pontos? <b>É exatamente o que o diagnóstico
+        gratuito procura</b>. O relatório aponta o valor de cada um deles na sua operação, com número,
+        não com adjetivo.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MÉTODO ================= -->
+<section class="sec sec-alt" id="metodo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Três passos entre o caixa apertado e a margem no lugar.</h2>
+      <p>Sem promessa vaga e sem virar a chave no escuro. Você vê número antes de decidir qualquer coisa.</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="tl-line" aria-hidden="true"><i></i></div>
+
+      <article class="step reveal">
+        <div class="step-dot"></div>
+        <p class="step-when">Semana 1 · gratuito</p>
+        <h3>Raio-X tributário</h3>
+        <p>Analisamos seus últimos 12 meses de apuração, contratos e notas. Você recebe um
+          relatório com o que está sendo pago a maior e quanto dá para recuperar.</p>
+        <ul>
+          <li>Revisão de regime e presunção aplicada</li>
+          <li>Levantamento de créditos e retenções</li>
+          <li>Mapa de risco fiscal por obra</li>
+        </ul>
+      </article>
+
+      <article class="step reveal" style="--d:120ms">
+        <div class="step-dot"></div>
+        <p class="step-when">Dias 8 a 45</p>
+        <h3>Reestruturação e custo por obra</h3>
+        <p>Reenquadramos o que precisa ser reenquadrado e montamos o centro de custo de cada
+          obra. A partir daí, cada projeto passa a ter margem própria, visível.</p>
+        <ul>
+          <li>Enquadramento ideal: Presumido, Real ou RET</li>
+          <li>Plano de contas por obra e por etapa</li>
+          <li>Regularização de CNO, INSS e ISS</li>
+        </ul>
+      </article>
+
+      <article class="step reveal" style="--d:240ms">
+        <div class="step-dot"></div>
+        <p class="step-when">Acompanhamento contínuo</p>
+        <h3>Gestão mensal e defesa fiscal</h3>
+        <p>Fechamento mensal com leitura de margem, obrigações entregues no prazo e um contador
+          especialista que atende no WhatsApp, não um protocolo de chamado.</p>
+        <ul>
+          <li>Relatório gerencial todo dia 10</li>
+          <li>Reunião de resultado por trimestre</li>
+          <li>Resposta a fiscalizações e notificações</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>A contabilidade deixa de ser obrigação e vira instrumento.</h2>
+    </div>
+
+    <div class="feat">
+      <div class="feat-copy reveal">
+        <span class="feat-tag">Controle</span>
+        <h3>Custo por obra, atualizado o mês inteiro.</h3>
+        <p>Cada obra vira um centro de resultado. Você abre o relatório e vê exatamente qual
+          projeto está puxando a margem para cima e qual está comendo o lucro dos outros.</p>
+        <ul class="feat-list">
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> Margem bruta e líquida por obra e por etapa</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> Orçado x realizado com alerta de desvio</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> Rateio correto de administração e equipe fixa</li>
+        </ul>
+      </div>
+
+      <div class="mock reveal" style="--d:120ms">
+        <div class="mock-bar" aria-hidden="true"><i></i><i></i><i></i><span>painel · margem por obra</span></div>
+        <div class="mock-body">
+          <div class="m1-tabs" id="m1Tabs" role="group" aria-label="Período do painel">
+            <button type="button" class="on" data-per="mes" aria-pressed="true">1 mês</button>
+            <button type="button" data-per="sem" aria-pressed="false">6 meses</button>
+            <button type="button" data-per="ano" aria-pressed="false">1 ano</button>
+          </div>
+
+          <div class="m1-head">
+            <div><p class="mock-label" id="m1Label">Margem consolidada · 1 mês</p><b id="m1Val">11,2%</b></div>
+            <span class="m1-pill" id="m1Pill">&#9650; 1,4 p.p. vs. anterior</span>
+          </div>
+
+          <div class="bars" id="m1Bars">
+            <div class="bar"><i style="height:38%"></i></div><div class="bar"><i style="height:52%"></i></div><div class="bar"><i style="height:26%"></i></div>
+            <div class="bar"><i style="height:61%"></i></div><div class="bar"><i style="height:44%"></i></div><div class="bar"><i style="height:55%"></i></div>
+          </div>
+          <div class="bar-labels">
+            <span>RES.VILA</span><span>CENTRO</span><span>GALPÃO</span><span>ALPHA</span><span>PQ.SUL</span><span>TORRE</span>
+          </div>
+
+          <div class="roi">
+            <div class="roi-cols">
+              <div>
+                <p class="mock-label">Você investe</p>
+                <b id="roiInv">R$ 2.400</b>
+              </div>
+              <svg class="roi-arw" width="22" height="12" viewBox="0 0 22 12" fill="none" aria-hidden="true">
+                <path d="M1 6h19M15 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="roi-dir">
+                <p class="mock-label">Você recebe</p>
+                <b class="ganho" id="roiOut">R$ 6.800</b>
+              </div>
+            </div>
+
+            <div class="roi-bar">
+              <i class="inv" id="roiBarInv" style="width:35%"></i>
+              <i class="gan" id="roiBarGan" style="width:65%"></i>
+            </div>
+
+            <div class="roi-foot">
+              <span>Sobra líquida no período <b id="roiNet">R$ 4.400</b></span>
+              <em id="roiMult">2,8x o investimento</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="feat-copy reveal">
+        <span class="feat-tag">Tributação</span>
+        <h3>O enquadramento certo para o seu tipo de contrato.</h3>
+        <p>Empreitada total, mão de obra, incorporação, administração: cada modalidade tem uma
+          regra fiscal diferente. Simulamos os cenários e escolhemos com base em número, não em hábito.</p>
+        <ul class="feat-list">
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> Presunção de 8%/12% quando há material aplicado</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> RET a 4% para incorporações com patrimônio de afetação</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> Comparativo CPRB x folha antes de cada obra nova</li>
+        </ul>
+      </div>
+
+      <div class="mock reveal" style="--d:120ms">
+        <div class="mock-bar" aria-hidden="true"><i></i><i></i><i></i><span>simulador · carga tributária</span></div>
+        <div class="mock-body">
+          <div class="m2-toggle" id="m2Tabs" role="group" aria-label="Regime tributário simulado">
+            <button type="button" class="on" data-reg="p32" aria-pressed="true">Presumido 32%</button>
+            <button type="button" data-reg="p812" aria-pressed="false">Presumido 8/12%</button>
+            <button type="button" data-reg="ret" aria-pressed="false">RET 4%</button>
+          </div>
+
+          <div class="m2-head">
+            <div>
+              <p class="mock-label" id="m2Nome">Imposto no Presumido 32%</p>
+              <b id="m2Mes">R$ 41.800<small>/mês</small></b>
+            </div>
+            <span class="m2-badge neutro" id="m2Badge">cenário atual</span>
+          </div>
+
+          <div class="m2-line on" data-reg="p32" role="button" tabindex="0">
+            <div class="top"><span>Presumido 32%</span><b>R$ 41.800/mês</b></div>
+            <div class="track"><i class="a" style="width:100%"></i></div>
+          </div>
+          <div class="m2-line" data-reg="p812" role="button" tabindex="0">
+            <div class="top"><span>Presumido 8/12%</span><b>R$ 25.900/mês</b></div>
+            <div class="track"><i class="b" style="width:62%"></i></div>
+          </div>
+          <div class="m2-line" data-reg="ret" role="button" tabindex="0">
+            <div class="top"><span>RET 4% <em class="m2-best">melhor opção</em></span><b>R$ 12.100/mês</b></div>
+            <div class="track"><i class="c" style="width:29%"></i></div>
+          </div>
+
+          <div class="m2-out">
+            <p class="mock-label" id="m2Label">Custo em 12 meses</p>
+            <b id="m2Val" class="flat">R$ 501.600</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-copy reveal">
+        <span class="feat-tag">Segurança</span>
+        <h3>Obrigações em dia e passivo fiscal sob controle.</h3>
+        <p>Nada de descobrir pendência quando a certidão negativa trava um financiamento ou uma
+          licitação. Monitoramos prazo por prazo e avisamos antes de virar problema.</p>
+        <ul class="feat-list">
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> CNO aberto, movimentado e baixado corretamente</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> Certidões monitoradas para financiamento e licitação</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg> Defesa técnica em notificação e auto de infração</li>
+        </ul>
+      </div>
+
+      <div class="mock reveal" style="--d:120ms" aria-hidden="true">
+        <div class="mock-bar"><i></i><i></i><i></i><span>compliance · calendário fiscal</span></div>
+        <div class="mock-body">
+          <div class="m3-list">
+            <div class="m3-item"><span class="chk"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>EFD-Reinf · retenções</em><small>DIA 15</small></div>
+            <div class="m3-item"><span class="chk"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>eSocial · obra 4412</em><small>DIA 15</small></div>
+            <div class="m3-item"><span class="chk"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>DCTFWeb · competência</em><small>DIA 20</small></div>
+            <div class="m3-item"><span class="chk"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>ISS retido · 3 municípios</em><small>DIA 10</small></div>
+            <div class="m3-item"><span class="chk"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>Baixa de CNO · Ed. Alpha</em><small>EM CURSO</small></div>
+          </div>
+          <div class="scan" style="margin-top:16px"></div>
+          <div class="m3-foot"><span>CND federal, FGTS e municipal</span><span style="color:var(--clay)">Todas regulares</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= DEPOIMENTOS ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>O que muda quando o número aparece.</h2>
+    </div>
+
+    <div class="tcards">
+      <article class="tcard reveal">
+        <p class="tresult">R$ 384 mil<small>Economizados em 14 meses</small></p>
+        <p class="tquote">"A gente crescia todo ano e o caixa continuava no limite. A Vektra mostrou
+          que a gente estava na presunção errada há quase quatro anos. <b>Recuperamos parte e paramos
+          de sangrar o resto.</b>"</p>
+        <div class="tperson">
+          <div class="tface">RA</div>
+          <div><b>Ricardo Almeida</b><small>Almeida &amp; Filhos Engenharia · Campinas/SP</small></div>
+        </div>
+      </article>
+
+      <article class="tcard reveal" style="--d:110ms">
+        <p class="tresult">9% → 17%<small>Margem líquida por obra</small></p>
+        <p class="tquote">"O que mais valeu não foi nem o imposto: foi finalmente saber qual obra dava
+          dinheiro. <b>Cortamos dois tipos de contrato que só davam prejuízo</b> e o faturamento caiu 8%,
+          com o lucro quase dobrando."</p>
+        <div class="tperson">
+          <div class="tface">JP</div>
+          <div><b>Juliana Prado</b><small>Prado Incorporações · Goiânia/GO</small></div>
+        </div>
+      </article>
+
+      <article class="tcard reveal" style="--d:220ms">
+        <p class="tresult">R$ 1,1 milhão<small>Recuperado e compensado</small></p>
+        <p class="tquote">"Tínhamos INSS de obra pago em duplicidade e ISS retido a maior em três
+          prefeituras. <b>O time levantou tudo, compensou e ainda deixou o CNO regular</b> a tempo do
+          financiamento da próxima torre."</p>
+        <div class="tperson">
+          <div class="tface">MT</div>
+          <div><b>Marcos Tenório</b><small>Tenório Construções · Recife/PE</small></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORÇAMENTO ================= -->
+<section class="sec sec-alt" id="orcamento">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Consultoria com orçamento gratuito.</h2>
+      <p>Não trabalhamos com tabela de prateleira: o valor depende do número de obras, do regime e
+        do volume de notas. O diagnóstico que define isso é por nossa conta.</p>
+    </div>
+
+    <div class="price-grid">
+
+      <div class="offer reveal">
+        <span class="offer-flag">Sem custo</span>
+        <p class="mock-label">Escopo por perfil</p>
+
+        <div class="seg" id="seg" role="tablist" aria-label="Escolha o perfil da empresa">
+          <span class="seg-pill" id="segPill" aria-hidden="true"></span>
+          <button type="button" role="tab" aria-selected="true" data-seg="construtora">Construtora</button>
+          <button type="button" role="tab" aria-selected="false" data-seg="incorporadora">Incorporadora</button>
+        </div>
+
+        <p class="price-big">R$ 0 <em>pelo diagnóstico</em></p>
+
+        <!-- Texto e lista preenchidos por assets/js/home.js -->
+        <p class="price-sub" id="segSub"></p>
+        <ul class="offer-list" id="segList"></ul>
+
+        <p class="offer-foot">
+          Prazo de entrega do diagnóstico: <strong>até 7 dias úteis</strong> após o envio dos documentos.
+          Atendemos construtoras a partir de R$ 1,5 milhão de faturamento anual, em todo o Brasil.
+        </p>
+      </div>
+
+      <div class="form-card reveal" style="--d:110ms">
+        <h3>Peça seu diagnóstico gratuito</h3>
+        <p>Responda em 40 segundos. Ao enviar, você segue direto para o WhatsApp do nosso especialista
+          com as informações já preenchidas.</p>
+
+        <form id="leadForm" novalidate>
+          <div class="field">
+            <label for="f-nome">Seu nome</label>
+            <input type="text" id="f-nome" name="nome" placeholder="Ex.: Ricardo Almeida" autocomplete="name" required>
+            <span class="msg-err">Informe seu nome</span>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="f-whats">WhatsApp</label>
+              <input type="tel" id="f-whats" name="whatsapp" placeholder="(11) 99999-9999" inputmode="numeric" autocomplete="tel" required>
+              <span class="msg-err">Informe um número válido</span>
+            </div>
+            <div class="field">
+              <label for="f-empresa">Empresa</label>
+              <input type="text" id="f-empresa" name="empresa" placeholder="Ex.: Almeida Engenharia" autocomplete="organization" required>
+              <span class="msg-err">Informe a empresa</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="f-cnpj">CNPJ</label>
+              <input type="text" id="f-cnpj" name="cnpj" placeholder="00.000.000/0001-00" inputmode="numeric" autocomplete="off" maxlength="18" required>
+              <span class="msg-err">Informe um CNPJ válido</span>
+            </div>
+            <div class="field">
+              <label for="f-func">Funcionários ativos</label>
+              <select id="f-func" name="funcionarios" required>
+                <option value="">Selecione</option>
+                <option>1 a 10</option>
+                <option>10 a 30</option>
+                <option>30 a 60</option>
+                <option>Mais de 60</option>
+              </select>
+              <span class="msg-err">Selecione a faixa</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-fat">Faturamento anual</label>
+            <select id="f-fat" name="faturamento" required>
+              <option value="">Selecione uma faixa</option>
+              <option>Até R$ 1,5 milhão</option>
+              <option>R$ 1,5 a 4,8 milhões</option>
+              <option>R$ 4,8 a 15 milhões</option>
+              <option>R$ 15 a 50 milhões</option>
+              <option>Acima de R$ 50 milhões</option>
+            </select>
+            <span class="msg-err">Selecione uma faixa</span>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="f-regime">Regime atual</label>
+              <select id="f-regime" name="regime" required>
+                <option value="">Selecione</option>
+                <option>Simples Nacional</option>
+                <option>Lucro Presumido</option>
+                <option>Lucro Real</option>
+                <option>RET / Afetação</option>
+                <option>Não sei informar</option>
+              </select>
+              <span class="msg-err">Selecione o regime</span>
+            </div>
+            <div class="field">
+              <label for="f-obras">Obras ativas</label>
+              <select id="f-obras" name="obras" required>
+                <option value="">Selecione</option>
+                <option>1 a 2 obras</option>
+                <option>3 a 5 obras</option>
+                <option>6 a 10 obras</option>
+                <option>Mais de 10 obras</option>
+              </select>
+              <span class="msg-err">Selecione a quantidade</span>
+            </div>
+          </div>
+
+          <div class="consent">
+            <input type="checkbox" id="f-lgpd" required>
+            <label for="f-lgpd">Autorizo o contato da Vektra pelo WhatsApp e e-mail. Seus dados não são compartilhados com terceiros.</label>
+          </div>
+
+          <button type="submit" class="btn btn-lg magnetic">
+            <span>Enviar e falar no WhatsApp
+              <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+                <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <p class="form-status" id="formStatus">Resposta em até 1 dia útil · Atendimento em todo o Brasil</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" id="duvidas">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Antes que você pergunte.</h2>
+    </div>
+
+    <div class="faq-list reveal" style="--d:80ms">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Preciso trocar de contador para fazer o diagnóstico?<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Não. O diagnóstico é independente e feito com documentos que você já tem: apurações,
+          balancetes e notas dos últimos 12 meses. Muita construtora faz a análise, leva o relatório ao contador atual
+          e implementa com ele. Se depois fizer sentido trabalhar conosco, a transição leva cerca de 15 dias e nós
+          cuidamos de todo o processo com o escritório anterior.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Dá para recuperar imposto que já foi pago a maior?<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Na maioria dos casos, sim. A legislação permite revisar os últimos 5 anos, e os erros
+          mais comuns na construção civil (presunção aplicada errada, INSS de obra em duplicidade, ISS retido a maior)
+          costumam gerar crédito compensável. O relatório mostra o valor estimado e o caminho: compensação administrativa
+          ou pedido de restituição, sem aventura jurídica.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Minha construtora é pequena. Vale a pena?<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Atendemos a partir de aproximadamente R$ 1,5 milhão de faturamento anual. Abaixo disso,
+          normalmente o ganho tributário não paga uma estrutura especializada, e nós dizemos isso na cara, no próprio
+          diagnóstico, em vez de vender um serviço que não se sustenta. Se for o seu caso, você sai com um relatório útil
+          e sem custo.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Vocês atendem fora da minha cidade?<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Sim. Todo o trabalho é digital: documentos por portal seguro, reuniões por vídeo e
+          atendimento diário pelo WhatsApp com um contador que conhece a sua operação, não uma central de chamados.
+          Já atendemos construtoras em mais de 40 municípios, o que inclui lidar com legislações de ISS bem diferentes
+          entre si.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Quanto custa a contabilidade mensal depois?<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Depende do número de obras ativas, do regime tributário, do volume de notas e da folha.
+          Por isso não publicamos tabela: o orçamento sai junto com o diagnóstico, com escopo aberto item a item. O que
+          garantimos é o critério: se a economia projetada não cobrir com folga o honorário, nós mesmos não recomendamos
+          a contratação.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="final">
+  <div class="wrap final-grid">
+    <div class="reveal">
+      <p class="eyebrow">Última chamada</p>
+      <h2>Cada mês sem revisar é margem que não volta.</h2>
+      <p>Imposto pago a maior prescreve. Obra fechada sem apuração de custo não se reconstrói.
+        Quanto antes você olhar o número, maior a parte que ainda dá para recuperar.</p>
+      <div class="vagas reveal" style="--preenchido:62.5%">
+        <div class="vagas-topo">
+          <span class="vagas-selo"><i class="pulso"></i>3 vagas em setembro</span>
+          <span class="vagas-conta"><b>5</b> de <b>8</b> preenchidas</span>
+        </div>
+        <div class="vagas-barra"><i></i></div>
+        <p class="vagas-nota">Abrimos 8 diagnósticos por mês. É o que cabe sem terceirizar a análise.</p>
+      </div>
+      <a href="#" class="btn btn-lg magnetic" data-wa>
+        <span>Quero uma análise gratuita
+          <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+            <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="reveal" style="--d:130ms">
+      <div class="guarantee">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2l8 3.5v6c0 5-3.4 9.3-8 10.5-4.6-1.2-8-5.5-8-10.5v-6L12 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M8.4 12.2l2.6 2.6 4.8-5.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <b>Garantia do diagnóstico</b>
+          <span>Se a análise não apontar ao menos uma oportunidade concreta de economia ou de recuperação
+            de tributos, você não paga nada, não fica com nenhuma obrigação, e leva o relatório completo
+            para usar como quiser, inclusive com outro contador.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#topo" class="brand" aria-label="Vektra Inteligência Contábil, voltar ao topo">
+          <svg class="brand-mark" viewBox="0 0 122 96" fill="none" aria-hidden="true">
+            <path d="M10 12 L44 80 L78 12" stroke="var(--logo-v)" stroke-width="21" stroke-linejoin="round"/>
+            <path d="M72 80 L109 6" stroke="var(--bg)" stroke-width="29"/>
+            <path d="M72 80 L94 36" stroke="#08383C" stroke-width="21"/>
+            <path d="M98 28 L109 6" stroke="#C16639" stroke-width="21"/>
+          </svg>
+          <span class="brand-txt"><b>VEKTRA</b><small>Inteligência Contábil</small></span>
+        </a>
+        <p>Contabilidade, tributos e gestão de custos para construtoras e incorporadoras. Só isso, desde 2013.</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#diagnostico">Diagnóstico</a></li>
+          <li><a href="#metodo">Método</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="servicos.html#videos">Planejamento tributário</a></li>
+          <li><a href="servicos.html#videos">Custo por obra</a></li>
+          <li><a href="servicos.html#videos">INSS e ISS de obra</a></li>
+          <li><a href="servicos.html#simulador">Simulador de regime</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#" data-wa>WhatsApp comercial</a></li>
+          <li><a href="mailto:contato@vektracontabil.com.br">contato@vektracontabil.com.br</a></li>
+          <li><a href="#orcamento">Solicitar proposta</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="ano">2026</span> Vektra Inteligência Contábil · CNPJ 00.000.000/0001-00 · CRC 2SP000000/O-0<br>
+        Depoimentos, logotipos e números exibidos são ilustrativos.</span>
+      <a href="#topo" style="color:var(--clay);font-weight:500">Voltar ao topo ↑</a>
+    </div>
+  </div>
+</footer>
+
+<a class="marca-teste" href="../index.html">teste</a>
+<a href="#" class="wa-float" data-wa aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 21.5c-1.7 0-3.3-.4-4.7-1.3l-3.3.9.9-3.2A9.4 9.4 0 012.6 12 9.4 9.4 0 0112 2.6 9.4 9.4 0 0121.4 12 9.4 9.4 0 0112 21.5M12 .7A11.3 11.3 0 00.7 12c0 2 .5 3.9 1.5 5.6L.6 23.4l6-1.6c1.6.9 3.5 1.4 5.4 1.4A11.3 11.3 0 0023.3 12 11.3 11.3 0 0012 .7"/>
+  </svg>
+</a>
+
+</body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[TESTE] Serviços | Vektra Inteligência Contábil</title>
+<meta name="description" content="Planejamento tributário, RET, custo por obra, INSS de obra, ISS e recuperação de créditos para construtoras e incorporadoras. Em vídeo, direto ao ponto.">
+<meta name="theme-color" content="#0B0E10">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<!-- Define o tema antes da primeira pintura. NÃO adicionar defer/async. -->
+<script src="assets/js/theme-init.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/servicos.css">
+
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/theme.js"></script>
+<script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/servicos.js"></script>
+</head>
+
+<body data-wa-msg="Olá! Vim pela página de serviços do site da Vektra e quero falar com um especialista.">
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Vektra Inteligência Contábil, ir para o início">
+      <svg class="brand-mark" viewBox="0 0 122 96" fill="none" aria-hidden="true">
+        <path d="M10 12 L44 80 L78 12" stroke="var(--logo-v)" stroke-width="21" stroke-linejoin="round"/>
+        <path d="M72 80 L109 6" stroke="var(--bg)" stroke-width="29"/>
+        <path d="M72 80 L94 36" stroke="#08383C" stroke-width="21"/>
+        <path d="M98 28 L109 6" stroke="#C16639" stroke-width="21"/>
+      </svg>
+      <span class="brand-txt"><b>VEKTRA</b><small>Inteligência Contábil</small></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="index.html#diagnostico">Diagnóstico</a>
+      <a href="index.html#metodo">Método</a>
+      <a href="servicos.html" class="active" aria-current="page">Serviços</a>
+      <a href="index.html#duvidas">Dúvidas</a>
+    </nav>
+
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Alternar modo claro e escuro" title="Alternar tema">
+        <svg class="ic ic-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.9"/>
+          <path d="M12 1.8v2.6M12 19.6v2.6M22.2 12h-2.6M4.4 12H1.8M19.2 4.8l-1.9 1.9M6.7 17.3l-1.9 1.9M19.2 19.2l-1.9-1.9M6.7 6.7L4.8 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+        </svg>
+        <svg class="ic ic-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20.5 14.6A8.8 8.8 0 019.4 3.5a8.8 8.8 0 1011.1 11.1z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <a href="#especialista" class="btn btn-sm nav-cta magnetic"><span>Análise gratuita</span></a>
+
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#diagnostico">Diagnóstico</a>
+  <a href="index.html#metodo">Método</a>
+  <a href="servicos.html" class="active" aria-current="page">Serviços</a>
+  <a href="index.html#duvidas">Dúvidas</a>
+  <a href="#especialista" class="btn"><span>Quero uma análise gratuita</span></a>
+</div>
+
+<main id="topo">
+
+<!-- ================= HERO ================= -->
+<section class="page-hero">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Soluções ágeis e práticas</p>
+    <h1 class="reveal" style="--d:60ms">Para a gestão contábil da sua <span class="hl">construtora</span>.</h1>
+    <p class="reveal" style="--d:120ms">Cada tema abaixo é uma dúvida que chega no nosso WhatsApp toda semana. Em vez de
+      responder por escrito, gravamos: seis vídeos curtos, com número na tela e sem juridiquês.</p>
+    <div class="hero-chips reveal" style="--d:180ms">
+      <span class="chip">Lucro Presumido</span>
+      <span class="chip">RET 4%</span>
+      <span class="chip">Custo por obra</span>
+      <span class="chip">INSS de obra</span>
+      <span class="chip"><span class="sigla" data-dica="Imposto Sobre Serviços: municipal, devido no município onde a obra está, não onde fica a sede.">ISS</span> municipal</span>
+      <span class="chip">Recuperação de créditos</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VÍDEOS =================
+     Para publicar um vídeo: preencha data-src no botão .play
+     (embed do YouTube/Vimeo ou caminho de um .mp4) e apague
+     o <span class="cover-soon">Em breve</span> daquele card.
+============================================================ -->
+<section class="sec sec-alt" id="videos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Seis assuntos que decidem a margem da sua obra.</h2>
+      <p>Assista ao que interessa para o seu momento, ou fale direto com um especialista se preferir
+        resolver o seu caso específico.</p>
+    </div>
+
+    <div class="videos">
+
+      <!-- 1 -->
+      <article class="vcard reveal">
+        <div class="cover">
+          <div class="cover-art" aria-hidden="true">
+            <svg width="150" height="150" viewBox="0 0 24 24" fill="none">
+              <path d="M4 3h11l5 5v13H4V3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M15 3v5h5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M8 13h8M8 16.5h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="cover-tag">Tributação</span>
+          <span class="cover-soon">Em breve</span>
+          <button class="play" data-video
+            data-title="Planejamento tributário para construtoras"
+            data-tag="Tributação"
+            data-desc="Como escolher entre Lucro Presumido com presunção de 32%, presunção reduzida de 8% e 12% e Lucro Real olhando o tipo de contrato assinado, e não o hábito do escritório contábil. Mostramos a conta lado a lado com um contrato real de empreitada."
+            data-src=""
+            aria-label="Assistir: Planejamento tributário para construtoras">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5v-17z"/></svg>
+          </button>
+        </div>
+        <div class="vbody">
+          <h3>Planejamento tributário para construtoras</h3>
+          <p>Quando a presunção cai de 32% para 8% e 12%, o que caracteriza empreitada com material aplicado
+            e por que a decisão muda a cada contrato novo.</p>
+          <a href="#especialista" class="btn btn-ghost btn-block"><span>Fale com um Especialista!</span></a>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="vcard reveal" style="--d:80ms">
+        <div class="cover">
+          <div class="cover-art" aria-hidden="true">
+            <svg width="150" height="150" viewBox="0 0 24 24" fill="none">
+              <rect x="3.5" y="8" width="7" height="13" rx="1.2" stroke="currentColor" stroke-width="1.3"/>
+              <rect x="13.5" y="3" width="7" height="18" rx="1.2" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M6 12h2M6 16h2M16 7h2M16 11h2M16 15h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="cover-tag">Incorporação</span>
+          <span class="cover-soon">Em breve</span>
+          <button class="play" data-video
+            data-title="RET e patrimônio de afetação, torre por torre"
+            data-tag="Incorporação"
+            data-desc="Quando vale afetar o empreendimento, o que muda na venda das unidades, como fica a SPE e por que a decisão precisa estar tomada antes do primeiro contrato de compra e venda ser assinado."
+            data-src=""
+            aria-label="Assistir: RET e patrimônio de afetação">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5v-17z"/></svg>
+          </button>
+        </div>
+        <div class="vbody">
+          <h3>RET e patrimônio de afetação, torre por torre</h3>
+          <p>Os 4% do Regime Especial de Tributação na prática: requisitos, o que trava a adesão e o
+            impacto real sobre o VGV do empreendimento.</p>
+          <a href="#especialista" class="btn btn-ghost btn-block"><span>Fale com um Especialista!</span></a>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="vcard reveal" style="--d:160ms">
+        <div class="cover">
+          <div class="cover-art" aria-hidden="true">
+            <svg width="150" height="150" viewBox="0 0 24 24" fill="none">
+              <path d="M3 20h18" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M4 16l5-5.5 4 3.5 7-8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.5 6H20v4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="cover-tag">Gestão</span>
+          <span class="cover-soon">Em breve</span>
+          <button class="play" data-video
+            data-title="Custo por obra e apuração de margem"
+            data-tag="Gestão"
+            data-desc="Como montar centro de custo por obra e por etapa, ratear administração e equipamento próprio sem distorcer o resultado, e ler a margem pelo avanço físico do contrato em vez da data em que a nota foi emitida."
+            data-src=""
+            aria-label="Assistir: Custo por obra e apuração de margem">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5v-17z"/></svg>
+          </button>
+        </div>
+        <div class="vbody">
+          <h3>Custo por obra e apuração de margem</h3>
+          <p>Por que o resultado do mês mente quando todas as obras dividem o mesmo centro de custo,
+            e como separar sem virar um trabalho manual eterno.</p>
+          <a href="#especialista" class="btn btn-ghost btn-block"><span>Fale com um Especialista!</span></a>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="vcard reveal">
+        <div class="cover">
+          <div class="cover-art" aria-hidden="true">
+            <svg width="150" height="150" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2.5l8 3.3v6c0 5-3.4 9.2-8 10.4-4.6-1.2-8-5.4-8-10.4v-6l8-3.3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M9 12l2.2 2.2L15.5 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="cover-tag">Previdenciário</span>
+          <span class="cover-soon">Em breve</span>
+          <button class="play" data-video
+            data-title="INSS de obra, CNO e aferição indireta"
+            data-tag="Previdenciário"
+            data-desc="Matrícula CNO, a retenção de 11% na nota de subempreitada, o SERO e a aferição indireta. O que reunir para não pagar INSS sobre uma mão de obra que você nunca contratou, e como isso trava (ou libera) o Habite-se."
+            data-src=""
+            aria-label="Assistir: INSS de obra, CNO e aferição indireta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5v-17z"/></svg>
+          </button>
+        </div>
+        <div class="vbody">
+          <h3>INSS de obra, CNO e aferição indireta</h3>
+          <p>O caminho completo da matrícula até a baixa, e o que fazer quando a Receita arbitra a
+            contribuição pela área construída.</p>
+          <a href="#especialista" class="btn btn-ghost btn-block"><span>Fale com um Especialista!</span></a>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="vcard reveal" style="--d:80ms">
+        <div class="cover">
+          <div class="cover-art" aria-hidden="true">
+            <svg width="150" height="150" viewBox="0 0 24 24" fill="none">
+              <path d="M12 21.5s7.5-6.3 7.5-12A7.5 7.5 0 004.5 9.5c0 5.7 7.5 12 7.5 12z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              <circle cx="12" cy="9.3" r="2.8" stroke="currentColor" stroke-width="1.3"/>
+            </svg>
+          </div>
+          <span class="cover-tag">Municipal</span>
+          <span class="cover-soon">Em breve</span>
+          <button class="play" data-video
+            data-title="ISS na construção civil: onde o imposto é devido"
+            data-tag="Municipal"
+            data-desc="Local de incidência, cadastro de obra em município diferente da sede, retenção pelo tomador e o passo a passo para recuperar o que foi recolhido a maior, ou pago em duplicidade por duas prefeituras."
+            data-src=""
+            aria-label="Assistir: ISS na construção civil">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5v-17z"/></svg>
+          </button>
+        </div>
+        <div class="vbody">
+          <h3>ISS na construção civil: onde o imposto é devido</h3>
+          <p>Obra em uma cidade, sede em outra, tomador em uma terceira. Como não pagar duas vezes
+            pelo mesmo serviço.</p>
+          <a href="#especialista" class="btn btn-ghost btn-block"><span>Fale com um Especialista!</span></a>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="vcard reveal" style="--d:160ms">
+        <div class="cover">
+          <div class="cover-art" aria-hidden="true">
+            <svg width="150" height="150" viewBox="0 0 24 24" fill="none">
+              <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M8 10.5h5M10.5 8v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="cover-tag">Recuperação</span>
+          <span class="cover-soon">Em breve</span>
+          <button class="play" data-video
+            data-title="Recuperação de créditos dos últimos 5 anos"
+            data-tag="Recuperação"
+            data-desc="O que dá para revisar retroativamente, como compensar sem cair em malha fiscal e qual documentação sustenta o pedido quando a fiscalização vem checar. Com exemplos de valores reais recuperados por construtoras."
+            data-src=""
+            aria-label="Assistir: Recuperação de créditos dos últimos 5 anos">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5l14 8.5-14 8.5v-17z"/></svg>
+          </button>
+        </div>
+        <div class="vbody">
+          <h3>Recuperação de créditos dos últimos 5 anos</h3>
+          <p>Presunção aplicada errada, INSS em duplicidade, ISS retido a maior. O que ainda dá tempo
+            de reaver antes de prescrever.</p>
+          <a href="#especialista" class="btn btn-ghost btn-block"><span>Fale com um Especialista!</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIMULADOR ================= -->
+<section class="sec" id="simulador">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Antes de assistir tudo</p>
+      <h2>Veja em 15 segundos o tamanho do seu problema.</h2>
+      <p>Os vídeos explicam o porquê. Este simulador mostra o quanto. Ajuste os três campos com a
+        realidade da sua operação e compare os regimes lado a lado.</p>
+    </div>
+
+    <div class="sim">
+
+      <div class="sim-panel reveal">
+        <div class="sim-field">
+          <label for="fat">Faturamento mensal <b id="vFat">R$ 800.000</b></label>
+          <input type="range" id="fat" min="100000" max="5000000" step="50000" value="800000"
+                 aria-label="Faturamento mensal da construtora">
+          <div class="sim-scale"><span>R$ 100 mil</span><span>R$ 5 milhões</span></div>
+        </div>
+
+        <div class="sim-field">
+          <label for="mat">Material aplicado nas notas <b id="vMat">35%</b></label>
+          <input type="range" id="mat" min="0" max="70" step="5" value="35"
+                 aria-label="Percentual de material aplicado nas notas">
+          <div class="sim-scale"><span>0% · só mão de obra</span><span>70%</span></div>
+        </div>
+
+        <div class="sim-field">
+          <label for="tipo">Tipo de operação</label>
+          <select id="tipo" class="sim-select">
+            <option value="empreitada">Empreitada total (com material)</option>
+            <option value="maodeobra">Empreitada de mão de obra</option>
+            <option value="incorporacao">Incorporação imobiliária</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sim-out reveal" style="--d:100ms">
+        <div class="sim-row" id="row-p32">
+          <div class="top">
+            <span class="nm">Lucro Presumido 32%<em>Presunção cheia, o cenário mais comum</em></span>
+            <span class="vl"><span data-v>R$ 0</span><small data-r>0% da receita</small></span>
+          </div>
+          <div class="sim-bar"><i></i></div>
+        </div>
+
+        <div class="sim-row" id="row-p812">
+          <div class="top">
+            <span class="nm">Presumido 8% e 12%<em id="d812">Empreitada com material aplicado</em></span>
+            <span class="vl"><span data-v>R$ 0</span><small data-r>0% da receita</small></span>
+          </div>
+          <div class="sim-bar"><i></i></div>
+        </div>
+
+        <div class="sim-row" id="row-ret">
+          <div class="top">
+            <span class="nm"><span class="sigla" data-dica="Regime Especial de Tributação: 4% sobre a receita, disponível para incorporações com patrimônio de afetação.">RET</span> 4%<em id="dret">Incorporação com patrimônio de afetação</em></span>
+            <span class="vl"><span data-v>R$ 0</span><small data-r>0% da receita</small></span>
+          </div>
+          <div class="sim-bar"><i></i></div>
+        </div>
+
+        <div class="sim-total">
+          <div>
+            <span>Diferença em 12 meses</span>
+            <b id="simEco">R$ 0</b>
+          </div>
+          <p class="side" id="simSide">entre o cenário mais caro e o mais barato para esta operação</p>
+        </div>
+
+        <a href="#" class="btn btn-lg btn-block magnetic" id="simCta">
+          <span>Quero o cálculo exato da minha operação
+            <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+              <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+        <p class="sim-note">Estimativa simplificada, para dimensionar a ordem de grandeza. Considera IRPJ,
+          adicional de IRPJ, CSLL, PIS e COFINS sobre a receita informada. Não inclui INSS, ISS, créditos a
+          recuperar nem as particularidades do seu contrato. Esses entram no diagnóstico.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ESPECIALISTA ================= -->
+<section class="spec" id="especialista">
+  <div class="wrap spec-grid">
+    <div class="reveal">
+      <p class="eyebrow">Converse com um especialista</p>
+      <h2>Vídeo explica. Contrato assinado é outra conversa.</h2>
+      <p class="lead">Cada obra tem uma combinação diferente de contrato, município e folha. Traga a sua
+        e a gente roda a conta com os seus números, sem custo e sem enrolação comercial.</p>
+      <a href="#" class="btn btn-lg magnetic" data-wa>
+        <span>Falar agora no WhatsApp
+          <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+            <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="spec-card reveal" style="--d:120ms">
+      <div class="spec-who">
+        <div class="spec-face">VK</div>
+        <div>
+          <b>Time técnico Vektra</b>
+          <small>Contadores dedicados a construção civil</small>
+        </div>
+      </div>
+
+      <ul class="spec-list">
+        <li>
+          <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Uma conversa de 20 minutos, com um contador que já leu contrato de empreitada antes.
+        </li>
+        <li>
+          <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Se houver oportunidade clara, você sai com o número estimado ainda na chamada.
+        </li>
+        <li>
+          <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Se não houver, a gente diz na hora, e você não perde mais tempo com o assunto.
+        </li>
+      </ul>
+
+      <p class="spec-foot"><i class="dot-live"></i> Resposta em até 1 dia útil · Atendimento em todo o Brasil</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= MODAL DE VÍDEO ================= -->
+<div class="modal" id="vmodal" role="dialog" aria-modal="true" aria-labelledby="vmTitle" aria-hidden="true">
+  <div class="modal-bd" data-close></div>
+  <div class="modal-box">
+    <button class="modal-close" type="button" data-close aria-label="Fechar">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+    </button>
+
+    <!-- Conteúdo injetado por assets/js/servicos.js -->
+    <div class="modal-stage" id="vmStage"></div>
+
+    <div class="modal-body">
+      <span class="cover-tag" id="vmTag">Tributação</span>
+      <h3 id="vmTitle">Título do vídeo</h3>
+      <p id="vmDesc">Descrição.</p>
+      <div class="modal-actions">
+        <a href="#" class="btn" data-wa><span>Tirar essa dúvida no WhatsApp</span></a>
+        <a href="#simulador" class="btn btn-ghost" data-close><span>Abrir o simulador</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand" aria-label="Vektra Inteligência Contábil">
+          <svg class="brand-mark" viewBox="0 0 122 96" fill="none" aria-hidden="true">
+            <path d="M10 12 L44 80 L78 12" stroke="var(--logo-v)" stroke-width="21" stroke-linejoin="round"/>
+            <path d="M72 80 L109 6" stroke="var(--bg)" stroke-width="29"/>
+            <path d="M72 80 L94 36" stroke="#08383C" stroke-width="21"/>
+            <path d="M98 28 L109 6" stroke="#C16639" stroke-width="21"/>
+          </svg>
+          <span class="brand-txt"><b>VEKTRA</b><small>Inteligência Contábil</small></span>
+        </a>
+        <p>Contabilidade, tributos e gestão de custos para construtoras e incorporadoras. Só isso, desde 2013.</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html#diagnostico">Diagnóstico</a></li>
+          <li><a href="index.html#metodo">Método</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="index.html#duvidas">Dúvidas</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#videos">Planejamento tributário</a></li>
+          <li><a href="#videos">Custo por obra</a></li>
+          <li><a href="#videos">INSS e ISS de obra</a></li>
+          <li><a href="#simulador">Simulador de regime</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#" data-wa>WhatsApp comercial</a></li>
+          <li><a href="mailto:contato@vektracontabil.com.br">contato@vektracontabil.com.br</a></li>
+          <li><a href="#especialista">Solicitar proposta</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="ano">2026</span> Vektra Inteligência Contábil · CNPJ 00.000.000/0001-00 · CRC 2SP000000/O-0<br>
+        Capas de vídeo provisórias. Simulação com finalidade ilustrativa.</span>
+      <a href="#topo" style="color:var(--clay);font-weight:500">Voltar ao topo ↑</a>
+    </div>
+  </div>
+</footer>
+
+<a class="marca-teste" href="../index.html">teste</a>
+<a href="#" class="wa-float" data-wa aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 21.5c-1.7 0-3.3-.4-4.7-1.3l-3.3.9.9-3.2A9.4 9.4 0 012.6 12 9.4 9.4 0 0112 2.6 9.4 9.4 0 0121.4 12 9.4 9.4 0 0112 21.5M12 .7A11.3 11.3 0 00.7 12c0 2 .5 3.9 1.5 5.6L.6 23.4l6-1.6c1.6.9 3.5 1.4 5.4 1.4A11.3 11.3 0 0023.3 12 11.3 11.3 0 0012 .7"/>
+  </svg>
+</a>
+
+</body>
+</html>
