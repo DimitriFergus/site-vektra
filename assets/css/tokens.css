@@ -47,6 +47,7 @@
   --card-shadow:none;
   --glow:rgba(8,56,60,.85);
   --glow-clay:rgba(193,102,57,.42);   /* brilho no hover dos cards */
+  --clay-forte:#B25B32;               /* cobre do balão das siglas: branco por cima fica legível */
 
   --btn-fill:#FFFFFF;        /* preenchimento do hover dos botões */
   --btn-fill-tx:#0B0E10;
@@ -88,6 +89,7 @@
   --card-shadow:0 2px 16px -8px rgba(11,14,16,.14);
   --glow:rgba(8,56,60,.13);
   --glow-clay:rgba(193,102,57,.20);
+  --clay-forte:#B25B32;
 
   --btn-fill:#0B0E10;
   --btn-fill-tx:#FFFFFF;

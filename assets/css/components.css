@@ -58,17 +58,27 @@
    O balão é criado uma vez pelo core.js e posicionado com position:fixed,
    assim ele nunca é cortado por um card com overflow:hidden. */
 .sigla{
-  border-bottom:1px dashed var(--clay);
+  color:var(--clay);font-weight:600;
+  border-bottom:1px dashed var(--clay);border-radius:4px;
+  padding:0 3px;margin:0 -1px;
   cursor:help;
+  transition:background .2s ease, color .2s ease;
 }
-.sigla:focus-visible{ outline:2px solid var(--clay);outline-offset:3px;border-radius:2px }
+/* ao passar o mouse a própria sigla acende, igual ao balão */
+.sigla:hover,
+.sigla:focus-visible{
+  background:var(--clay-forte);color:var(--const-white);
+  border-bottom-color:transparent;
+}
+.sigla:focus-visible{ outline:2px solid var(--clay);outline-offset:2px }
 
 .dica{
   position:fixed;left:0;top:0;z-index:9998;pointer-events:none;
-  max-width:290px;padding:11px 14px;
-  background:var(--card);color:var(--text);
-  border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);
-  font-size:12.5px;font-weight:400;line-height:1.55;letter-spacing:0;text-transform:none;
+  max-width:300px;padding:13px 16px;
+  background:var(--clay-forte);color:var(--const-white);
+  border:0;border-radius:11px;
+  box-shadow:0 20px 44px -18px rgba(178,91,50,.75), 0 8px 20px -10px rgba(0,0,0,.45);
+  font-size:13px;font-weight:600;line-height:1.5;letter-spacing:0;text-transform:none;
   opacity:0;transition:opacity .18s ease;
 }
 .dica.vis{ opacity:1 }
