@@ -413,7 +413,7 @@
       <div class="mock reveal" style="--d:120ms">
         <div class="mock-bar" aria-hidden="true"><i></i><i></i><i></i><span>painel · margem por obra</span></div>
         <div class="mock-body">
-          <div class="m1-tabs" id="m1Tabs" role="group" aria-label="Período do painel de margem">
+          <div class="m1-tabs" id="m1Tabs" role="group" aria-label="Período do painel">
             <button type="button" class="on" data-per="mes" aria-pressed="true">1 mês</button>
             <button type="button" data-per="sem" aria-pressed="false">6 meses</button>
             <button type="button" data-per="ano" aria-pressed="false">1 ano</button>
@@ -432,10 +432,30 @@
             <span>RES.VILA</span><span>CENTRO</span><span>GALPÃO</span><span>ALPHA</span><span>PQ.SUL</span><span>TORRE</span>
           </div>
 
-          <div class="m1-rows" id="m1Rows">
-            <div class="m1-row"><em>Residencial Vila Nova</em><b class="pos">+6,4%</b></div>
-            <div class="m1-row"><em>Galpão Logístico BR-050</em><b class="neg">&#8722;5,2%</b></div>
-            <div class="m1-row"><em>Edifício Alpha</em><b class="pos">+9,8%</b></div>
+          <div class="roi">
+            <div class="roi-cols">
+              <div>
+                <p class="mock-label">Você investe</p>
+                <b id="roiInv">R$ 2.400</b>
+              </div>
+              <svg class="roi-arw" width="22" height="12" viewBox="0 0 22 12" fill="none" aria-hidden="true">
+                <path d="M1 6h19M15 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="roi-dir">
+                <p class="mock-label">Você recebe</p>
+                <b class="ganho" id="roiOut">R$ 6.800</b>
+              </div>
+            </div>
+
+            <div class="roi-bar">
+              <i class="inv" id="roiBarInv" style="width:35%"></i>
+              <i class="gan" id="roiBarGan" style="width:65%"></i>
+            </div>
+
+            <div class="roi-foot">
+              <span>Sobra líquida no período <b id="roiNet">R$ 4.400</b></span>
+              <em id="roiMult">2,8x o investimento</em>
+            </div>
           </div>
         </div>
       </div>
@@ -463,21 +483,29 @@
             <button type="button" data-reg="ret" aria-pressed="false">RET 4%</button>
           </div>
 
+          <div class="m2-head">
+            <div>
+              <p class="mock-label" id="m2Nome">Imposto no Presumido 32%</p>
+              <b id="m2Mes">R$ 41.800<small>/mês</small></b>
+            </div>
+            <span class="m2-badge neutro" id="m2Badge">cenário atual</span>
+          </div>
+
           <div class="m2-line on" data-reg="p32">
-            <div class="top"><span>Cenário atual</span><b>R$ 41.800/mês</b></div>
+            <div class="top"><span>Presumido 32%</span><b>R$ 41.800/mês</b></div>
             <div class="track"><i class="a" style="width:100%"></i></div>
           </div>
           <div class="m2-line" data-reg="p812">
-            <div class="top"><span>Presunção reduzida</span><b>R$ 25.900/mês</b></div>
+            <div class="top"><span>Presumido 8/12%</span><b>R$ 25.900/mês</b></div>
             <div class="track"><i class="b" style="width:62%"></i></div>
           </div>
           <div class="m2-line" data-reg="ret">
-            <div class="top"><span>RET · afetação <em class="m2-best">melhor opção</em></span><b>R$ 12.100/mês</b></div>
+            <div class="top"><span>RET 4% <em class="m2-best">melhor opção</em></span><b>R$ 12.100/mês</b></div>
             <div class="track"><i class="c" style="width:29%"></i></div>
           </div>
 
           <div class="m2-out">
-            <p class="mock-label" id="m2Label">Custo do cenário atual<br>em 12 meses</p>
+            <p class="mock-label" id="m2Label">Custo em 12 meses</p>
             <b id="m2Val" class="flat">R$ 501.600</b>
           </div>
         </div>

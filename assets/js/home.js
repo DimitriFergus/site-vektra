@@ -229,108 +229,36 @@
   }
 
   /* ============================================================
-     PAINEL DE MARGEM POR PERÍODO (mockup 1)
-     Três botões: 1 mês, 6 meses e 1 ano. Nada gira sozinho,
-     o número só muda quando a pessoa clica.
+     NÚMEROS QUE CONTAM ATÉ O NOVO VALOR
+     Os dois painéis usam isto quando a pessoa troca de aba, para
+     que a mudança apareça em vez de simplesmente pular.
      ============================================================ */
-  var periodos = {
-    mes: {
-      label: 'Margem consolidada · 1 mês',
-      valor: '11,2%',
-      pill:  '▲ 1,4 p.p. vs. anterior',
-      barras: [38, 52, 26, 61, 44, 55],
-      obras: [
-        ['Residencial Vila Nova',    '+6,4%', 'pos'],
-        ['Galpão Logístico BR-050',  '−5,2%', 'neg'],
-        ['Edifício Alpha',           '+9,8%', 'pos']
-      ]
-    },
-    sem: {
-      label: 'Margem consolidada · 6 meses',
-      valor: '14,6%',
-      pill:  '▲ 3,8 p.p. vs. anterior',
-      barras: [44, 63, 30, 76, 53, 68],
-      obras: [
-        ['Residencial Vila Nova',    '+11,0%', 'pos'],
-        ['Galpão Logístico BR-050',  '−1,9%', 'neg'],
-        ['Edifício Alpha',           '+16,3%', 'pos']
-      ]
-    },
-    ano: {
-      label: 'Margem consolidada · 12 meses',
-      valor: '17,4%',
-      pill:  '▲ 6,1 p.p. vs. anterior',
-      barras: [46, 71, 34, 88, 60, 78],
-      obras: [
-        ['Residencial Vila Nova',    '+14,2%', 'pos'],
-        ['Galpão Logístico BR-050',  '+2,7%',  'pos'],
-        ['Edifício Alpha',           '+22,6%', 'pos']
-      ]
+  function moeda(v) { return 'R$ ' + Math.round(v).toLocaleString('pt-BR'); }
+
+  function animarNum(el, para, molde) {
+    var de = typeof el._v === 'number' ? el._v : para;
+    el._v = para;
+
+    if (reduced || de === para) { el.innerHTML = molde(para); return; }
+    if (el._raf) cancelAnimationFrame(el._raf);
+
+    var duracao = 600, inicio = null;
+
+    function quadro(ts) {
+      if (!inicio) inicio = ts;
+      var p = Math.min((ts - inicio) / duracao, 1);
+      var suave = 1 - Math.pow(1 - p, 3);
+      el.innerHTML = molde(de + (para - de) * suave);
+      if (p < 1) { el._raf = requestAnimationFrame(quadro); }
+      else { el._raf = null; el.innerHTML = molde(para); }
     }
-  };
-
-  var m1Tabs = document.getElementById('m1Tabs');
-
-  if (m1Tabs) {
-    var m1Label  = document.getElementById('m1Label');
-    var m1Val    = document.getElementById('m1Val');
-    var m1Pill   = document.getElementById('m1Pill');
-    var m1Barras = document.querySelectorAll('#m1Bars .bar i');
-    var m1Linhas = document.querySelectorAll('#m1Rows .m1-row');
-
-    var renderPeriodo = function (chave) {
-      var d = periodos[chave];
-      m1Label.textContent = d.label;
-      m1Val.textContent   = d.valor;
-      m1Pill.textContent  = d.pill;
-
-      m1Barras.forEach(function (barra, i) { barra.style.height = d.barras[i] + '%'; });
-
-      m1Linhas.forEach(function (linha, i) {
-        var obra = d.obras[i];
-        linha.querySelector('em').textContent = obra[0];
-        var val = linha.querySelector('b');
-        val.textContent = obra[1];
-        val.className   = obra[2];
-      });
-    };
-
-    marcarAbas(m1Tabs, 'per', renderPeriodo);
+    el._raf = requestAnimationFrame(quadro);
   }
 
-  /* ============================================================
-     COMPARATIVO TRIBUTÁRIO (mockup 2)
-     O visitante escolhe o regime e vê o que aquilo significa
-     em 12 meses. O RET fica sempre marcado como melhor opção.
-     ============================================================ */
-  var regimes = {
-    p32:  { label: 'Custo do cenário atual<br>em 12 meses', valor: 'R$ 501.600', neutro: true  },
-    p812: { label: 'Economia projetada<br>em 12 meses',     valor: 'R$ 190.800', neutro: false },
-    ret:  { label: 'Economia projetada<br>em 12 meses',     valor: 'R$ 356.400', neutro: false }
-  };
+  function pct(v)   { return v.toFixed(1).replace('.', ',') + '%'; }
+  function vezes(v) { return v.toFixed(1).replace('.', ',') + 'x o investimento'; }
 
-  var m2Tabs = document.getElementById('m2Tabs');
-
-  if (m2Tabs) {
-    var m2Label  = document.getElementById('m2Label');
-    var m2Val    = document.getElementById('m2Val');
-    var m2Linhas = document.querySelectorAll('.m2-line');
-
-    var renderRegime = function (chave) {
-      var d = regimes[chave];
-      m2Label.innerHTML = d.label;
-      m2Val.textContent = d.valor;
-      m2Val.classList.toggle('flat', d.neutro);
-
-      m2Linhas.forEach(function (linha) {
-        linha.classList.toggle('on', linha.dataset.reg === chave);
-      });
-    };
-
-    marcarAbas(m2Tabs, 'reg', renderRegime);
-  }
-
-  /* Liga os botões de um seletor de abas dos mockups */
+  /* Liga os botoes de um seletor de abas dos mockups */
   function marcarAbas(caixa, dado, render) {
     var botoes = caixa.querySelectorAll('button');
 
@@ -345,6 +273,113 @@
         render(b.dataset[dado]);
       });
     });
+  }
+
+  /* ============================================================
+     PAINEL DE MARGEM E RETORNO (mockup 1)
+     Três períodos. Quanto mais tempo de acompanhamento, maior a
+     margem e maior o retorno sobre o que se paga à Vektra.
+     ============================================================ */
+  var periodos = {
+    mes: { label: 'Margem consolidada · 1 mês',    margem: 11.2, pill: '▲ 1,4 p.p. vs. anterior',
+           barras: [38, 52, 26, 61, 44, 55], inv: 2400,  ret: 6800,   mult: 2.8 },
+    sem: { label: 'Margem consolidada · 6 meses',  margem: 14.6, pill: '▲ 3,8 p.p. vs. anterior',
+           barras: [44, 63, 30, 76, 53, 68], inv: 14400, ret: 61200,  mult: 4.3 },
+    ano: { label: 'Margem consolidada · 12 meses', margem: 17.4, pill: '▲ 6,1 p.p. vs. anterior',
+           barras: [46, 71, 34, 88, 60, 78], inv: 28800, ret: 152000, mult: 5.3 }
+  };
+
+  var m1Tabs = document.getElementById('m1Tabs');
+
+  if (m1Tabs) {
+    var m1Label   = document.getElementById('m1Label');
+    var m1Val     = document.getElementById('m1Val');
+    var m1Pill    = document.getElementById('m1Pill');
+    var m1Barras  = document.querySelectorAll('#m1Bars .bar i');
+    var roiInv    = document.getElementById('roiInv');
+    var roiOut    = document.getElementById('roiOut');
+    var roiNet    = document.getElementById('roiNet');
+    var roiMult   = document.getElementById('roiMult');
+    var roiBarInv = document.getElementById('roiBarInv');
+    var roiBarGan = document.getElementById('roiBarGan');
+
+    /* Valores que já estão no HTML, para a primeira animação partir deles */
+    var base = periodos.mes;
+    m1Val._v   = base.margem;
+    roiInv._v  = base.inv;
+    roiOut._v  = base.ret;
+    roiNet._v  = base.ret - base.inv;
+    roiMult._v = base.mult;
+
+    var renderPeriodo = function (chave) {
+      var d = periodos[chave];
+
+      m1Label.textContent = d.label;
+      m1Pill.textContent  = d.pill;
+
+      animarNum(m1Val,   d.margem,      pct);
+      animarNum(roiInv,  d.inv,         moeda);
+      animarNum(roiOut,  d.ret,         moeda);
+      animarNum(roiNet,  d.ret - d.inv, moeda);
+      animarNum(roiMult, d.mult,        vezes);
+
+      m1Barras.forEach(function (barra, i) { barra.style.height = d.barras[i] + '%'; });
+
+      var fatia = Math.round(d.inv / d.ret * 100);
+      roiBarInv.style.width = fatia + '%';
+      roiBarGan.style.width = (100 - fatia) + '%';
+    };
+
+    marcarAbas(m1Tabs, 'per', renderPeriodo);
+  }
+
+  /* ============================================================
+     COMPARATIVO TRIBUTÁRIO (mockup 2)
+     A pessoa clica no regime e o painel inteiro recalcula: imposto
+     do mês, faixa destacada e o resultado em 12 meses.
+     ============================================================ */
+  var regimes = {
+    p32:  { nome: 'Imposto no Presumido 32%',   mes: 41800, badge: 'cenário atual', neutro: true,
+            saidaLabel: 'Custo em 12 meses',    saida: 501600, saidaNeutra: true },
+    p812: { nome: 'Imposto no Presumido 8/12%', mes: 25900, badge: '38% mais barato', neutro: false,
+            saidaLabel: 'Economia em 12 meses', saida: 190800, saidaNeutra: false },
+    ret:  { nome: 'Imposto no RET 4%',          mes: 12100, badge: '71% mais barato',  neutro: false,
+            saidaLabel: 'Economia em 12 meses', saida: 356400, saidaNeutra: false }
+  };
+
+  var m2Tabs = document.getElementById('m2Tabs');
+
+  if (m2Tabs) {
+    var m2Nome   = document.getElementById('m2Nome');
+    var m2Mes    = document.getElementById('m2Mes');
+    var m2Badge  = document.getElementById('m2Badge');
+    var m2Label  = document.getElementById('m2Label');
+    var m2Val    = document.getElementById('m2Val');
+    var m2Linhas = document.querySelectorAll('.m2-line');
+
+    m2Mes._v = regimes.p32.mes;
+    m2Val._v = regimes.p32.saida;
+
+    var porMes = function (v) { return moeda(v) + '<small>/mês</small>'; };
+
+    var renderRegime = function (chave) {
+      var d = regimes[chave];
+
+      m2Nome.textContent  = d.nome;
+      m2Label.textContent = d.saidaLabel;
+      m2Badge.textContent = d.badge;
+      m2Badge.classList.toggle('neutro', d.neutro);
+      m2Val.classList.toggle('flat', d.saidaNeutra);
+
+      animarNum(m2Mes, d.mes,   porMes);
+      animarNum(m2Val, d.saida, moeda);
+
+      m2Linhas.forEach(function (linha) {
+        linha.classList.toggle('on', linha.dataset.reg === chave);
+      });
+    };
+
+    marcarAbas(m2Tabs, 'reg', renderRegime);
   }
 
   /* ============================================================

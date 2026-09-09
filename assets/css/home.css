@@ -357,7 +357,7 @@
 .m1-tabs button:focus-visible,
 .m2-toggle button:focus-visible{ outline:2px solid var(--clay);outline-offset:-3px }
 
-/* --- Mockup 1: margem por obra --- */
+/* --- Mockup 1: margem por obra e retorno --- */
 .m1-head{ display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;gap:12px }
 .m1-head b{
   display:block;margin-top:7px;
@@ -368,7 +368,7 @@
   border:1px solid rgba(193,102,57,.45);border-radius:99px;color:var(--clay);
 }
 .bars{
-  display:flex;align-items:flex-end;gap:9px;height:118px;
+  display:flex;align-items:flex-end;gap:9px;height:104px;
   padding-bottom:10px;border-bottom:1px solid var(--line-soft);
 }
 .bar{ flex:1;position:relative;height:100%;display:flex;align-items:flex-end }
@@ -386,26 +386,60 @@
 .bar-labels span{
   flex:1;text-align:center;font-size:8.5px;font-weight:500;letter-spacing:.05em;color:var(--text-2);
 }
-.m1-rows{ margin-top:18px;border:1px solid var(--line-soft);border-radius:8px;overflow:hidden }
-.m1-row{
-  display:flex;justify-content:space-between;align-items:center;gap:10px;
-  padding:11px 12px;font-size:12.5px;
+
+/* Bloco de retorno: o que entra e o que volta */
+.roi{
+  margin-top:18px;padding:16px 15px 14px;
+  background:var(--recess);border:1px solid var(--line-soft);border-radius:11px;
 }
-.m1-row + .m1-row{ border-top:1px solid var(--line-soft) }
-.m1-row em{ font-style:normal;color:var(--text-2) }
-.m1-row b{ font-size:12.5px;font-weight:600;transition:color .3s ease }
-.pos{ color:var(--clay) }
-.neg{ color:var(--text-2) }
+.roi-cols{ display:flex;align-items:flex-end;gap:12px }
+.roi-cols > div{ flex:1;min-width:0 }
+.roi-cols b{
+  display:block;margin-top:6px;
+  font-size:19px;font-weight:800;line-height:1;letter-spacing:-.035em;color:var(--text-2);
+}
+.roi-cols b.ganho{ color:var(--clay) }
+.roi-dir{ text-align:right }
+.roi-arw{ flex:none;margin-bottom:6px;color:var(--text-2);opacity:.7 }
+
+.roi-bar{ display:flex;gap:3px;height:8px;margin:14px 0 12px }
+.roi-bar i{ display:block;height:100%;border-radius:99px;transition:width .6s var(--ease) }
+.roi-bar i.inv{ background:rgba(140,151,154,.45) }
+.roi-bar i.gan{ background:var(--clay) }
+
+.roi-foot{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;
+  font-size:11.5px;color:var(--text-2);
+}
+.roi-foot b{ font-weight:700;color:var(--text) }
+.roi-foot em{
+  font-style:normal;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 8px;border-radius:99px;
+  background:rgba(193,102,57,.16);color:var(--clay);white-space:nowrap;
+}
 
 /* --- Mockup 2: comparativo tributário --- */
+.m2-head{ display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:18px }
+.m2-head b{
+  display:block;margin-top:7px;
+  font-size:30px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--clay);
+}
+.m2-head b small{ font-size:13px;font-weight:600;letter-spacing:-.01em;color:var(--text-2) }
+.m2-badge{
+  font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
+  padding:5px 10px;border-radius:99px;
+  background:rgba(193,102,57,.16);color:var(--clay);
+}
+.m2-badge.neutro{ background:var(--line-soft);color:var(--text-2) }
+
 .m2-line{
-  margin-bottom:8px;padding:9px 10px;border-radius:9px;
+  margin-bottom:6px;padding:8px 10px;border-radius:9px;
   border:1px solid transparent;
   transition:background .3s var(--ease), border-color .3s var(--ease);
 }
 .m2-line.on{ background:var(--recess);border-color:var(--line-soft) }
 .m2-line .top{
-  display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px;
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px;
   font-size:12px;color:var(--text-2);
 }
 .m2-line .top b{ font-size:12px;font-weight:600;color:var(--text);transition:color .3s ease }
@@ -415,28 +449,31 @@
   font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   background:rgba(193,102,57,.16);color:var(--clay);white-space:nowrap;
 }
-.track{ height:9px;background:var(--line-soft);border-radius:99px;overflow:hidden }
+.track{ height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden }
 .track i{ display:block;height:100%;border-radius:99px;transition:width .5s var(--ease) }
 .track i.a{ background:rgba(140,151,154,.55) }
 .track i.b{ background:var(--teal) }
 .track i.c{ background:var(--clay) }
 .m2-out{
-  margin-top:20px;padding:16px;
+  margin-top:16px;padding:15px 16px;
   border:1px dashed var(--line);border-radius:10px;
   display:flex;justify-content:space-between;align-items:center;gap:12px;
 }
 .m2-out b{
-  font-size:26px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--clay);
+  font-size:24px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--clay);
   transition:color .3s ease;
 }
 .m2-out b.flat{ color:var(--text-2) }
 
-/* Em tela estreita as abas e o cabeçalho do painel ficam apertados */
+/* Em tela estreita as abas e os cabeçalhos ficam apertados */
 @media (max-width:560px){
   .m1-tabs button,
   .m2-toggle button{ font-size:8.5px;letter-spacing:.04em;padding:9px 2px }
-  .m1-head{ flex-direction:column;align-items:flex-start;gap:12px }
+  .m1-head,
+  .m2-head{ flex-direction:column;align-items:flex-start;gap:12px }
   .m1-head .mock-label{ font-size:9px;letter-spacing:.09em }
+  .roi-cols b{ font-size:17px }
+  .roi-cols .mock-label{ font-size:8.5px;letter-spacing:.05em }
 }
 
 /* --- Mockup 3: obrigações --- */
