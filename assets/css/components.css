@@ -44,7 +44,7 @@
 
 /* ---------- Seção e cabeçalho ---------- */
 .sec{ padding:76px 0 }
-.sec-alt{ background:var(--bg-alt) }
+.sec-alt{ background:var(--bg-alt-sec) }
 
 .sec-head{ margin-bottom:46px; max-width:780px }
 .sec-head h2{

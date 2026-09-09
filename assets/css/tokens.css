@@ -29,7 +29,8 @@
   color-scheme:dark;
 
   --bg:#0B0E10;              /* fundo da página */
-  --bg-alt:#202528;          /* faixa de seção alternada */
+  --bg-alt:#202528;          /* fundo cheio (usado em elementos pequenos) */
+  --bg-alt-sec:rgba(32,37,40,.80);   /* faixa de seção: deixa a cor do fundo passar */
   --card:#202528;            /* card sobre o fundo base */
   --card-sunken:#0B0E10;     /* card sobre a faixa alternada */
   --panel:#202528;           /* inputs, cabeçalhos internos */
@@ -53,6 +54,12 @@
   --grain-op:.04;
 
   --logo-v:#FFFFFF;          /* cor do "V" da marca */
+
+  /* Manchas de cor do fundo que se movem com a rolagem */
+  --aurora-clay:   rgba(193,102,57,.20);
+  --aurora-clay-0: rgba(193,102,57,0);
+  --aurora-teal:   rgba(8,56,60,.60);
+  --aurora-teal-0: rgba(8,56,60,0);
 }
 
 /* ============================================================
@@ -63,6 +70,7 @@
 
   --bg:#FFFFFF;
   --bg-alt:rgba(140,151,154,.10);
+  --bg-alt-sec:rgba(140,151,154,.10);
   --card:#FFFFFF;
   --card-sunken:#FFFFFF;
   --panel:rgba(140,151,154,.13);
@@ -86,6 +94,12 @@
   --grain-op:.03;
 
   --logo-v:#08383C;          /* no claro o V branco sumiria */
+
+  /* No tema claro as manchas precisam ser bem mais discretas */
+  --aurora-clay:   rgba(193,102,57,.13);
+  --aurora-clay-0: rgba(193,102,57,0);
+  --aurora-teal:   rgba(8,56,60,.10);
+  --aurora-teal-0: rgba(8,56,60,0);
 }
 
 /* ============================================================

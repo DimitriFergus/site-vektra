@@ -173,20 +173,39 @@
   font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
   color:var(--text-2);
 }
-.logos{ display:grid;grid-template-columns:repeat(2,1fr);gap:26px 18px;align-items:center }
-.logo-item{
-  display:flex;align-items:center;gap:10px;justify-content:center;
-  color:var(--text-2);opacity:.65;
-  transition:opacity .35s ease, color .35s ease, transform .35s var(--ease);
+/* Esteira de clientes: marcas fictícias em texto, sem ícone.
+   A lista aparece duas vezes no HTML porque a animação corre até
+   -50%, fechando o ciclo sem emenda visível. */
+.esteira{
+  position:relative;margin-top:26px;overflow:hidden;
+  mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
 }
-.logo-item:hover{ opacity:1;color:var(--text);transform:translateY(-2px) }
-.logo-item svg{ flex:none }
-.logo-item .lt{ line-height:1.1 }
-.logo-item .lt b{ display:block;font-size:14px;font-weight:700;letter-spacing:.01em;white-space:nowrap }
-.logo-item .lt small{
-  display:block;font-size:8.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;opacity:.8;
+.esteira-trilho{
+  display:flex;align-items:center;width:max-content;
+  animation:esteiraCorre 44s linear infinite;
 }
-
+.esteira:hover .esteira-trilho{ animation-play-state:paused }
+@keyframes esteiraCorre{
+  from{ transform:translateX(0) }
+  to  { transform:translateX(-50%) }
+}
+.marca{
+  display:flex;align-items:baseline;gap:10px;
+  padding:0 26px;white-space:nowrap;
+  color:var(--text-2);opacity:.72;
+  transition:opacity .3s var(--ease), color .3s var(--ease);
+}
+.esteira-trilho:hover .marca{ opacity:.38 }
+.esteira-trilho .marca:hover{ opacity:1;color:var(--text) }
+.marca b{ font-size:26px;font-weight:800;letter-spacing:-.035em;line-height:1 }
+.marca small{
+  font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+}
+.marca::after{
+  content:"";width:5px;height:5px;border-radius:50%;align-self:center;
+  background:var(--clay);opacity:.5;margin-left:26px;
+}
 .proof-stat{
   margin-top:46px;padding:32px 24px;
   border:1px solid var(--line-soft);border-radius:14px;
@@ -693,7 +712,9 @@
    BREAKPOINTS
    ============================================================ */
 @media (min-width:600px){
-  .logos{ grid-template-columns:repeat(3,1fr);gap:30px 22px }
+  .marca{ padding:0 34px }
+  .marca b{ font-size:32px }
+  .marca::after{ margin-left:34px }
   .pains,.diffs{ grid-template-columns:repeat(2,1fr) }
 }
 @media (min-width:900px){
@@ -726,5 +747,4 @@
   .step{ padding:44px 24px 0 0 }
   .step-dot{ top:0 }
 
-  .logos{ grid-template-columns:repeat(5,1fr) }
 }

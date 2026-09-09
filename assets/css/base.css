@@ -54,6 +54,39 @@ section{ position:relative }
   .gridlines{ background-size:calc(100% / 6) 100% }
 }
 
+/* ---------- Fundo vivo: manchas que se movem com a rolagem ----------
+   O JS escreve --sp (0 no topo da pagina, 1 no fim) e cada mancha
+   se desloca em ritmo diferente, criando profundidade.
+   As seções ficam por cima; as que não têm fundo próprio deixam
+   a cor passar. ------------------------------------------------ */
+.aurora{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  contain:strict;
+}
+.aurora i{
+  position:absolute;display:block;border-radius:50%;
+  will-change:transform;
+}
+.aurora i:nth-child(1){
+  width:70vw;height:70vw;left:-18vw;top:-26vw;
+  background:radial-gradient(circle closest-side, var(--aurora-clay), var(--aurora-clay-0));
+  transform:translate3d(calc(var(--sp,0) * 14vw), calc(var(--sp,0) * 62vh), 0);
+}
+.aurora i:nth-child(2){
+  width:80vw;height:80vw;right:-30vw;top:18vh;
+  background:radial-gradient(circle closest-side, var(--aurora-teal), var(--aurora-teal-0));
+  transform:translate3d(calc(var(--sp,0) * -16vw), calc(var(--sp,0) * -78vh), 0);
+}
+.aurora i:nth-child(3){
+  width:56vw;height:56vw;left:24vw;bottom:-30vw;
+  background:radial-gradient(circle closest-side, var(--aurora-clay), var(--aurora-clay-0));
+  transform:translate3d(calc(var(--sp,0) * -22vw), calc(var(--sp,0) * -46vh), 0);
+}
+
+/* O conteúdo fica sempre acima das manchas */
+main,
+.footer{ position:relative; z-index:1 }
+
 /* ---------- Textura de grão ---------- */
 .grain{
   position:fixed;inset:-120px;z-index:9999;pointer-events:none;

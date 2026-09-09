@@ -31,24 +31,55 @@
   if (ano) ano.textContent = new Date().getFullYear();
 
   /* ------------------------------------------------------------
-     Barra de navegação: fundo ao rolar
-     Usa requestAnimationFrame para não disparar a cada pixel.
+     Rolagem: fundo da nav, esconder/mostrar a nav e a posição
+     das manchas do fundo.
+
+     Tudo num handler só, agendado por requestAnimationFrame para
+     não recalcular a cada pixel rolado.
   ------------------------------------------------------------ */
   var nav = document.getElementById('nav');
+  var raiz = document.documentElement;
   var aguardando = false;
+  var ultimoY = window.scrollY;
+
+  /* Só some depois de passar dessa altura, para o cabeçalho não
+     piscar em rolagens curtas perto do topo. */
+  var LIMITE_OCULTAR = 240;
+  var MINIMO_GESTO = 6;        // ignora tremidas de trackpad
 
   function aoRolar() {
     if (aguardando) return;
     aguardando = true;
+
     window.requestAnimationFrame(function () {
-      nav.classList.toggle('scrolled', window.scrollY > 24);
+      var y = window.scrollY;
+      var alcance = raiz.scrollHeight - window.innerHeight;
+
+      /* --sp vai de 0 no topo a 1 no fim: o CSS usa para deslocar
+         as manchas de cor do fundo. */
+      raiz.style.setProperty('--sp', alcance > 0 ? (y / alcance).toFixed(4) : '0');
+
+      if (nav) {
+        nav.classList.toggle('scrolled', y > 24);
+
+        var delta = y - ultimoY;
+        var menuAberto = menu && menu.classList.contains('open');
+
+        if (Math.abs(delta) > MINIMO_GESTO && !menuAberto) {
+          // desceu e já passou do limite: esconde. subiu: mostra.
+          nav.classList.toggle('oculta', delta > 0 && y > LIMITE_OCULTAR);
+        }
+        if (y <= LIMITE_OCULTAR) nav.classList.remove('oculta');
+      }
+
+      ultimoY = y;
       aguardando = false;
     });
   }
-  if (nav) {
-    window.addEventListener('scroll', aoRolar, { passive: true });
-    aoRolar();
-  }
+
+  window.addEventListener('scroll', aoRolar, { passive: true });
+  window.addEventListener('resize', aoRolar, { passive: true });
+  aoRolar();
 
   /* ------------------------------------------------------------
      Menu mobile
@@ -67,6 +98,8 @@
     burger.addEventListener('click', function () {
       var aberto = menu.classList.toggle('open');
       burger.classList.toggle('open', aberto);
+      // o painel abre logo abaixo da nav, então ela precisa estar à vista
+      if (aberto && nav) nav.classList.remove('oculta');
       burger.setAttribute('aria-expanded', aberto ? 'true' : 'false');
     });
     menu.querySelectorAll('a').forEach(function (a) {

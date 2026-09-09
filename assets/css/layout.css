@@ -24,8 +24,12 @@
   height:var(--nav-h);
   display:flex;align-items:center;
   border-bottom:1px solid transparent;
-  transition:background .35s ease, border-color .35s ease;
+  transition:background .35s ease, border-color .35s ease,
+             transform .42s var(--ease);
 }
+/* Rolando para baixo o cabeçalho sobe e some; rolando para cima ele volta */
+.nav.oculta{ transform:translateY(-100%) }
+
 .nav.scrolled{
   background:var(--nav-bg);
   backdrop-filter:blur(16px) saturate(1.15);
