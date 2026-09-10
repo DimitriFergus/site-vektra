@@ -71,12 +71,16 @@
   display:flex;align-items:center;gap:12px;padding:13px 15px;
   background:var(--panel);border-bottom:1px solid var(--line-soft);
 }
+/* Era um "V" digitado sobre um quadrado laranja; agora é o símbolo
+   oficial. Como o avatar fica sobre o painel, que troca de cor junto
+   com o tema, cada tema usa a arte que contrasta. */
 .avatar{
   width:38px;height:38px;border-radius:11px;flex:none;
-  background:var(--clay);color:var(--const-ink);
-  display:grid;place-content:center;
-  font-weight:700;font-size:17px;letter-spacing:-.02em;
+  overflow:hidden;
 }
+.avatar .simbolo{ display:block;width:100%;height:100%;object-fit:contain }
+[data-theme="dark"]  .simbolo-claro { display:none }
+[data-theme="light"] .simbolo-escuro{ display:none }
 .who{ flex:1;min-width:0 }
 .who b{ display:block;font-size:13.5px;font-weight:600;letter-spacing:-.015em }
 .who small{ display:block;font-size:11px;color:var(--text-2) }
