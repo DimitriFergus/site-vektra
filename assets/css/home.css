@@ -636,21 +636,6 @@
 }
 .offer-foot strong{ color:var(--text);font-weight:600 }
 
-.form-card{
-  position:relative;
-  background:var(--card-sunken);
-  border:1px solid var(--line);border-radius:18px;
-  box-shadow:0 44px 90px -46px var(--glow-clay), 0 18px 44px -28px rgba(0,0,0,.35);
-  padding:30px 24px;
-}
-/* fio de cobre no topo, para o formulário ser o ponto final da leitura */
-.form-card::before{
-  content:"";position:absolute;left:22px;right:22px;top:-1px;height:2px;border-radius:2px;
-  background:linear-gradient(90deg,transparent,var(--clay),transparent);
-}
-.form-card h3{ font-size:clamp(23px,5.4vw,32px);font-weight:800;line-height:1.12;letter-spacing:-.035em }
-.form-card > p{ margin:14px 0 26px;color:var(--text-2);font-size:14.5px;font-weight:300;line-height:1.65 }
-.form-card .btn{ width:100% }
 
 /* ============================================================
    FAQ
@@ -782,7 +767,7 @@
 
   .tcards{ grid-template-columns:repeat(3,1fr);gap:22px }
   .price-grid{ grid-template-columns:.86fr 1.14fr;gap:26px }
-  .offer,.form-card{ padding:40px 34px }
+  .offer{ padding:40px 34px }
 
   .final{ padding:110px 0 104px }
   .final-grid{ display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center }

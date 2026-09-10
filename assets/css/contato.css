@@ -107,11 +107,9 @@
   position:absolute;inset:0;
   width:100%;height:100%;border:0;display:block;
 }
-/* O mapa do Google vem sempre claro. No tema escuro isso vira um
-   retângulo branco no meio da página, então ele é escurecido. */
-[data-theme="dark"] .mapa-frame iframe{
-  filter:invert(.92) hue-rotate(180deg) saturate(.7) brightness(.95);
-}
+/* O mapa fica claro nos dois temas: é assim que o Google entrega e é
+   assim que as pessoas reconhecem um mapa. A moldura escura em volta
+   já faz a separação com o resto da página. */
 
 /* ---------- Breakpoints ---------- */
 @media (min-width:900px){
@@ -122,4 +120,58 @@
 }
 @media (min-width:1100px){
   .contato-grid{ grid-template-columns:1.2fr .8fr; gap:30px }
+}
+
+/* ============================================================
+   FORMULÁRIO NO TEMA ESCURO
+
+   O .form-card usa --card-sunken, que no escuro é #0B0E10 - a mesma
+   cor do fundo da página. Resultado: o formulário sumia.
+
+   Em vez de escrever regra por regra para cada campo, o card recebe
+   aqui os MESMOS tokens do tema claro. Como todo componente já lê
+   essas variáveis, o formulário inteiro (rótulos, campos, textos,
+   bordas) vira uma ilha clara de uma vez só - e continua seguindo a
+   paleta, sem cor nova.
+   ============================================================ */
+[data-theme="dark"] .contato-grid .form-card{
+  --card-sunken:#FFFFFF;
+  --panel:rgba(8,56,60,.07);
+  --recess:rgba(8,56,60,.05);
+
+  --text:#0B0E10;
+  --text-2:rgba(11,14,16,.62);
+
+  --line:rgba(11,14,16,.16);
+  --line-soft:rgba(11,14,16,.09);
+
+  /* o preenchimento do hover do botão precisa acompanhar */
+  --btn-fill:#0B0E10;
+  --btn-fill-tx:#FFFFFF;
+
+  color:var(--text);
+  box-shadow:0 40px 90px -50px rgba(0,0,0,.9);
+}
+
+/* A seta do <select> é um SVG cinza fixo, pensado para fundo escuro.
+   Sobre o campo claro ela precisa ser escura. */
+[data-theme="dark"] .contato-grid .form-card select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230B0E10' stroke-width='1.6' fill='none' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   FORMULÁRIO NO TEMA CLARO
+
+   O problema do escuro existia espelhado aqui: cartão branco sobre
+   faixa quase branca (1,10:1), ou seja, o cartão também sumia.
+   A faixa desce um tom para o teal e o cartão ganha borda e sombra
+   de verdade - é assim que um card se separa num fundo claro.
+   ============================================================ */
+[data-theme="light"] #formulario{
+  background:rgba(8,56,60,.11);
+}
+[data-theme="light"] .contato-grid .form-card{
+  border-color:rgba(11,14,16,.17);
+  box-shadow:0 20px 46px -26px rgba(11,14,16,.30),
+             0 2px 8px -4px rgba(11,14,16,.14);
 }
