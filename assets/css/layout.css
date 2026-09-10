@@ -5,18 +5,21 @@
    flutuante de WhatsApp.
    ============================================================ */
 
-/* ---------- Marca ---------- */
-.brand{ display:flex; align-items:center; gap:12px }
-.brand-mark{ width:40px; height:auto; flex:none }
-.brand-txt{ line-height:1 }
-.brand-txt b{
-  display:block;font-size:21px;font-weight:700;letter-spacing:.02em;color:var(--text);
+/* ---------- Marca ----------
+   Duas artes do logotipo oficial: uma com o "VEKTRA" branco (fundo
+   escuro) e outra com ele em teal (fundo claro). O tema decide qual
+   aparece. Como o theme-init.js roda antes da primeira pintura, não
+   existe troca visível na carga. */
+.brand{ display:flex; align-items:center; flex:none }
+.brand-logo{
+  display:block;width:auto;flex:none;
+  height:30px;                /* o cabeçalho define a escala */
 }
-.brand-txt small{
-  display:none;               /* aparece só a partir de 900px */
-  font-size:8px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--text-2);margin-top:3px;
-}
+[data-theme="dark"]  .brand-logo-claro { display:none }
+[data-theme="light"] .brand-logo-escuro{ display:none }
+
+/* No rodapé cabe a assinatura "Inteligência Contábil" embaixo */
+.foot-brand .brand-logo{ height:52px }
 
 /* ---------- Barra de navegação ---------- */
 .nav{
@@ -156,11 +159,15 @@
   .foot-bottom{ grid-template-columns:1fr auto; align-items:center }
 }
 @media (min-width:900px){
-  .brand-mark{ width:46px }
-  .brand-txt b{ font-size:23px }
-  .brand-txt small{ display:block }
+  .brand-logo{ height:28px }
+  .foot-brand .brand-logo{ height:60px }
+  .nav-links{ gap:22px }
   .nav-links{ display:flex }
   .nav .nav-cta{ display:inline-flex }
   .burger{ display:none }
   .foot-grid{ grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px }
+}
+@media (min-width:1100px){
+  .brand-logo{ height:34px }
+  .nav-links{ gap:30px }
 }
