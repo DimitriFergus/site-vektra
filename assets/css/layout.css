@@ -57,7 +57,7 @@
 .nav-links a:hover::after,
 .nav-links a.active::after{ transform:scaleX(1); transform-origin:left }
 
-.nav-cta{ display:none }
+.nav .nav-cta{ display:none }
 
 /* ---------- Alternador de tema ---------- */
 .theme-btn{
@@ -141,7 +141,8 @@
 
 /* ---------- Botão flutuante de WhatsApp ---------- */
 .wa-float{
-  position:fixed;right:16px;bottom:16px;z-index:150;
+  position:fixed;right:16px;z-index:150;
+  bottom:calc(16px + env(safe-area-inset-bottom, 0px));
   width:54px;height:54px;border-radius:50%;
   background:var(--clay);color:var(--const-ink);
   display:grid;place-content:center;
@@ -159,7 +160,7 @@
   .brand-txt b{ font-size:23px }
   .brand-txt small{ display:block }
   .nav-links{ display:flex }
-  .nav-cta{ display:inline-flex }
+  .nav .nav-cta{ display:inline-flex }
   .burger{ display:none }
   .foot-grid{ grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px }
 }

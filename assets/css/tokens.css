@@ -29,18 +29,27 @@
   color-scheme:dark;
 
   --bg:#0B0E10;              /* fundo da página */
-  --bg-alt:#202528;          /* fundo cheio (usado em elementos pequenos) */
-  --bg-alt-sec:rgba(32,37,40,.80);   /* faixa de seção: deixa a cor do fundo passar */
-  --card:#202528;            /* card sobre o fundo base */
+  --bg-alt:#1A2A2D;          /* fundo cheio (usado em elementos pequenos) */
+  --bg-alt-sec:rgba(26,42,45,.82);   /* faixa de seção: deixa a cor do fundo passar */
+  --card:#1A2A2D;            /* card sobre o fundo base */
   --card-sunken:#0B0E10;     /* card sobre a faixa alternada */
-  --panel:#202528;           /* inputs, cabeçalhos internos */
+  --panel:#1A2A2D;           /* inputs, cabeçalhos internos */
   --recess:#0B0E10;          /* tiras rebaixadas dentro de cards */
+
+  /* Teal aplicado. No escuro o #08383C não funciona como texto (some no
+     fundo), então ele entra como SUPERFÍCIE: ladrilho de ícone, trilho,
+     barra e borda. É isso que faz a marca deixar de ser só laranja. */
+  --teal-fill:#08383C;               /* ladrilho de ícone, avatar, chip */
+  --teal-fill-hi:#0C4B50;            /* a mesma cor um passo acima, no hover */
+  --teal-edge:rgba(8,56,60,.95);     /* borda e trilho */
+  --teal-veil:rgba(8,56,60,.34);     /* véu sobre o card */
 
   --text:#FFFFFF;            /* texto principal */
   --text-2:#8C979A;          /* texto secundário */
 
   --line:rgba(140,151,154,.20);
   --line-soft:rgba(140,151,154,.11);
+  --line-teal:rgba(8,56,60,.85);     /* borda que mostra a marca */
 
   --nav-bg:rgba(11,14,16,.86);
   --shadow:0 40px 80px -50px rgba(0,0,0,.95);
@@ -58,9 +67,9 @@
   --logo-v:#FFFFFF;          /* cor do "V" da marca */
 
   /* Manchas de cor do fundo que se movem com a rolagem */
-  --aurora-clay:   rgba(193,102,57,.20);
+  --aurora-clay:   rgba(193,102,57,.15);
   --aurora-clay-0: rgba(193,102,57,0);
-  --aurora-teal:   rgba(8,56,60,.60);
+  --aurora-teal:   rgba(8,56,60,.72);
   --aurora-teal-0: rgba(8,56,60,0);
 }
 
@@ -71,18 +80,24 @@
   color-scheme:light;
 
   --bg:#FFFFFF;
-  --bg-alt:rgba(140,151,154,.10);
-  --bg-alt-sec:rgba(140,151,154,.10);
+  --bg-alt:rgba(8,56,60,.055);
+  --bg-alt-sec:rgba(8,56,60,.055);
   --card:#FFFFFF;
   --card-sunken:#FFFFFF;
-  --panel:rgba(140,151,154,.13);
-  --recess:rgba(140,151,154,.10);
+  --panel:rgba(8,56,60,.07);
+  --recess:rgba(8,56,60,.05);
+
+  --teal-fill:#08383C;
+  --teal-fill-hi:#0C4B50;
+  --teal-edge:rgba(8,56,60,.55);
+  --teal-veil:rgba(8,56,60,.07);
 
   --text:#0B0E10;
   --text-2:rgba(11,14,16,.62);
 
   --line:rgba(11,14,16,.14);
   --line-soft:rgba(11,14,16,.08);
+  --line-teal:rgba(8,56,60,.30);
 
   --nav-bg:rgba(255,255,255,.9);
   --shadow:0 26px 54px -36px rgba(11,14,16,.3);
@@ -102,7 +117,7 @@
   /* No tema claro as manchas precisam ser bem mais discretas */
   --aurora-clay:   rgba(193,102,57,.13);
   --aurora-clay-0: rgba(193,102,57,0);
-  --aurora-teal:   rgba(8,56,60,.10);
+  --aurora-teal:   rgba(8,56,60,.16);
   --aurora-teal-0: rgba(8,56,60,0);
 }
 

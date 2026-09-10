@@ -271,7 +271,7 @@
 .diff-ic{
   width:46px;height:46px;border-radius:13px;margin-bottom:20px;
   display:grid;place-content:center;
-  background:var(--recess);border:1px solid var(--line-soft);color:var(--clay);
+  background:var(--recess);border:1px solid var(--line-teal);color:var(--clay);
   transition:background .4s ease, color .4s ease, transform .45s var(--ease);
 }
 .diff:hover .diff-ic{ background:var(--clay);color:var(--const-ink);transform:rotate(-6deg) }
@@ -296,7 +296,7 @@
 .timeline{ position:relative;display:grid;gap:0 }
 .tl-line{
   position:absolute;left:9px;top:14px;bottom:14px;width:2px;
-  background:var(--line-soft);border-radius:2px;
+  background:var(--teal-edge);border-radius:2px;
 }
 /* a barra laranja cresce quando a seção entra na tela */
 .tl-line i{
@@ -310,7 +310,7 @@
 .step:last-child{ padding-bottom:0 }
 .step-dot{
   position:absolute;left:0;top:7px;width:20px;height:20px;border-radius:50%;
-  background:var(--bg-alt);border:2px solid var(--line);
+  background:var(--teal-fill);border:2px solid var(--line-teal);
   transition:background .5s ease, border-color .5s ease, transform .5s var(--ease), box-shadow .5s ease;
 }
 .step.in .step-dot{
@@ -379,7 +379,7 @@
 .m1-tabs button:hover,
 .m2-toggle button:hover{ color:var(--text) }
 .m1-tabs button.on,
-.m2-toggle button.on{ background:var(--clay);color:var(--const-ink) }
+.m2-toggle button.on{ background:var(--teal-fill);color:var(--const-white) }
 .m1-tabs button:focus-visible,
 .m2-toggle button:focus-visible{ outline:2px solid var(--clay);outline-offset:-3px }
 

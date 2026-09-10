@@ -1,0 +1,159 @@
+/* ============================================================
+   VEKTRA - AJUSTES DE CELULAR
+   Carregado por último, então vence os arquivos anteriores.
+
+   Só existe aqui o que muda no celular: tamanho mínimo de letra,
+   área de toque, respiro entre seções e blocos que quebravam em
+   tela estreita. Cor de marca continua em tokens.css.
+
+   Regras de referência usadas:
+   - nenhum texto abaixo de 11px;
+   - todo alvo tocável com pelo menos 44x44px;
+   - campo de formulário com 16px, senão o iPhone dá zoom sozinho.
+   ============================================================ */
+
+@media (max-width:899px){
+
+  /* ---------- Respiro: a home tinha 17.500px de altura ----------
+     Com o espaçamento de desktop, o visitante de anúncio rola
+     demais antes de chegar no formulário. */
+  .sec{ padding:54px 0 }
+  .sec-head{ margin-bottom:30px }
+  .sec-head p{ margin-top:14px;font-size:15.5px }
+  .hero{ padding-bottom:40px }
+  .hero-sub{ margin-top:18px;font-size:16px }
+  .hero-cta{ margin-top:26px }
+  .hero-meta{ margin-top:30px;padding-top:20px }
+  .pain,.diff{ padding:22px 19px 24px }
+  .diff-note{ margin-top:24px;padding:18px 19px }
+  .step{ padding-bottom:32px }
+  .step ul{ margin-top:14px }
+  .feat p{ margin-top:14px }
+  .footer{ padding:46px 0 32px }
+  .foot-grid{ gap:30px }
+  .foot-bottom{ margin-top:34px }
+
+  /* ---------- Piso de legibilidade ----------
+     Havia texto de 8px na tela. Num celular isso não se lê. */
+  .eyebrow,
+  .proof-head,
+  .pain-cost,
+  .sigla,
+  .chip,
+  .selo{ font-size:12.5px }
+
+  .step-when{ font-size:12px;letter-spacing:.13em }
+  .field label{ font-size:12px;letter-spacing:.12em }
+  .consent label{ font-size:13px;line-height:1.6 }
+  .form-status{ font-size:13px }
+  .mock-label{ font-size:11px;letter-spacing:.12em }
+  .mock-bar span{ font-size:11px;letter-spacing:.1em }
+  .m1-pill,.m2-badge,.phone-tag,.feat-tag,.cover-tag,.cover-soon{ font-size:11px }
+  .m2-best,.roi-foot em{ font-size:11px }
+  .msg time{ font-size:11px }
+  .who small{ font-size:12px }
+  .hero-meta div small{ font-size:11.5px;letter-spacing:.06em }
+  .foot-col h4{ font-size:11.5px }
+  .foot-bottom{ font-size:12.5px }
+  .sim-scale{ font-size:11px }
+  .roi-foot{ font-size:12.5px }
+  .m2-line .top,
+  .m2-line .top b{ font-size:12.5px }
+
+  /* ---------- Área de toque ----------
+     Dedo não é ponteiro: 44x44 é o mínimo confortável. */
+  .burger{ width:44px;height:44px }
+  .theme-btn{ width:44px;height:44px }
+  .brand{ min-height:44px }
+  .foot-col a,
+  .mobile-menu a{ display:flex;align-items:center;min-height:44px }
+  .m2-line{ padding:11px 10px }
+
+  /* As abas dos mockups tinham 8,5px de letra e 32px de altura.
+     Agora o texto pode quebrar em duas linhas dentro de um alvo alto. */
+  .m1-tabs button,
+  .m2-toggle button{
+    font-size:11px;letter-spacing:.04em;padding:10px 6px;
+    min-height:46px;white-space:normal;line-height:1.25;
+  }
+
+  /* O controle deslizante tinha 6px de altura: impossível de pegar.
+     A trilha continua com 6px porque o JS pinta o fundo dela; o
+     padding só aumenta a área que responde ao toque. */
+  input[type=range]{
+    box-sizing:content-box;
+    padding:19px 0;
+    background-clip:content-box;
+  }
+  input[type=range]::-webkit-slider-thumb{ width:26px;height:26px }
+  input[type=range]::-moz-range-thumb{ width:20px;height:20px }
+
+  /* ---------- iPhone dá zoom em campo com menos de 16px ----------
+     O zoom desalinha a página inteira e o visitante desiste. */
+  .field input,
+  .field select,
+  .sim-select{ font-size:16px;padding:15px 14px }
+  .field select,
+  .sim-select{ padding-right:42px }
+  .consent input{ width:24px;height:24px }
+
+  /* ---------- Blocos que quebravam em tela estreita ---------- */
+  /* "custo em 12 meses" e o valor brigavam pela mesma linha */
+  .m2-out{ flex-direction:column;align-items:flex-start;gap:8px }
+  .m2-out b{ font-size:26px }
+
+  /* três colunas de número não cabem abaixo de 360px */
+  .hero-meta{ gap:14px }
+}
+
+/* Telas realmente estreitas (iPhone SE e similares) */
+@media (max-width:360px){
+  .hero-meta{ grid-template-columns:repeat(2,1fr);row-gap:20px }
+  .m1-tabs button,
+  .m2-toggle button{ font-size:10.5px;padding:10px 3px }
+  .btn{ padding:15px 20px;font-size:14.5px }
+  .btn-lg{ padding:17px 22px;font-size:15px }
+}
+
+/* O botão flutuante encolhe para tampar menos texto ao rolar */
+@media (max-width:899px){
+  .wa-float{ width:50px;height:50px }
+  .wa-float svg{ width:23px;height:23px }
+}
+
+/* Quem pediu menos animação não deveria ver o grão piscando */
+@media (prefers-reduced-motion:reduce){
+  .grain{ animation:none }
+  .phone{ animation:none }
+}
+
+/* ============================================================
+   SEGUNDA PASSADA
+   Sobrou letra miúda em pontos que tinham regra própria com
+   especificidade maior (duas classes), então aqui a regra é
+   escrita no mesmo formato para vencer.
+   ============================================================ */
+@media (max-width:899px){
+  /* Rótulos dentro dos mockups: estavam entre 8,5px e 10px */
+  .m1-head .mock-label,
+  .roi-cols .mock-label,
+  .roi-cols .roi-dir .mock-label{ font-size:11.5px;letter-spacing:.08em }
+  .bar-labels span{ font-size:11px;letter-spacing:0 }
+  .roi-foot em{ font-size:11px }
+  .m3-item small{ font-size:11.5px }
+  .m3-foot span{ font-size:11.5px }
+  .marca small{ font-size:11.5px }
+  .tresult small{ font-size:11.5px }
+  .offer-flag{ font-size:11.5px }
+  .offer .mock-label{ font-size:11.5px }
+  .top .vl small{ font-size:11.5px }
+  .top .nm em{ font-size:11.5px }
+  .sim-total span{ font-size:11.5px }
+  .sim-field label{ font-size:11.5px }
+  .cover-tag,.cover-soon{ font-size:11.5px }
+
+  /* Alvos que ainda estavam abaixo de 44px */
+  .seg button{ min-height:46px }
+  .modal-close{ width:46px;height:46px;box-sizing:border-box }
+  .foot-bottom a{ display:inline-flex;align-items:center;min-height:44px }
+}

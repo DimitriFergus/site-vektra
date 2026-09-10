@@ -34,7 +34,8 @@
 .btn:hover{ color:var(--btn-fill-tx); box-shadow:0 16px 38px -18px rgba(193,102,57,.7) }
 .btn:active{ transform:scale(.985) }
 
-.btn-ghost{ --bg-b:transparent; --fg:var(--text); border-color:var(--line) }
+/* A borda cinza quase sumia no celular e o botão não parecia botão */
+.btn-ghost{ --bg-b:transparent; --fg:var(--text); border-color:var(--clay) }
 .btn-sm{ padding:11px 19px;font-size:13.5px;border-radius:7px }
 .btn-lg{ padding:19px 34px;font-size:16px;border-radius:9px }
 .btn-block{ width:100% }
