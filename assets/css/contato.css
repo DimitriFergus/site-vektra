@@ -1,0 +1,125 @@
+/* ============================================================
+   VEKTRA - PÁGINA DE CONTATO (contato.html)
+
+   Duas colunas no desktop:
+     [ formulário ]  [ caixa de canais ]
+                     [ mapa            ]
+   No celular vira uma coluna só, com o formulário primeiro -
+   é ele que converte o visitante que veio de anúncio.
+   ============================================================ */
+
+.contato-grid{ display:grid; gap:22px; align-items:start }
+
+/* ---------- Coluna da direita ---------- */
+.contato-side{ display:grid; gap:22px; align-content:start }
+
+/* ---------- Caixa de canais ---------- */
+.canais{
+  background:var(--card);
+  border:1px solid var(--line-soft);border-radius:16px;
+  box-shadow:var(--card-shadow);
+  padding:26px 22px 22px;
+}
+.canais h3{
+  margin:0 0 4px;
+  font-size:20px;font-weight:700;letter-spacing:-.03em;
+}
+.canais > p{
+  margin:0 0 20px;
+  font-size:14px;font-weight:300;line-height:1.6;color:var(--text-2);
+}
+
+.canal{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:14px 0;
+  border-top:1px solid var(--line-soft);
+}
+.canal:first-of-type{ border-top:0;padding-top:4px }
+
+/* O ladrilho do ícone é escuro com ícone laranja, igual aos cards
+   da home: o teal já vem da superfície do card. */
+.canal-ic{
+  width:42px;height:42px;flex:none;border-radius:12px;
+  display:grid;place-content:center;
+  background:var(--recess);border:1px solid var(--line-teal);color:var(--clay);
+  transition:background .35s ease, color .35s ease;
+}
+.canal:hover .canal-ic{ background:var(--clay);color:var(--const-ink) }
+
+.canal-txt{ min-width:0 }
+.canal-txt h4{
+  margin:0 0 4px;
+  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-2);
+}
+/* quebra endereço e e-mail longos em vez de estourar a caixa */
+.canal-txt a,
+.canal-txt span{
+  display:block;
+  font-size:15px;font-weight:500;line-height:1.5;color:var(--text);
+  overflow-wrap:anywhere;
+}
+.canal-txt a{ transition:color .25s ease }
+.canal-txt a:hover{ color:var(--clay) }
+.canal-txt small{
+  display:block;margin-top:3px;
+  font-size:12.5px;font-weight:300;color:var(--text-2);
+}
+
+.canais-nota{
+  margin:18px 0 0;padding-top:16px;
+  border-top:1px solid var(--line-soft);
+  display:flex;gap:9px;align-items:center;
+  font-size:12.5px;font-weight:300;color:var(--text-2);
+}
+
+/* ---------- Mapa ----------
+   O iframe entra com loading="lazy": o mapa só é baixado quando
+   chega perto da tela, então não pesa no carregamento inicial. */
+.mapa{
+  background:var(--card);
+  border:1px solid var(--line-soft);border-radius:16px;
+  box-shadow:var(--card-shadow);
+  overflow:hidden;
+}
+.mapa-head{
+  display:flex;gap:12px;align-items:center;justify-content:space-between;
+  padding:16px 20px;
+  border-bottom:1px solid var(--line-soft);
+}
+.mapa-head h3{
+  margin:0;
+  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-2);
+}
+.mapa-head a{
+  font-size:12.5px;font-weight:600;color:var(--clay);white-space:nowrap;
+  transition:opacity .25s ease;
+}
+.mapa-head a:hover{ opacity:.75 }
+
+.mapa-frame{
+  position:relative;
+  aspect-ratio:16/11;
+  background:var(--recess);
+}
+.mapa-frame iframe{
+  position:absolute;inset:0;
+  width:100%;height:100%;border:0;display:block;
+}
+/* O mapa do Google vem sempre claro. No tema escuro isso vira um
+   retângulo branco no meio da página, então ele é escurecido. */
+[data-theme="dark"] .mapa-frame iframe{
+  filter:invert(.92) hue-rotate(180deg) saturate(.7) brightness(.95);
+}
+
+/* ---------- Breakpoints ---------- */
+@media (min-width:900px){
+  .contato-grid{ grid-template-columns:1.15fr .85fr; gap:26px }
+  .contato-side{ gap:26px }
+  .canais{ padding:32px 28px 26px }
+  .mapa-frame{ aspect-ratio:4/3 }
+}
+@media (min-width:1100px){
+  .contato-grid{ grid-template-columns:1.2fr .8fr; gap:30px }
+}
