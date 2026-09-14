@@ -432,8 +432,11 @@
 }
 .bot-rodape{
   margin:0;padding:0 12px 10px;text-align:center;
-  font-size:11px;color:var(--text-2);
+  font-size:11px;line-height:1.5;color:var(--text-2);
 }
+.bot-rodape a{ color:var(--clay);font-weight:600;white-space:nowrap }
+.bot-form input:disabled,
+.bot-form button:disabled{ opacity:.55;cursor:wait }
 
 /* No celular a janela ocupa a tela e o botão flutuante sai de cima */
 @media (max-width:599px){

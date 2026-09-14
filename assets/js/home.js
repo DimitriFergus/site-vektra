@@ -56,8 +56,8 @@
      ============================================================ */
   var termos = [
     'Lucro Presumido 8% / 12%', 'RET 4% · patrimônio de afetação', 'Custo por obra',
-    'CPRB x folha', 'ISS retido na fonte', 'CNO regularizado', 'EFD-Reinf',
-    'Recuperação de créditos', 'Margem por etapa', 'Defesa em autuação'
+    'CPRB em transição', 'ISS no município da obra', 'CNO por obra', 'EFD-Reinf',
+    'Retenção de 11%', 'Medição x resultado', 'Reforma tributária'
   ];
   var trilho = document.getElementById('marqueeTrack');
   if (trilho) {
@@ -71,14 +71,14 @@
   var chat = document.getElementById('chat');
 
   var roteiro = [
-    { side: 'out', t: 'Boa tarde! Entregamos 3 obras esse ano, o faturamento subiu quase 40%… mas não sobra nada em caixa.', wait: 700 },
-    { side: 'in',  t: 'Boa tarde, Ricardo. Esse é o cenário mais comum aqui. Vocês apuram o custo <b>por obra</b> ou tudo entra no mesmo resultado?', wait: 1500 },
-    { side: 'out', t: 'Tudo junto, sinceramente. A gente só olha o total do mês.', wait: 900 },
-    { side: 'in',  t: 'Entendi. E hoje vocês estão no Lucro Presumido com presunção de 32%?', wait: 1400 },
-    { side: 'out', t: 'Acho que sim. Isso é ruim?', wait: 800 },
-    { side: 'in',  t: 'Em empreitada com material aplicado, a presunção pode cair para <b>8% de IRPJ e 12% de CSLL</b>. Só essa mudança já reduz bastante a conta.', wait: 1900 },
-    { side: 'out', t: 'Sério que isso muda tanto assim?', wait: 800 },
-    { side: 'in',  t: 'Me envia as 3 últimas apurações que eu te mostro o número exato da sua operação. <b>A análise é gratuita.</b>', wait: 1700 }
+    { side: 'out', t: 'Boa tarde. Entregamos 3 obras esse ano, o faturamento subiu, mas não sobra nada em caixa.', wait: 700 },
+    { side: 'in',  t: 'Boa tarde. Isso acontece bastante quando todas as obras entram no mesmo resultado. Vocês separam o custo <b>por obra</b>?', wait: 1500 },
+    { side: 'out', t: 'Não, vai tudo junto. A gente só olha o total do mês.', wait: 900 },
+    { side: 'in',  t: 'Então a obra boa pode estar cobrindo o prejuízo da ruim, sem ninguém ver. E a presunção, vocês sabem qual usam?', wait: 1400 },
+    { side: 'out', t: 'Acho que 32%. Isso é ruim?', wait: 800 },
+    { side: 'in',  t: 'Depende do contrato. Empreitada com fornecimento dos materiais usa <b>8% de IRPJ e 12% de CSLL</b>; só mão de obra usa 32%.', wait: 1900 },
+    { side: 'out', t: 'E como eu descubro qual é o meu caso?', wait: 800 },
+    { side: 'in',  t: 'Numa conversa de 20 minutos sobre uma obra sua, olhando o contrato. <b>Sem custo e sem trocar de contador.</b>', wait: 1700 }
   ];
 
   if (chat) {
@@ -169,23 +169,23 @@
      ============================================================ */
   var escopos = {
     construtora: {
-      sub: 'Análise completa dos últimos 12 meses de apuração, relatório de oportunidades e proposta de honorários só depois, se fizer sentido para os dois lados.',
+      sub: 'Análise de uma obra, com contrato, orçamento e notas. A devolutiva traz até três pontos que merecem decisão, cada um com o documento que sustenta.',
       itens: [
-        'Revisão do regime e da presunção aplicada por tipo de contrato',
-        'Levantamento de INSS de obra e ISS retido a maior',
-        'Estrutura de centro de custo por obra e por etapa',
-        'Diagnóstico de CNO, eSocial e EFD-Reinf',
-        'Simulação CPRB x folha para as próximas obras'
+        'Leitura do contrato: natureza da empreitada e presunção',
+        'Custo da obra separado do custo administrativo',
+        'Retenção de 11% e recolhimento vinculado ao CNO',
+        'ISS no município da obra e retenção pelo tomador',
+        'Medição, faturamento e resultado da obra'
       ]
     },
     incorporadora: {
-      sub: 'Análise focada em empreendimentos: viabilidade tributária por torre, patrimônio de afetação e apuração de resultado por unidade vendida.',
+      sub: 'Análise de um empreendimento: estrutura, regime e o momento certo de cada decisão, antes que a comercialização feche as portas.',
       itens: [
-        'Avaliação de enquadramento no RET (4%) por empreendimento',
-        'Estudo de patrimônio de afetação e SPE por torre',
-        'Apuração de resultado por unidade e por VGV',
-        'Tratamento de permuta, distrato e receita de longo prazo',
-        'Adequação para financiamento e auditoria de banco'
+        'Patrimônio de afetação e RET por empreendimento',
+        'Janela de 2029 da transição da reforma para incorporações afetadas',
+        'Permuta de terreno antes de assinar',
+        'CNO, encerramento e certidão para averbação',
+        'Receita reconhecida pelo avanço da obra'
       ]
     }
   };
@@ -256,7 +256,6 @@
   }
 
   function pct(v)   { return v.toFixed(1).replace('.', ',') + '%'; }
-  function vezes(v) { return v.toFixed(1).replace('.', ',') + 'x o investimento'; }
 
   /* Liga os botões de um seletor de abas dos mockups.
      Devolve a função de seleção, para outros elementos (as próprias
@@ -281,17 +280,17 @@
   }
 
   /* ============================================================
-     PAINEL DE MARGEM E RETORNO (mockup 1)
-     Três períodos. Quanto mais tempo de acompanhamento, maior a
-     margem e maior o retorno sobre o que se paga à Vektra.
+     PAINEL DE MARGEM POR OBRA (mockup 1)
+     Três períodos de um painel ilustrativo. Os números são de
+     exemplo e não representam resultado de cliente.
      ============================================================ */
   var periodos = {
     mes: { label: 'Margem consolidada · 1 mês',    margem: 11.2, pill: '▲ 1,4 p.p. vs. anterior',
-           barras: [38, 52, 26, 61, 44, 55], inv: 2400,  ret: 6800,   mult: 2.8 },
+           barras: [38, 52, 26, 61, 44, 55] },
     sem: { label: 'Margem consolidada · 6 meses',  margem: 14.6, pill: '▲ 3,8 p.p. vs. anterior',
-           barras: [44, 63, 30, 76, 53, 68], inv: 14400, ret: 61200,  mult: 4.3 },
+           barras: [44, 63, 30, 76, 53, 68] },
     ano: { label: 'Margem consolidada · 12 meses', margem: 17.4, pill: '▲ 6,1 p.p. vs. anterior',
-           barras: [46, 71, 34, 88, 60, 78], inv: 28800, ret: 152000, mult: 5.3 }
+           barras: [46, 71, 34, 88, 60, 78] }
   };
 
   var m1Tabs = document.getElementById('m1Tabs');
@@ -301,20 +300,10 @@
     var m1Val     = document.getElementById('m1Val');
     var m1Pill    = document.getElementById('m1Pill');
     var m1Barras  = document.querySelectorAll('#m1Bars .bar i');
-    var roiInv    = document.getElementById('roiInv');
-    var roiOut    = document.getElementById('roiOut');
-    var roiNet    = document.getElementById('roiNet');
-    var roiMult   = document.getElementById('roiMult');
-    var roiBarInv = document.getElementById('roiBarInv');
-    var roiBarGan = document.getElementById('roiBarGan');
 
     /* Valores que já estão no HTML, para a primeira animação partir deles */
     var base = periodos.mes;
     m1Val._v   = base.margem;
-    roiInv._v  = base.inv;
-    roiOut._v  = base.ret;
-    roiNet._v  = base.ret - base.inv;
-    roiMult._v = base.mult;
 
     var renderPeriodo = function (chave) {
       var d = periodos[chave];
@@ -323,16 +312,9 @@
       m1Pill.textContent  = d.pill;
 
       animarNum(m1Val,   d.margem,      pct);
-      animarNum(roiInv,  d.inv,         moeda);
-      animarNum(roiOut,  d.ret,         moeda);
-      animarNum(roiNet,  d.ret - d.inv, moeda);
-      animarNum(roiMult, d.mult,        vezes);
 
       m1Barras.forEach(function (barra, i) { barra.style.height = d.barras[i] + '%'; });
 
-      var fatia = Math.round(d.inv / d.ret * 100);
-      roiBarInv.style.width = fatia + '%';
-      roiBarGan.style.width = (100 - fatia) + '%';
     };
 
     marcarAbas(m1Tabs, 'per', renderPeriodo);
@@ -344,12 +326,12 @@
      do mês, faixa destacada e o resultado em 12 meses.
      ============================================================ */
   var regimes = {
-    p32:  { nome: 'Imposto no Presumido 32%',   mes: 41800, badge: 'cenário atual', neutro: true,
-            saidaLabel: 'Custo em 12 meses',    saida: 501600, saidaNeutra: true },
-    p812: { nome: 'Imposto no Presumido 8/12%', mes: 25900, badge: '38% mais barato', neutro: false,
-            saidaLabel: 'Economia em 12 meses', saida: 190800, saidaNeutra: false },
-    ret:  { nome: 'Imposto no RET 4%',          mes: 12100, badge: '71% mais barato',  neutro: false,
-            saidaLabel: 'Economia em 12 meses', saida: 356400, saidaNeutra: false }
+    p32:  { nome: 'Imposto no Presumido 32%',   mes: 41800, badge: 'exemplo', neutro: true,
+            saidaLabel: 'Custo em 12 meses no exemplo',    saida: 501600, saidaNeutra: true },
+    p812: { nome: 'Imposto no Presumido 8/12%', mes: 25900, badge: 'menor no exemplo', neutro: false,
+            saidaLabel: 'Diferença em 12 meses no exemplo', saida: 190800, saidaNeutra: false },
+    ret:  { nome: 'Imposto no RET 4%',          mes: 12100, badge: 'menor no exemplo',  neutro: false,
+            saidaLabel: 'Diferença em 12 meses no exemplo', saida: 356400, saidaNeutra: false }
   };
 
   var m2Tabs = document.getElementById('m2Tabs');

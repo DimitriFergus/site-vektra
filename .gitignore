@@ -6,3 +6,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+
+# Worker do VektraBot: chave local e cache do wrangler nunca vão para o GitHub
+.dev.vars
+.wrangler/

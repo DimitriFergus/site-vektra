@@ -16,6 +16,11 @@ window.VEKTRA = {
      Cada página pode sobrescrever com <body data-wa-msg="..."> */
   msgPadrao: 'Olá! Vim pelo site da Vektra e quero a análise gratuita da minha construtora.',
 
+  /* Endereço do servidor do VektraBot (pasta bot-worker, Cloudflare).
+     Vazio = o bot não chama a IA e oferece direto o WhatsApp.
+     Depois do "npx wrangler deploy", cole aqui o endereço que ele mostrar. */
+  botApi: '',
+
   /* E-mail exibido no rodapé (mantenha igual ao do HTML) */
   email: 'contato@vektracontabil.com.br',
 

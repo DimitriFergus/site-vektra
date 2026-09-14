@@ -87,6 +87,58 @@ Direto no HTML. Duas exceções que vivem no JavaScript:
 
 ---
 
+## VektraBot (chat com IA)
+
+O botão flutuante abre o VektraBot. Ele não tem resposta pronta: cada pergunta
+vai para um servidor pequeno na Cloudflare (pasta `bot-worker/`), que pergunta
+ao Claude usando **só** o arquivo `base-de-conhecimento/base-vektra.md`.
+
+```
+bot-worker/
+├── wrangler.toml     Nome do servidor e sites que podem usar o bot
+├── package.json
+└── src/index.js      Regras de formato, chamada ao Claude, resposta em JSON
+base-de-conhecimento/
+└── base-vektra.md    Tudo o que o bot sabe e como ele deve falar
+```
+
+### Publicar pela primeira vez
+
+No terminal, dentro da pasta `bot-worker`:
+
+```bash
+npm install
+npx wrangler login                          # abre o navegador para entrar na Cloudflare
+npx wrangler secret put ANTHROPIC_API_KEY   # cola a chave criada em console.anthropic.com
+npx wrangler deploy                         # mostra o endereço, ex.: https://vektrabot.SEU-USUARIO.workers.dev
+```
+
+Depois cole o endereço em `assets/js/config.js`:
+
+```js
+botApi: 'https://vektrabot.SEU-USUARIO.workers.dev',
+```
+
+Enquanto `botApi` estiver vazio, o bot não chama a IA e oferece direto o WhatsApp.
+
+### Mudar o que o bot sabe
+
+Edite `base-de-conhecimento/base-vektra.md` e rode `npx wrangler deploy` de novo.
+Sem esse passo, o bot continua respondendo com a versão anterior.
+
+### Custo
+
+Cada mensagem é cobrada pela Anthropic, por uso. O texto do `.md` fica em cache
+entre mensagens, o que barateia bastante. Configure um limite de gasto mensal no
+console da Anthropic: o servidor não limita quantas perguntas cada visitante faz.
+
+### Testar localmente
+
+Crie `bot-worker/.dev.vars` (não vai para o GitHub) com `ANTHROPIC_API_KEY=...`,
+rode `npx wrangler dev --port 8787` e aponte `botApi` para `http://127.0.0.1:8787`.
+
+---
+
 ## Rodando localmente
 
 Abrir o arquivo direto (duplo clique) funciona para quase tudo. Mas o
