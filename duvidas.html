@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dúvidas · Vektra | Inteligência Contábil</title>
+<meta name="description" content="Dúvidas frequentes de construtoras e incorporadoras sobre o diagnóstico, prazos, honorários, RET, recuperação de impostos e atendimento da Vektra.">
+<meta name="theme-color" content="#0B0E10">
+<link rel="icon" href="assets/img/icone-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/icone-512.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/icone-180.png">
+
+<!-- Define o tema antes da primeira pintura. NÃO adicionar defer/async. -->
+<script src="assets/js/theme-init.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/servicos.css">
+<link rel="stylesheet" href="assets/css/duvidas.css">
+<link rel="stylesheet" href="assets/css/mobile.css">
+
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/theme.js"></script>
+<script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/vektrabot.js"></script>
+<script defer src="assets/js/duvidas.js"></script>
+</head>
+
+<body data-wa-msg="Olá! Vim pela página de dúvidas da Vektra e tenho uma dúvida específica.">
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Vektra Inteligência Contábil, ir para o início">
+      <img class="brand-logo brand-logo-escuro" src="assets/img/logo-horizontal-escuro.png"
+             width="560" height="102" alt="Vektra Inteligência Contábil">
+        <img class="brand-logo brand-logo-claro" src="assets/img/logo-horizontal-claro.png"
+             width="560" height="102" alt="" aria-hidden="true">
+    </a>
+
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="index.html#diagnostico">Diagnóstico</a>
+      <a href="metodo.html">Método</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="duvidas.html" class="active" aria-current="page">Dúvidas</a>
+      <a href="contato.html">Contato</a>
+      <a href="a-vektra.html">A Vektra</a>
+    </nav>
+
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Alternar modo claro e escuro" title="Alternar tema">
+        <svg class="ic ic-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.9"/>
+          <path d="M12 1.8v2.6M12 19.6v2.6M22.2 12h-2.6M4.4 12H1.8M19.2 4.8l-1.9 1.9M6.7 17.3l-1.9 1.9M19.2 19.2l-1.9-1.9M6.7 6.7L4.8 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+        </svg>
+        <svg class="ic ic-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20.5 14.6A8.8 8.8 0 019.4 3.5a8.8 8.8 0 1011.1 11.1z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <a href="contato.html#formulario" class="btn btn-sm nav-cta magnetic"><span>Análise gratuita</span></a>
+
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#diagnostico">Diagnóstico</a>
+  <a href="metodo.html">Método</a>
+  <a href="servicos.html">Serviços</a>
+  <a href="duvidas.html" class="active" aria-current="page">Dúvidas</a>
+  <a href="contato.html">Contato</a>
+  <a href="a-vektra.html">A Vektra</a>
+  <a href="contato.html#formulario" class="btn"><span>Quero uma análise gratuita</span></a>
+</div>
+
+<main id="topo">
+
+<!-- ================= HERO + BUSCA ================= -->
+<section class="page-hero">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Dúvidas frequentes</p>
+    <h1 class="reveal" style="--d:60ms">Pergunte. A resposta cabe em <span class="hl">30 segundos</span>.</h1>
+    <p class="reveal" style="--d:120ms">
+      As perguntas que construtores e incorporadores mais fazem antes de começar, com respostas
+      curtas e diretas. Não achou a sua? O especialista responde no WhatsApp, 24h.
+    </p>
+
+    <div class="busca reveal" style="--d:180ms" role="search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="10.5" cy="10.5" r="6.8" stroke="currentColor" stroke-width="2"/>
+        <path d="M15.6 15.6L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <label for="buscaDuvida" class="sr-only">Buscar uma dúvida</label>
+      <input id="buscaDuvida" type="search" placeholder="Busque: prazo, RET, honorário" autocomplete="off">
+    </div>
+
+    <div class="filtros reveal" style="--d:220ms" role="group" aria-label="Filtrar dúvidas por tema">
+      <button type="button" class="on" data-filtro="todas" aria-pressed="true">Todas</button>
+      <button type="button" data-filtro="comeco" aria-pressed="false">Começo e diagnóstico</button>
+      <button type="button" data-filtro="prazos" aria-pressed="false">Método e prazos</button>
+      <button type="button" data-filtro="custos" aria-pressed="false">Custos e contrato</button>
+      <button type="button" data-filtro="tributos" aria-pressed="false">Tributação</button>
+      <button type="button" data-filtro="atendimento" aria-pressed="false">Atendimento</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERGUNTAS ================= -->
+<section class="sec sec-alt" id="perguntas">
+  <div class="wrap duvidas-grid">
+
+    <div class="grupos">
+
+      <section class="faq-grupo reveal" data-grupo="comeco" aria-labelledby="g-comeco">
+        <h2 class="grupo-titulo" id="g-comeco">
+          <span class="grupo-ic" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Começo e diagnóstico <small>5 perguntas</small>
+        </h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">O diagnóstico é gratuito mesmo?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Sim, R$ 0 e sem obrigação.</b> Você recebe o relatório completo e pode usá-lo
+              como quiser, inclusive com o seu contador atual. Não existe cobrança posterior.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Quanto tempo leva o diagnóstico?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Até 7 dias úteis</b>, contados a partir do envio dos documentos. O resultado é
+              apresentado numa reunião de 45 a 60 minutos, com a proposta junto.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Que documentos preciso enviar?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Os dos últimos 12 meses:</b> contrato social, balancetes, apurações e guias,
+              DCTFWeb e EFD-Reinf, relação de obras com CNO, contratos de venda, folha e notas de subempreitada.
+              Não tem tudo? Começamos com o que existir. <a href="metodo.html#comecar">Ver a lista completa</a>.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Preciso trocar de contador para fazer o diagnóstico?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Não.</b> O diagnóstico é independente. Muita construtora leva o relatório ao
+              contador atual e implementa com ele.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Minha empresa é pequena. Vale a pena?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>A partir de cerca de R$ 1,5 milhão de faturamento anual, sim.</b> Abaixo disso,
+              o ganho tributário normalmente não paga uma estrutura especializada, e dizemos isso na primeira conversa.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-grupo reveal" data-grupo="prazos" aria-labelledby="g-prazos">
+        <h2 class="grupo-titulo" id="g-prazos">
+          <span class="grupo-ic" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          Método e prazos <small>4 perguntas</small>
+        </h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Em quanto tempo vejo resultado?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>O número aparece em 7 dias úteis, no diagnóstico.</b> Depois da assinatura, o
+              regime certo e o custo por obra ficam prontos até o dia 45, e o primeiro relatório de margem chega no dia 10
+              do mês seguinte. <a href="metodo.html#cronograma">Ver o cronograma</a>.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Como funciona a troca de contador?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Leva cerca de 15 dias e nós conduzimos.</b> Pedimos os arquivos ao escritório
+              anterior, conferimos saldos e assumimos a competência em aberto. Você não precisa intermediar.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Com que frequência recebo relatório?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Todo dia 10.</b> Margem por obra, orçado x realizado e caixa projetado de 90 dias.
+              A cada trimestre há uma reunião de resultado com os sócios.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">O que a minha equipe precisa fazer todo mês?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Enviar notas, extratos e medições até o dia 5.</b> Se faltar algo, avisamos com a
+              lista exata. O resto é com a gente.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-grupo reveal" data-grupo="custos" aria-labelledby="g-custos">
+        <h2 class="grupo-titulo" id="g-custos">
+          <span class="grupo-ic" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12.5" rx="2.5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12.2" r="2.6" stroke="currentColor" stroke-width="2"/></svg></span>
+          Custos e contrato <small>3 perguntas</small>
+        </h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Quanto custa a contabilidade mensal?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Depende do escopo</b>: obras e SPEs ativas, regime, volume de notas e folha. O valor
+              vem aberto item a item junto com o diagnóstico. Se a economia projetada não cobrir o honorário com folga, não
+              recomendamos contratar.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Existe fidelidade para sair?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>O contrato não prende.</b> Se não entregarmos o combinado, você sai. O aviso prévio
+              fica escrito na proposta, antes de qualquer assinatura.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">E se o diagnóstico não encontrar nada?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Você não paga nada e fica com o relatório.</b> Saber que a operação está correta
+              também é resultado, e serve de base para as próximas decisões.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-grupo reveal" data-grupo="tributos" aria-labelledby="g-tributos">
+        <h2 class="grupo-titulo" id="g-tributos">
+          <span class="grupo-ic" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M3.5 20.5h17M5.5 20.5V9.5l6.5-5 6.5 5v11" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5v-5h4v5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          Tributação <small>5 perguntas</small>
+        </h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">O que é o RET e a minha incorporadora pode usar?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>É um regime de 4% sobre a receita do empreendimento</b>, que reúne IRPJ, CSLL, PIS e
+              COFINS. Exige patrimônio de afetação e vale para as receitas recebidas depois da opção, por isso deve estar
+              pronto antes das vendas. <a href="metodo.html#lucro">Ver a simulação</a>.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Dá para recuperar imposto pago a maior?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Na maioria dos casos, sim, dos últimos 5 anos.</b> Os erros mais comuns são retenção
+              de 11% não compensada, INSS de obra em duplicidade e ISS retido a maior. O caminho é compensação ou restituição.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Construtora e incorporadora pagam imposto do mesmo jeito?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Não.</b> A construtora presta serviço de obra, e a presunção muda conforme o
+              contrato inclua material ou só mão de obra. A incorporadora vende imóvel e pode usar o RET por empreendimento.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">A reforma tributária muda algo para mim?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Sim.</b> A CBS e o IBS entram em transição a partir de 2026, com regras próprias para
+              operações com imóveis. Simulamos o efeito nos empreendimentos em andamento e nos próximos lançamentos.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">O que acontece se o CNO da obra não for regularizado?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>A certidão da obra não sai.</b> Sem ela, a averbação da construção e o repasse das
+              unidades travam, e o INSS pode ser cobrado por estimativa da área construída.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-grupo reveal" data-grupo="atendimento" aria-labelledby="g-atendimento">
+        <h2 class="grupo-titulo" id="g-atendimento">
+          <span class="grupo-ic" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 6a3 3 0 013-3h10a3 3 0 013 3v7.5a3 3 0 01-3 3h-6.5L6 20.5v-4H7a3 3 0 01-3-3V6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          Atendimento <small>4 perguntas</small>
+        </h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Vocês atendem fora de Fortaleza?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Sim, em todo o Brasil.</b> Documentos por link seguro, reuniões por vídeo e o dia a
+              dia pelo WhatsApp, incluindo as regras de ISS de cada município onde você tem obra.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Quem atende a minha empresa?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Um contador responsável pela sua conta</b>, apoiado por analistas tributário, de custo
+              por obra e de defesa fiscal. Você fala com quem mexe no seu fechamento, não com uma central.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Qual é a forma mais rápida de falar com a Vektra?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>O WhatsApp (85) 98992-9146</b>, com especialista 24h. Para dúvidas gerais, o VektraBot
+              no canto da tela responde na hora.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Meus documentos ficam seguros?<span class="ic" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p><b>Sim.</b> Circulam por link seguro e ficam restritos ao time que atende a sua conta.
+              Além disso, o contador tem dever legal de sigilo profissional.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="sem-resultado" id="semResultado" hidden>
+        <b>Nenhuma pergunta encontrada para “<span id="termoBusca"></span>”.</b>
+        <p>A sua dúvida pode ser específica demais para uma resposta pronta. O especialista responde no WhatsApp, 24h.</p>
+        <a href="#" class="btn magnetic" data-wa><span>Tirar a dúvida com o especialista</span></a>
+      </div>
+    </div>
+
+    <aside class="atalho reveal" style="--d:120ms" aria-label="Falar com um especialista">
+      <span class="atalho-selo"><i class="dot-live"></i>Especialista 24h</span>
+      <h2>A sua dúvida não foi respondida?</h2>
+      <p>Cada construtora tem uma situação diferente. Descreva a sua e um especialista responde no WhatsApp.</p>
+      <a href="#" class="btn magnetic" data-wa>
+        <span>Falar com o especialista
+          <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+            <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+      <button type="button" class="btn btn-ghost" data-bot><span>Perguntar ao VektraBot</span></button>
+      <small>WhatsApp (85) 98992-9146</small>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ================= ESPECIALISTA 24H ================= -->
+<section class="spec" id="especialista">
+  <div class="wrap spec-grid">
+    <div class="reveal">
+      <p class="eyebrow">Atendimento humano</p>
+      <h2>Tire a sua dúvida específica com o nosso especialista 24h.</h2>
+      <p class="lead">Regime de um empreendimento, uma notificação que chegou, uma permuta que ainda vai ser
+        assinada. Se não coube numa resposta pronta, cabe numa conversa.</p>
+      <div class="spec-botoes">
+        <a href="#" class="btn btn-lg magnetic" data-wa>
+          <span>Falar no WhatsApp agora
+            <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+              <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <a href="metodo.html" class="btn btn-lg btn-ghost"><span>Entender o método</span></a>
+      </div>
+      <p class="spec-numero">WhatsApp <b>(85) 98992-9146</b></p>
+    </div>
+
+    <div class="spec-card reveal" style="--d:120ms">
+      <div class="spec-who">
+        <span class="spec-face" aria-hidden="true">
+          <img src="assets/img/simbolo-claro.png" width="128" height="128" alt="">
+        </span>
+        <div>
+          <b>Vektra · Especialista Contábil</b>
+          <small>Construção civil e incorporação</small>
+        </div>
+      </div>
+      <ul class="spec-list">
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Quem responde é contador, não robô</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>A primeira conversa não tem custo</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Serve para quem ainda não é cliente</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= RODAPÉ ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand" aria-label="Vektra Inteligência Contábil">
+          <img class="brand-logo brand-logo-escuro" src="assets/img/logo-completo-escuro.png"
+             width="900" height="169" alt="Vektra Inteligência Contábil">
+        <img class="brand-logo brand-logo-claro" src="assets/img/logo-completo-claro.png"
+             width="900" height="169" alt="" aria-hidden="true">
+        </a>
+        <p>Contabilidade, tributos e gestão de custos para construtoras e incorporadoras. Só isso, desde 2013.</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html#diagnostico">Diagnóstico</a></li>
+          <li><a href="metodo.html">Método</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="duvidas.html">Dúvidas</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="a-vektra.html">A Vektra</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Método</h4>
+        <ul>
+          <li><a href="metodo.html#cronograma">Cronograma</a></li>
+          <li><a href="metodo.html#comecar">Como começar</a></li>
+          <li><a href="metodo.html#lucro">De onde vem o lucro</a></li>
+          <li><a href="metodo.html#investimento">Investimento</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#" data-wa>WhatsApp comercial</a></li>
+          <li><a href="tel:+5585989929146">(85) 98992-9146</a></li>
+          <li><a href="mailto:contato@vektracontabil.com.br">contato@vektracontabil.com.br</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="ano">2026</span> Vektra Inteligência Contábil · CNPJ 00.000.000/0001-00 · CRC 2SP000000/O-0<br>
+        Respostas gerais, que não substituem a análise do caso concreto.</span>
+      <a href="#topo" style="color:var(--clay);font-weight:500">Voltar ao topo ↑</a>
+    </div>
+  </div>
+</footer>
+
+<button type="button" class="bot-float" id="botFloat" aria-label="Abrir o VektraBot" aria-expanded="false" aria-controls="vektrabot">
+  <svg class="bot-ic-abrir" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M4 6a3 3 0 013-3h10a3 3 0 013 3v7.5a3 3 0 01-3 3h-6.5L6 20.5v-4H7a3 3 0 01-3-3V6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M8.6 9.8h.01M12 9.8h.01M15.4 9.8h.01" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+  </svg>
+  <svg class="bot-ic-fechar" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+  </svg>
+</button>
+
+</body>
+</html>

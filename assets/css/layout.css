@@ -1,8 +1,8 @@
 /* ============================================================
    VEKTRA - LAYOUT
    Estrutura fixa presente em todas as páginas:
-   marca, barra de navegação, menu mobile, rodapé e botão
-   flutuante de WhatsApp.
+   marca, barra de navegação, menu mobile e rodapé.
+   O botão flutuante do VektraBot fica em components.css.
    ============================================================ */
 
 /* ---------- Marca ----------
@@ -141,18 +141,6 @@
   display:grid;gap:12px;
   font-size:12px;font-weight:300;color:var(--text-2);line-height:1.7;
 }
-
-/* ---------- Botão flutuante de WhatsApp ---------- */
-.wa-float{
-  position:fixed;right:16px;z-index:150;
-  bottom:calc(16px + env(safe-area-inset-bottom, 0px));
-  width:54px;height:54px;border-radius:50%;
-  background:var(--clay);color:var(--const-ink);
-  display:grid;place-content:center;
-  box-shadow:0 14px 34px -12px rgba(193,102,57,.85);
-  transition:transform .35s var(--ease);
-}
-.wa-float:hover{ transform:scale(1.08) rotate(-6deg) }
 
 /* ---------- Breakpoints ---------- */
 @media (min-width:600px){

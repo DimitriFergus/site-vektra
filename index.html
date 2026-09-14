@@ -29,6 +29,7 @@
 <script defer src="assets/js/config.js"></script>
 <script defer src="assets/js/theme.js"></script>
 <script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/vektrabot.js"></script>
 <script defer src="assets/js/form.js"></script>
 <script defer src="assets/js/home.js"></script>
 </head>
@@ -49,9 +50,9 @@
 
     <nav class="nav-links" aria-label="Navegação principal">
       <a href="#diagnostico">Diagnóstico</a>
-      <a href="#metodo">Método</a>
+      <a href="metodo.html">Método</a>
       <a href="servicos.html">Serviços</a>
-      <a href="#duvidas">Dúvidas</a>
+      <a href="duvidas.html">Dúvidas</a>
       <a href="contato.html">Contato</a>
       <a href="a-vektra.html">A Vektra</a>
     </nav>
@@ -78,9 +79,9 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#diagnostico">Diagnóstico</a>
-  <a href="#metodo">Método</a>
+  <a href="metodo.html">Método</a>
   <a href="servicos.html">Serviços</a>
-  <a href="#duvidas">Dúvidas</a>
+  <a href="duvidas.html">Dúvidas</a>
   <a href="contato.html">Contato</a>
   <a href="a-vektra.html">A Vektra</a>
   <a href="#orcamento" class="btn"><span>Quero uma análise gratuita</span></a>
@@ -353,55 +354,45 @@
   </div>
 </section>
 
-<!-- ================= MÉTODO ================= -->
+<!-- ================= MÉTODO (resumo; o detalhe está em metodo.html) ================= -->
 <section class="sec sec-alt" id="metodo">
   <div class="wrap">
     <div class="sec-head reveal">
-      <h2>Três passos entre o caixa apertado e a margem no lugar.</h2>
-      <p>Sem promessa vaga e sem virar a chave no escuro. Você vê número antes de decidir qualquer coisa.</p>
+      <p class="eyebrow">O método</p>
+      <h2>Do primeiro contato ao relatório de margem em 45 dias.</h2>
+      <p>Cada prazo abaixo tem entrega definida. Você vê número antes de decidir qualquer coisa,
+        e o diagnóstico que abre o processo é por nossa conta.</p>
     </div>
 
-    <div class="timeline" id="timeline">
-      <div class="tl-line" aria-hidden="true"><i></i></div>
+    <ol class="prazos">
+      <li class="prazo reveal">
+        <b>7<small>dias úteis</small></b>
+        <span>Diagnóstico gratuito, com o valor de cada oportunidade na sua operação</span>
+      </li>
+      <li class="prazo reveal" style="--d:80ms">
+        <b>15<small>dias</small></b>
+        <span>Transição com o seu contador atual, conduzida inteiramente por nós</span>
+      </li>
+      <li class="prazo reveal" style="--d:160ms">
+        <b>45<small>dias</small></b>
+        <span>Regime certo por empreendimento e custo por obra funcionando</span>
+      </li>
+      <li class="prazo reveal" style="--d:240ms">
+        <b>10<small>de todo mês</small></b>
+        <span>Relatório com a margem de cada obra, orçado x realizado e caixa projetado</span>
+      </li>
+    </ol>
 
-      <article class="step reveal">
-        <div class="step-dot"></div>
-        <p class="step-when">Semana 1 · gratuito</p>
-        <h3>Raio-X tributário</h3>
-        <p>Analisamos seus últimos 12 meses de apuração, contratos e notas. Você recebe um
-          relatório com o que está sendo pago a maior e quanto dá para recuperar.</p>
-        <ul>
-          <li>Revisão de regime e presunção aplicada</li>
-          <li>Levantamento de créditos e retenções</li>
-          <li>Mapa de risco fiscal por obra</li>
-        </ul>
-      </article>
-
-      <article class="step reveal" style="--d:120ms">
-        <div class="step-dot"></div>
-        <p class="step-when">Dias 8 a 45</p>
-        <h3>Reestruturação e custo por obra</h3>
-        <p>Reenquadramos o que precisa ser reenquadrado e montamos o centro de custo de cada
-          obra. A partir daí, cada projeto passa a ter margem própria, visível.</p>
-        <ul>
-          <li>Enquadramento ideal: Presumido, Real ou RET</li>
-          <li>Plano de contas por obra e por etapa</li>
-          <li>Regularização de CNO, INSS e ISS</li>
-        </ul>
-      </article>
-
-      <article class="step reveal" style="--d:240ms">
-        <div class="step-dot"></div>
-        <p class="step-when">Acompanhamento contínuo</p>
-        <h3>Gestão mensal e defesa fiscal</h3>
-        <p>Fechamento mensal com leitura de margem, obrigações entregues no prazo e um contador
-          especialista que atende no WhatsApp, não um protocolo de chamado.</p>
-        <ul>
-          <li>Relatório gerencial todo dia 10</li>
-          <li>Reunião de resultado por trimestre</li>
-          <li>Resposta a fiscalizações e notificações</li>
-        </ul>
-      </article>
+    <div class="metodo-link reveal" style="--d:120ms">
+      <p>Quer ver <b>cada fase em detalhe</b>: o que você envia, o que recebe, quanto tempo leva e de
+        onde vem o lucro que a incorporadora passa a reter?</p>
+      <a href="metodo.html" class="btn magnetic">
+        <span>Conheça o método completo
+          <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+            <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
     </div>
   </div>
 </section>
@@ -789,6 +780,17 @@
           a contratação.</p></div></div>
       </div>
     </div>
+
+    <div class="faq-mais reveal">
+      <a href="duvidas.html" class="btn btn-ghost">
+        <span>Ver todas as dúvidas
+          <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+            <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+      <a href="#" class="faq-mais-wa" data-wa="Olá! Vim pelo site da Vektra e tenho uma dúvida específica.">Ou tire a sua dúvida específica com o nosso especialista 24h</a>
+    </div>
   </div>
 </section>
 
@@ -854,9 +856,9 @@
         <h4>Navegação</h4>
         <ul>
           <li><a href="#diagnostico">Diagnóstico</a></li>
-          <li><a href="#metodo">Método</a></li>
+          <li><a href="metodo.html">Método</a></li>
           <li><a href="servicos.html">Serviços</a></li>
-          <li><a href="#duvidas">Dúvidas</a></li>
+          <li><a href="duvidas.html">Dúvidas</a></li>
           <li><a href="contato.html">Contato</a></li>
           <li><a href="a-vektra.html">A Vektra</a></li>
         </ul>
@@ -890,11 +892,15 @@
   </div>
 </footer>
 
-<a href="#" class="wa-float" data-wa aria-label="Falar no WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 21.5c-1.7 0-3.3-.4-4.7-1.3l-3.3.9.9-3.2A9.4 9.4 0 012.6 12 9.4 9.4 0 0112 2.6 9.4 9.4 0 0121.4 12 9.4 9.4 0 0112 21.5M12 .7A11.3 11.3 0 00.7 12c0 2 .5 3.9 1.5 5.6L.6 23.4l6-1.6c1.6.9 3.5 1.4 5.4 1.4A11.3 11.3 0 0023.3 12 11.3 11.3 0 0012 .7"/>
+<button type="button" class="bot-float" id="botFloat" aria-label="Abrir o VektraBot" aria-expanded="false" aria-controls="vektrabot">
+  <svg class="bot-ic-abrir" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M4 6a3 3 0 013-3h10a3 3 0 013 3v7.5a3 3 0 01-3 3h-6.5L6 20.5v-4H7a3 3 0 01-3-3V6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M8.6 9.8h.01M12 9.8h.01M15.4 9.8h.01" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
   </svg>
-</a>
+  <svg class="bot-ic-fechar" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+  </svg>
+</button>
 
 </body>
 </html>

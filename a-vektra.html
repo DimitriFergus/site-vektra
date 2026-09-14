@@ -28,6 +28,7 @@
 <script defer src="assets/js/config.js"></script>
 <script defer src="assets/js/theme.js"></script>
 <script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/vektrabot.js"></script>
 </head>
 
 <body data-wa-msg="Olá! Vim pela página sobre a Vektra e quero falar com um especialista.">
@@ -46,9 +47,9 @@
 
     <nav class="nav-links" aria-label="Navegação principal">
       <a href="index.html#diagnostico">Diagnóstico</a>
-      <a href="index.html#metodo">Método</a>
+      <a href="metodo.html">Método</a>
       <a href="servicos.html">Serviços</a>
-      <a href="index.html#duvidas">Dúvidas</a>
+      <a href="duvidas.html">Dúvidas</a>
       <a href="contato.html">Contato</a>
       <a href="a-vektra.html" class="active" aria-current="page">A Vektra</a>
     </nav>
@@ -75,9 +76,9 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html#diagnostico">Diagnóstico</a>
-  <a href="index.html#metodo">Método</a>
+  <a href="metodo.html">Método</a>
   <a href="servicos.html">Serviços</a>
-  <a href="index.html#duvidas">Dúvidas</a>
+  <a href="duvidas.html">Dúvidas</a>
   <a href="contato.html">Contato</a>
   <a href="a-vektra.html" class="active" aria-current="page">A Vektra</a>
   <a href="contato.html#formulario" class="btn"><span>Quero uma análise gratuita</span></a>
@@ -370,9 +371,9 @@
         <h4>Navegação</h4>
         <ul>
           <li><a href="index.html#diagnostico">Diagnóstico</a></li>
-          <li><a href="index.html#metodo">Método</a></li>
+          <li><a href="metodo.html">Método</a></li>
           <li><a href="servicos.html">Serviços</a></li>
-          <li><a href="index.html#duvidas">Dúvidas</a></li>
+          <li><a href="duvidas.html">Dúvidas</a></li>
           <li><a href="contato.html">Contato</a></li>
           <li><a href="a-vektra.html">A Vektra</a></li>
         </ul>
@@ -392,7 +393,7 @@
         <h4>Contato</h4>
         <ul>
           <li><a href="#" data-wa>WhatsApp comercial</a></li>
-          <li><a href="tel:+5585991597451">(85) 99159-7451</a></li>
+          <li><a href="tel:+5585989929146">(85) 98992-9146</a></li>
           <li><a href="mailto:contato@vektracontabil.com.br">contato@vektracontabil.com.br</a></li>
         </ul>
       </div>
@@ -406,11 +407,15 @@
   </div>
 </footer>
 
-<a href="#" class="wa-float" data-wa aria-label="Falar no WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3.1-1.3-5.1-4.4-5.2-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2.2c.1.2.1.4 0 .6l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1c.2-.2.4-.2.6-.1l2.1 1c.3.2.5.2.6.4.1.1.1.7-.1 1.4z"/>
+<button type="button" class="bot-float" id="botFloat" aria-label="Abrir o VektraBot" aria-expanded="false" aria-controls="vektrabot">
+  <svg class="bot-ic-abrir" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M4 6a3 3 0 013-3h10a3 3 0 013 3v7.5a3 3 0 01-3 3h-6.5L6 20.5v-4H7a3 3 0 01-3-3V6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M8.6 9.8h.01M12 9.8h.01M15.4 9.8h.01" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
   </svg>
-</a>
+  <svg class="bot-ic-fechar" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+  </svg>
+</button>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
    VEKTRA - NÚCLEO
    Comportamentos presentes nas duas páginas: links de WhatsApp,
    barra de navegação, menu mobile, reveal ao rolar, botões
-   magnéticos, rolagem suave e o ano do rodapé.
+   magnéticos, rolagem suave, siglas, FAQ e o ano do rodapé.
    ============================================================ */
 (function () {
   'use strict';
@@ -111,7 +111,7 @@
      Reveal ao rolar
      O atraso em cascata vem do inline style --d de cada elemento.
   ------------------------------------------------------------ */
-  var alvos = document.querySelectorAll('.reveal, .step, #timeline');
+  var alvos = document.querySelectorAll('.reveal');
 
   if ('IntersectionObserver' in window && !reduced) {
     var io = new IntersectionObserver(function (entradas) {
@@ -221,6 +221,28 @@
 
     window.addEventListener('scroll', esconderDica, { passive: true });
   }
+
+  /* ------------------------------------------------------------
+     FAQ (accordion, um aberto por vez)
+     Usado pela home e pela página de dúvidas.
+  ------------------------------------------------------------ */
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var btn = item.querySelector('.faq-q');
+
+    btn.addEventListener('click', function () {
+      var jaAberto = item.classList.contains('open');
+
+      document.querySelectorAll('.faq-item.open').forEach(function (o) {
+        o.classList.remove('open');
+        o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!jaAberto) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 
   /* Deixa disponível para os scripts de página */
   window.VEKTRA.fecharMenu = fecharMenu;

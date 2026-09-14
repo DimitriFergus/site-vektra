@@ -26,8 +26,6 @@
   .hero-meta{ margin-top:30px;padding-top:20px }
   .pain,.diff{ padding:22px 19px 24px }
   .diff-note{ margin-top:24px;padding:18px 19px }
-  .step{ padding-bottom:32px }
-  .step ul{ margin-top:14px }
   .feat p{ margin-top:14px }
   .footer{ padding:46px 0 32px }
   .foot-grid{ gap:30px }
@@ -42,7 +40,6 @@
   .chip,
   .selo{ font-size:12.5px }
 
-  .step-when{ font-size:12px;letter-spacing:.13em }
   .field label{ font-size:12px;letter-spacing:.12em }
   .consent label{ font-size:13px;line-height:1.6 }
   .form-status{ font-size:13px }
@@ -115,12 +112,6 @@
   .m2-toggle button{ font-size:10.5px;padding:10px 3px }
   .btn{ padding:15px 20px;font-size:14.5px }
   .btn-lg{ padding:17px 22px;font-size:15px }
-}
-
-/* O botão flutuante encolhe para tampar menos texto ao rolar */
-@media (max-width:899px){
-  .wa-float{ width:50px;height:50px }
-  .wa-float svg{ width:23px;height:23px }
 }
 
 /* Quem pediu menos animação não deveria ver o grão piscando */

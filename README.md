@@ -49,11 +49,11 @@ SITE VEKTRA/
 Abra `assets/js/config.js` e edite uma linha:
 
 ```js
-whatsapp: '5585991597451',   // 55 + DDD + número, só dígitos
+whatsapp: '5585989929146',   // 55 + DDD + número, só dígitos
 ```
 
 Vale para os dois arquivos HTML, todos os botões, o formulário e o simulador.
-O número configurado hoje é (85) 99159-7451.
+O número configurado hoje é (85) 98992-9146.
 
 ### Publicar um vídeo na página de serviços
 

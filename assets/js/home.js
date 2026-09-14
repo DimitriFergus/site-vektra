@@ -399,25 +399,4 @@
       });
     });
   }
-
-  /* ============================================================
-     FAQ (accordion, um aberto por vez)
-     ============================================================ */
-  document.querySelectorAll('.faq-item').forEach(function (item) {
-    var btn = item.querySelector('.faq-q');
-
-    btn.addEventListener('click', function () {
-      var jaAberto = item.classList.contains('open');
-
-      document.querySelectorAll('.faq-item.open').forEach(function (o) {
-        o.classList.remove('open');
-        o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
-      });
-
-      if (!jaAberto) {
-        item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
 })();

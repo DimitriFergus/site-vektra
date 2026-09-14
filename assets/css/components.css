@@ -84,6 +84,12 @@
 }
 .dica.vis{ opacity:1 }
 
+/* ---------- Texto só para leitor de tela ---------- */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
 /* ---------- Seção e cabeçalho ---------- */
 .sec{ padding:76px 0 }
 .sec-alt{ background:var(--bg-alt-sec) }
@@ -225,6 +231,51 @@
 .form-card > p{ margin:14px 0 26px;color:var(--text-2);font-size:14.5px;font-weight:300;line-height:1.65 }
 .form-card .btn{ width:100% }
 
+/* ============================================================
+   FAQ
+   Usado pela home e pela página de dúvidas.
+   ============================================================ */
+.faq-list{ border-top:1px solid var(--line-soft) }
+.faq-item{ border-bottom:1px solid var(--line-soft) }
+.faq-q{
+  width:100%;position:relative;padding:24px 46px 24px 0;
+  background:none;border:0;cursor:pointer;text-align:left;
+  font-family:var(--font);font-weight:600;font-size:clamp(15.5px,3.8vw,19px);
+  line-height:1.42;letter-spacing:-.02em;color:var(--text);
+  transition:color .3s ease;
+}
+.faq-q:hover{ color:var(--clay) }
+.faq-q .ic{ position:absolute;right:0;top:50%;transform:translateY(-50%);width:22px;height:22px }
+.faq-q .ic::before,
+.faq-q .ic::after{
+  content:"";position:absolute;left:50%;top:50%;
+  background:var(--clay);border-radius:2px;
+  transition:transform .4s var(--ease), opacity .3s ease;
+}
+.faq-q .ic::before{ width:14px;height:2px;transform:translate(-50%,-50%) }
+.faq-q .ic::after { width:2px;height:14px;transform:translate(-50%,-50%) }
+.faq-item.open .faq-q .ic::after{ transform:translate(-50%,-50%) rotate(90deg);opacity:0 }
+
+/* abertura suave sem altura fixa: 0fr -> 1fr */
+.faq-a{ display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease) }
+.faq-item.open .faq-a{ grid-template-rows:1fr }
+.faq-a > div{ overflow:hidden }
+.faq-a p{
+  margin:0;padding:0 0 28px;
+  color:var(--text-2);font-size:15px;font-weight:300;line-height:1.72;max-width:70ch;
+}
+
+/* ---------- Aviso de conteúdo ilustrativo ----------
+   Usado na A Vektra, no método e nas dúvidas. */
+.aviso-ficticio{
+  margin:34px 0 0;padding:16px 18px;
+  border:1px dashed var(--line);border-radius:12px;
+  display:flex;gap:11px;align-items:flex-start;
+  font-size:13px;font-weight:300;line-height:1.6;color:var(--text-2);
+}
+.aviso-ficticio svg{ flex:none;margin-top:2px;color:var(--clay) }
+.aviso-ficticio b{ color:var(--text);font-weight:600 }
+
 /* ---------- Breakpoints ---------- */
 @media (min-width:600px){
   .form-row{ grid-template-columns:1fr 1fr; gap:0 14px }
@@ -232,4 +283,171 @@
 @media (min-width:900px){
   .sec{ padding:104px 0 }
   .form-card{ padding:40px 34px }
+}
+
+/* ============================================================
+   VEKTRABOT
+   Botão flutuante e janela de atendimento, presentes em todas
+   as páginas. O HTML da janela é montado por vektrabot.js.
+   ============================================================ */
+.bot-float{
+  position:fixed;right:16px;z-index:150;
+  bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--clay);color:var(--const-ink);
+  display:grid;place-items:center;
+  box-shadow:0 14px 34px -12px rgba(193,102,57,.85);
+  transition:transform .35s var(--ease);
+}
+.bot-float:hover{ transform:scale(1.07) }
+.bot-float:focus-visible{ outline:2px solid var(--text);outline-offset:3px }
+.bot-float svg{ grid-area:1/1;transition:transform .35s var(--ease), opacity .25s ease }
+.bot-float .bot-ic-fechar{ opacity:0;transform:rotate(-90deg) scale(.5) }
+.bot-float[aria-expanded="true"] .bot-ic-abrir{ opacity:0;transform:rotate(90deg) scale(.5) }
+.bot-float[aria-expanded="true"] .bot-ic-fechar{ opacity:1;transform:none }
+
+.bot{
+  position:fixed;z-index:210;right:16px;
+  bottom:calc(84px + env(safe-area-inset-bottom, 0px));
+  width:min(384px, calc(100vw - 32px));
+  height:min(590px, calc(100dvh - 120px));
+  display:flex;flex-direction:column;
+  background:var(--card);color:var(--text);
+  border:1px solid var(--line);border-radius:18px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.6);
+  overflow:hidden;
+  opacity:0;visibility:hidden;
+  transform:translateY(14px) scale(.98);transform-origin:bottom right;
+  transition:opacity .22s ease, transform .35s var(--ease), visibility 0s linear .35s;
+}
+.bot.aberto{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .22s ease, transform .35s var(--ease), visibility 0s;
+}
+
+/* O topo é teal nos dois temas, então o símbolo usa sempre a arte clara */
+.bot-topo{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 10px 12px 16px;
+  background:var(--teal);color:var(--const-white);
+}
+.bot-avatar{
+  position:relative;flex:none;
+  width:42px;height:42px;border-radius:12px;
+  background:rgba(255,255,255,.1);
+  display:grid;place-items:center;
+}
+.bot-avatar img{ display:block;width:28px;height:28px }
+.bot-avatar::after{
+  content:"";position:absolute;right:-3px;bottom:-3px;
+  width:12px;height:12px;border-radius:50%;
+  background:#35C77A;border:2px solid var(--teal);
+}
+.bot-nome b{ display:block;font-size:16px;font-weight:700;line-height:1.2;letter-spacing:-.02em }
+.bot-nome small{ display:block;margin-top:2px;font-size:12px;font-weight:400;color:rgba(255,255,255,.78) }
+.bot-fechar{
+  margin-left:auto;flex:none;
+  width:44px;height:44px;border:0;border-radius:10px;cursor:pointer;
+  background:transparent;color:var(--const-white);
+  display:grid;place-items:center;
+}
+.bot-fechar:hover{ background:rgba(255,255,255,.12) }
+
+.bot-msgs{
+  flex:1;overflow-y:auto;overscroll-behavior:contain;
+  padding:18px 14px 10px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.bot-msg{
+  max-width:88%;padding:11px 14px;border-radius:14px;
+  font-size:14px;font-weight:400;line-height:1.55;
+  white-space:pre-line;overflow-wrap:anywhere;
+}
+.bot-msg.dele{
+  align-self:flex-start;border-bottom-left-radius:4px;
+  background:var(--recess);border:1px solid var(--line-soft);color:var(--text);
+}
+.bot-msg.minha{
+  align-self:flex-end;border-bottom-right-radius:4px;
+  background:var(--clay);color:var(--const-ink);font-weight:500;
+}
+.bot-link{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:10px;min-height:44px;padding:9px 14px;border-radius:10px;
+  background:var(--teal-fill);color:var(--const-white);
+  font-size:13.5px;font-weight:600;white-space:normal;
+  transition:background .25s ease;
+}
+.bot-link:hover{ background:var(--teal-fill-hi) }
+.bot-link.wa{ background:var(--clay);color:var(--const-ink) }
+.bot-link.wa:hover{ background:var(--clay-forte);color:var(--const-white) }
+
+.bot-digitando{ display:flex;gap:5px;align-items:center;padding:14px 16px }
+.bot-digitando i{
+  width:7px;height:7px;border-radius:50%;background:var(--text-2);
+  animation:botPonto 1.1s infinite ease-in-out;
+}
+.bot-digitando i:nth-child(2){ animation-delay:.15s }
+.bot-digitando i:nth-child(3){ animation-delay:.3s }
+@keyframes botPonto{
+  0%,80%,100%{ opacity:.3;transform:translateY(0) }
+  40%{ opacity:1;transform:translateY(-3px) }
+}
+
+/* uma linha só, com rolagem lateral: em tela baixa as sugestões
+   não podem empurrar a conversa para fora da janela */
+.bot-sugestoes{
+  display:flex;flex-wrap:nowrap;gap:7px;
+  padding:2px 14px 12px;
+  overflow-x:auto;scrollbar-width:none;
+}
+.bot-sugestoes::-webkit-scrollbar{ display:none }
+.bot-sugestoes[hidden]{ display:none }
+.bot-sugestoes button{
+  min-height:38px;padding:8px 13px;border-radius:99px;cursor:pointer;
+  background:transparent;border:1px solid var(--clay);color:var(--text);
+  flex:none;white-space:nowrap;
+  font-family:var(--font);font-size:13px;font-weight:500;line-height:1.3;
+  transition:background .2s ease, color .2s ease;
+}
+.bot-sugestoes button:hover{ background:var(--clay);color:var(--const-ink) }
+
+.bot-form{
+  display:flex;gap:8px;align-items:center;
+  padding:10px 12px calc(12px + env(safe-area-inset-bottom, 0px));
+  border-top:1px solid var(--line-soft);
+}
+.bot-form input{
+  flex:1;min-width:0;height:46px;
+  padding:0 14px;border-radius:12px;
+  background:var(--panel);border:1px solid var(--line-soft);color:var(--text);
+  font-family:var(--font);font-size:16px;     /* 16px: o iPhone não dá zoom */
+}
+.bot-form input:focus{ outline:none;border-color:var(--clay);box-shadow:0 0 0 3px rgba(193,102,57,.18) }
+.bot-form input::placeholder{ color:var(--text-2);opacity:.8 }
+.bot-form button{
+  flex:none;width:46px;height:46px;border:0;border-radius:12px;cursor:pointer;
+  background:var(--clay);color:var(--const-ink);
+  display:grid;place-items:center;
+}
+.bot-rodape{
+  margin:0;padding:0 12px 10px;text-align:center;
+  font-size:11px;color:var(--text-2);
+}
+
+/* No celular a janela ocupa a tela e o botão flutuante sai de cima */
+@media (max-width:599px){
+  .bot-float{ width:54px;height:54px }
+  .bot{
+    left:8px;right:8px;width:auto;
+    bottom:calc(8px + env(safe-area-inset-bottom, 0px));
+    height:calc(100dvh - 16px - env(safe-area-inset-bottom, 0px));
+    border-radius:16px;
+  }
+  .bot-aberto .bot-float{ opacity:0;pointer-events:none }
+  .bot-sugestoes button{ min-height:44px }
+}
+@media (prefers-reduced-motion:reduce){
+  .bot,.bot.aberto{ transition:none }
+  .bot-digitando i{ animation:none;opacity:.6 }
 }

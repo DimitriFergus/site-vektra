@@ -1,0 +1,110 @@
+/* ============================================================
+   VEKTRA - PÁGINA DE DÚVIDAS (duvidas.html)
+
+   Reaproveita .page-hero e .spec de servicos.css e o accordion
+   .faq-* de components.css. Aqui ficam só a busca, os filtros,
+   os grupos de perguntas e os atalhos para o especialista.
+   ============================================================ */
+
+/* ---------- Busca ---------- */
+.busca{
+  position:relative;margin-top:30px;max-width:620px;
+}
+.busca svg{
+  position:absolute;left:18px;top:50%;transform:translateY(-50%);
+  color:var(--text-2);pointer-events:none;
+}
+.busca input{
+  width:100%;height:58px;
+  padding:0 18px 0 52px;border-radius:14px;
+  background:var(--card);border:1px solid var(--line);color:var(--text);
+  font-family:var(--font);font-size:16px;
+  box-shadow:var(--card-shadow);
+  transition:border-color .25s ease, box-shadow .25s ease;
+}
+.busca input::placeholder{ color:var(--text-2);opacity:.85 }
+.busca input:focus{ outline:none;border-color:var(--clay);box-shadow:0 0 0 4px rgba(193,102,57,.18) }
+.busca input::-webkit-search-cancel-button{ cursor:pointer }
+
+/* ---------- Filtros por tema ---------- */
+.filtros{ display:flex;flex-wrap:wrap;gap:8px;margin-top:16px }
+.filtros button{
+  min-height:44px;padding:9px 16px;border-radius:99px;cursor:pointer;
+  background:transparent;border:1px solid var(--line);color:var(--text-2);
+  font-family:var(--font);font-size:13.5px;font-weight:500;
+  transition:border-color .25s ease, color .25s ease, background .25s ease;
+}
+.filtros button:hover{ border-color:var(--clay);color:var(--text) }
+.filtros button.on{ background:var(--clay);border-color:var(--clay);color:var(--const-ink);font-weight:600 }
+
+/* ---------- Grade: perguntas + atalho lateral ---------- */
+.duvidas-grid{ display:grid;gap:34px;align-items:start }
+.grupos{ display:grid;gap:44px }
+.faq-grupo[hidden],
+.faq-item[hidden]{ display:none }
+
+.grupo-titulo{
+  display:flex;align-items:center;gap:12px;
+  margin:0 0 6px;font-size:clamp(20px,4.6vw,24px);font-weight:700;letter-spacing:-.03em;
+}
+.grupo-ic{
+  width:40px;height:40px;flex:none;border-radius:11px;
+  display:grid;place-items:center;
+  background:var(--teal-fill);color:var(--const-white);
+}
+.grupo-titulo small{
+  margin-left:auto;
+  font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--text-2);white-space:nowrap;
+}
+
+/* respostas curtas: a primeira frase já responde */
+.faq-grupo .faq-q{ padding:20px 46px 20px 0;font-size:clamp(15.5px,3.8vw,17.5px) }
+.faq-grupo .faq-a p{ padding-bottom:22px }
+.faq-a p b{ color:var(--text);font-weight:600 }
+.faq-a a{ color:var(--clay);font-weight:500;border-bottom:1px solid currentColor }
+
+/* ---------- Atalho lateral ---------- */
+.atalho{
+  background:var(--card-sunken);
+  border:1px solid var(--line);border-radius:18px;
+  padding:24px 22px;position:relative;
+}
+.atalho::before{
+  content:"";position:absolute;left:22px;right:22px;top:-1px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--clay),transparent);
+}
+.atalho-selo{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--clay);
+}
+.atalho h2{ margin:12px 0 8px;font-size:21px;font-weight:700;line-height:1.25;letter-spacing:-.03em }
+.atalho p{ margin:0 0 18px;font-size:14.5px;font-weight:300;line-height:1.62;color:var(--text-2) }
+.atalho .btn{ width:100% }
+.atalho .btn + .btn{ margin-top:10px }
+.atalho small{ display:block;margin-top:14px;text-align:center;font-size:12.5px;color:var(--text-2) }
+
+/* ---------- Busca sem resultado ---------- */
+.sem-resultado{
+  padding:30px 24px;border-radius:16px;
+  border:1px dashed var(--line);text-align:center;
+}
+.sem-resultado[hidden]{ display:none }
+.sem-resultado b{ display:block;font-size:18px;font-weight:700;letter-spacing:-.02em }
+.sem-resultado p{ margin:10px auto 20px;max-width:44ch;font-size:14.5px;font-weight:300;line-height:1.6;color:var(--text-2) }
+
+/* ---------- Faixa final do especialista ---------- */
+.spec .spec-botoes{ display:flex;flex-wrap:wrap;gap:12px;margin-top:28px }
+.spec .spec-botoes .btn{ margin-top:0 }
+.spec .btn-ghost{ --fg:var(--const-white);border-color:rgba(255,255,255,.55) }
+.spec-numero{
+  margin-top:18px;font-size:14px;font-weight:300;color:rgba(255,255,255,.8);
+}
+.spec-numero b{ color:var(--const-white);font-weight:600 }
+
+/* ============================================================
+   BREAKPOINTS
+   ============================================================ */
+@media (min-width:900px){
+  .duvidas-grid{ grid-template-columns:1fr 330px;gap:52px }
+  .atalho{ position:sticky;top:calc(var(--nav-h) + 20px);padding:28px 26px }
+}

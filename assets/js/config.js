@@ -9,8 +9,8 @@ window.VEKTRA = {
 
   /* Número no formato internacional, só dígitos:
      55 (Brasil) + DDD + número.
-     Hoje: (85) 99159-7451 */
-  whatsapp: '5585991597451',
+     Hoje: (85) 98992-9146 */
+  whatsapp: '5585989929146',
 
   /* Mensagem usada quando o link não traz uma própria.
      Cada página pode sobrescrever com <body data-wa-msg="..."> */

@@ -184,16 +184,6 @@
   font-size:14px;font-weight:300;line-height:1.62;color:var(--text-2);
 }
 
-/* ---------- Aviso de conteúdo ilustrativo ---------- */
-.aviso-ficticio{
-  margin:34px 0 0;padding:16px 18px;
-  border:1px dashed var(--line);border-radius:12px;
-  display:flex;gap:11px;align-items:flex-start;
-  font-size:13px;font-weight:300;line-height:1.6;color:var(--text-2);
-}
-.aviso-ficticio svg{ flex:none;margin-top:2px;color:var(--clay) }
-.aviso-ficticio b{ color:var(--text);font-weight:600 }
-
 /* ============================================================
    BREAKPOINTS
    ============================================================ */
