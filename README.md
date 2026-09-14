@@ -87,55 +87,37 @@ Direto no HTML. Duas exceções que vivem no JavaScript:
 
 ---
 
-## VektraBot (chat com IA)
+## VektraBot (respostas prontas, custo zero)
 
-O botão flutuante abre o VektraBot. Ele não tem resposta pronta: cada pergunta
-vai para um servidor pequeno na Cloudflare (pasta `bot-worker/`), que pergunta
-ao Claude usando **só** o arquivo `base-de-conhecimento/base-vektra.md`.
+O botão flutuante abre o VektraBot. Ele não usa IA nem API: tudo roda no
+navegador de quem visita, a partir de uma lista de respostas prontas.
 
-```
-bot-worker/
-├── wrangler.toml     Nome do servidor e sites que podem usar o bot
-├── package.json
-└── src/index.js      Regras de formato, chamada ao Claude, resposta em JSON
-base-de-conhecimento/
-└── base-vektra.md    Tudo o que o bot sabe e como ele deve falar
-```
+| Arquivo | O que tem |
+|---|---|
+| `assets/js/vektrabot-base.js` | **As respostas.** É aqui que se "treina" o bot |
+| `assets/js/vektrabot.js` | O motor: entende a pergunta e desenha o chat |
+| `base-de-conhecimento/base-vektra.md` | A fonte do conteúdo das respostas |
 
-### Publicar pela primeira vez
+### Como treinar
 
-No terminal, dentro da pasta `bot-worker`:
+Cada resposta tem `exemplos` (jeitos de alguém perguntar) e `chaves`
+(palavras que indicam o assunto). O bot compara a pergunta com esses dois,
+tolerando falta de acento e um erro de digitação.
 
-```bash
-npm install
-npx wrangler login                          # abre o navegador para entrar na Cloudflare
-npx wrangler secret put ANTHROPIC_API_KEY   # cola a chave criada em console.anthropic.com
-npx wrangler deploy                         # mostra o endereço, ex.: https://vektrabot.SEU-USUARIO.workers.dev
-```
-
-Depois cole o endereço em `assets/js/config.js`:
+Viu no WhatsApp uma pergunta que o bot não entendeu? Copie a frase para os
+`exemplos` da resposta certa. Para testar, abra o site, aperte F12 e digite
+no console:
 
 ```js
-botApi: 'https://vektrabot.SEU-USUARIO.workers.dev',
+VEKTRA.botResponder('onde eu pago o iss da obra')
 ```
 
-Enquanto `botApi` estiver vazio, o bot não chama a IA e oferece direto o WhatsApp.
+### O que vai sempre para o especialista
 
-### Mudar o que o bot sabe
-
-Edite `base-de-conhecimento/base-vektra.md` e rode `npx wrangler deploy` de novo.
-Sem esse passo, o bot continua respondendo com a versão anterior.
-
-### Custo
-
-Cada mensagem é cobrada pela Anthropic, por uso. O texto do `.md` fica em cache
-entre mensagens, o que barateia bastante. Configure um limite de gasto mensal no
-console da Anthropic: o servidor não limita quantas perguntas cada visitante faz.
-
-### Testar localmente
-
-Crie `bot-worker/.dev.vars` (não vai para o GitHub) com `ANTHROPIC_API_KEY=...`,
-rode `npx wrangler dev --port 8787` e aponte `botApi` para `http://127.0.0.1:8787`.
+A lista `encaminhar` do mesmo arquivo: cálculo e simulação, lucro e
+economia, escolha de regime para a empresa, leitura de contrato e urgências
+(intimação, fiscalização, certidão travada). Pergunta não reconhecida ou
+repetida também vai para o WhatsApp, com a dúvida já escrita na mensagem.
 
 ---
 
