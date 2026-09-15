@@ -10,3 +10,7 @@ Thumbs.db
 # Worker do VektraBot: chave local e cache do wrangler nunca vão para o GitHub
 .dev.vars
 .wrangler/
+
+# Fica só no computador: não é publicado no site nem no GitHub
+teste/
+base-de-conhecimento/

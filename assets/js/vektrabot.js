@@ -228,7 +228,9 @@
 
   function desenharDele(m) {
     var bolha = el('div', 'bot-msg dele', m.texto);
-    if (m.link) {
+    // Segurança: a conversa volta do sessionStorage, que outro script
+    // poderia alterar. Link só vira botão se for uma página deste site.
+    if (m.link && /^[a-z0-9-]+\.html(#[a-z0-9-]+)?$/i.test(String(m.link.href))) {
       var a = el('a', 'bot-link', m.link.texto);
       a.href = m.link.href;
       bolha.appendChild(a);

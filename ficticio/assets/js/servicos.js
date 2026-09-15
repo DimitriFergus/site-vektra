@@ -37,6 +37,18 @@
         'essa dúvida com um especialista, sem custo e sem compromisso.</span>' +
       '</div>';
 
+    /* Segurança: o data-src só aceita vídeo do próprio site ou de
+       YouTube/Vimeo por https. Qualquer outro endereço (javascript:,
+       site desconhecido) cai no painel "em breve". */
+    function urlDeVideoSegura(src) {
+      if (!src) return null;
+      var u;
+      try { u = new URL(src, window.location.href); } catch (e) { return null; }
+      if (u.origin === window.location.origin) return u;
+      if (u.protocol !== 'https:') return null;
+      return /^(www\.)?(youtube\.com|youtube-nocookie\.com|player\.vimeo\.com)$/.test(u.hostname) ? u : null;
+    }
+
     function abrirModal(btn) {
       ultimoFoco = btn;
 
@@ -46,14 +58,26 @@
 
       var src = (btn.dataset.src || '').trim();
 
-      if (!src) {
+      var seguro = urlDeVideoSegura(src);
+      palco.textContent = '';
+
+      if (!seguro) {
         palco.innerHTML = PAINEL_EM_BREVE;
-      } else if (/\.(mp4|webm)$/i.test(src)) {
-        palco.innerHTML = '<video src="' + src + '" controls autoplay playsinline></video>';
+      } else if (/\.(mp4|webm)$/i.test(seguro.pathname)) {
+        var video = document.createElement('video');
+        video.src = seguro.href;
+        video.controls = true;
+        video.autoplay = true;
+        video.setAttribute('playsinline', '');
+        palco.appendChild(video);
       } else {
-        palco.innerHTML = '<iframe src="' + src + '" title="' + (btn.dataset.title || '') + '" ' +
-          'allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" ' +
-          'allowfullscreen></iframe>';
+        var quadro = document.createElement('iframe');
+        quadro.src = seguro.href;
+        quadro.title = btn.dataset.title || 'Vídeo';
+        quadro.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture');
+        quadro.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        quadro.setAttribute('allowfullscreen', '');
+        palco.appendChild(quadro);
       }
 
       modal.classList.add('open');
