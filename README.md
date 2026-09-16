@@ -87,37 +87,47 @@ Direto no HTML. Duas exceções que vivem no JavaScript:
 
 ---
 
-## VektraBot (respostas prontas, custo zero)
+## VektraBot (só escolha, custo zero)
 
 O botão flutuante abre o VektraBot. Ele não usa IA nem API: tudo roda no
-navegador de quem visita, a partir de uma lista de respostas prontas.
+navegador de quem visita. **Não existe campo de digitar**: o visitante
+escolhe a pergunta numa trilha que rola para o lado, com setas laranja.
 
 | Arquivo | O que tem |
 |---|---|
-| `assets/js/vektrabot-base.js` | **As respostas.** É aqui que se "treina" o bot |
-| `assets/js/vektrabot.js` | O motor: entende a pergunta e desenha o chat |
-| `base-de-conhecimento/base-vektra.md` | A fonte do conteúdo das respostas |
+| `assets/js/vektrabot-base.js` | **O conteúdo.** Catálogo de perguntas, respostas e o fluxo "Outro assunto" |
+| `assets/js/vektrabot.js` | O motor: entende a pergunta escolhida e desenha a conversa |
+| `base-de-conhecimento/base-vektra.md` | A fonte do texto das respostas |
 
-### Como treinar
+### Incluir uma pergunta na trilha
 
-Cada resposta tem `exemplos` (jeitos de alguém perguntar) e `chaves`
-(palavras que indicam o assunto). O bot compara a pergunta com esses dois,
-tolerando falta de acento e um erro de digitação.
-
-Viu no WhatsApp uma pergunta que o bot não entendeu? Copie a frase para os
-`exemplos` da resposta certa. Para testar, abra o site, aperte F12 e digite
-no console:
+1. Escreva a pergunta na lista `catalogo` do `vektrabot-base.js`, do jeito
+   que o cliente escreveria.
+2. Confira se ela cai na resposta certa. No site, aperte F12 e digite:
 
 ```js
-VEKTRA.botResponder('onde eu pago o iss da obra')
+VEKTRA.botResponder('o que é o ret na incorporação')
 ```
 
-### O que vai sempre para o especialista
+3. Se cair na resposta errada, acrescente a frase aos `exemplos` da
+   resposta certa.
+
+### "Outro assunto"
+
+É o último botão da trilha. Ele pergunta nome da empresa (digitado),
+faturamento e número de funcionários (escolha), e só então abre o
+WhatsApp com esses dados escritos na mensagem, junto com a última dúvida
+da conversa. Quem responde "Prefiro não informar" não entra na mensagem.
+
+Para mudar as perguntas ou as faixas, edite `outro.passos` no
+`vektrabot-base.js`.
+
+### O que vai direto para o especialista
 
 A lista `encaminhar` do mesmo arquivo: cálculo e simulação, lucro e
-economia, escolha de regime para a empresa, leitura de contrato e urgências
-(intimação, fiscalização, certidão travada). Pergunta não reconhecida ou
-repetida também vai para o WhatsApp, com a dúvida já escrita na mensagem.
+economia, escolha de regime para a empresa, leitura de contrato e
+urgências (intimação, fiscalização, certidão travada). Pergunta não
+reconhecida também vai para o WhatsApp, com a dúvida já escrita.
 
 ---
 

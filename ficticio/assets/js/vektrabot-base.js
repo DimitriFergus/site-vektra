@@ -11,9 +11,9 @@
    ------------------------------------------------------------
    Cada item de RESPOSTAS tem:
 
-   - exemplos: jeitos reais de alguém perguntar aquilo. Quanto
-     mais exemplos parecidos com o que o cliente escreve, melhor
-     o bot reconhece. Pode escrever sem acento e com gíria.
+   - exemplos: jeitos reais de alguém perguntar aquilo. Servem
+     para casar a pergunta escolhida no catálogo com a resposta,
+     e aceitam falta de acento e erro de digitação.
    - chaves:   palavras ou expressões que, sozinhas, já indicam o
      assunto ("ret", "cno", "iss"). Uma palavra casa com o começo
      das palavras da pergunta ("retenc" pega retenção e retenções).
@@ -32,14 +32,68 @@
    ============================================================ */
 window.VEKTRABOT_BASE = {
 
-  abertura: 'Oi. Aqui é o VektraBot, assistente da Vektra, contabilidade para construtoras e incorporadoras. Me conta qual é a sua dúvida sobre a obra ou a empresa que eu te ajudo a entender o que está em jogo.',
+  abertura: 'Oi. Aqui é o VektraBot, assistente da Vektra, contabilidade para construtoras e incorporadoras. Escolha uma pergunta abaixo. Se a sua dúvida não estiver na lista, toque em "Outro assunto" e eu te levo para um especialista.',
 
-  sugestoesIniciais: [
+  /* ----------------------------------------------------------
+     CATÁLOGO DE PERGUNTAS
+     O visitante escolhe, não digita. A trilha rola para o lado,
+     com setas, no celular e no computador.
+     Para incluir uma pergunta nova: escreva aqui do jeito que o
+     cliente escreveria e confira se cai na resposta certa com
+     VEKTRA.botResponder('a pergunta') no console.
+     ---------------------------------------------------------- */
+  catalogo: [
     'O que é a análise gratuita?',
-    'O que é o RET?',
-    'Onde pago o ISS de obra?',
-    'Quanto custa o serviço?'
+    'O que preciso mandar para a análise?',
+    'Quanto custa o serviço?',
+    'Preciso trocar de contador?',
+    'Vocês atendem a minha cidade?',
+    'Como separar o custo por obra?',
+    'O que é o RET na incorporação?',
+    'Como funciona o Lucro Presumido na construção?',
+    'Onde pago o ISS da obra?',
+    'O que é o CNO da obra?',
+    'Retenção de 11%: o que fazer?',
+    'A desoneração da folha ainda vale?',
+    'Estou no Simples: está tudo pago no DAS?',
+    'O que muda com a reforma tributária?',
+    'Vou fazer permuta de terreno',
+    'Faturei bem e não sobrou dinheiro',
+    'Recebi uma notificação da Receita',
+    'Quem é a Vektra?'
   ],
+
+  /* ----------------------------------------------------------
+     "OUTRO ASSUNTO"
+     Antes de ir para o WhatsApp, três perguntas rápidas sobre a
+     empresa. Só a primeira é digitada; as outras duas são escolha.
+     ---------------------------------------------------------- */
+  outro: {
+    rotulo: 'Outro assunto',
+    intro: 'Sem problema, isso o especialista responde melhor que eu. Para ele já chegar com contexto, me diga três coisas rápidas sobre a sua empresa.',
+    passos: [
+      {
+        chave: 'Empresa',
+        pergunta: 'Primeiro: qual o nome da sua empresa?',
+        tipo: 'texto',
+        marcador: 'Nome da empresa',
+        botao: 'Continuar'
+      },
+      {
+        chave: 'Faturamento',
+        pergunta: 'Qual o faturamento anual, mais ou menos?',
+        tipo: 'opcoes',
+        opcoes: ['Até R$ 1,5 milhão', 'R$ 1,5 a 4,8 milhões', 'R$ 4,8 a 15 milhões', 'Acima de R$ 15 milhões', 'Prefiro não informar']
+      },
+      {
+        chave: 'Funcionários',
+        pergunta: 'E quantos funcionários a empresa tem hoje?',
+        tipo: 'opcoes',
+        opcoes: ['1 a 10', '11 a 30', '31 a 60', 'Mais de 60', 'Prefiro não informar']
+      }
+    ],
+    fim: 'Pronto. Toque abaixo: o especialista já recebe esses dados junto com a sua dúvida, pelo WhatsApp, em horário comercial.'
+  },
 
   /* Sem resposta pronta: a pergunta segue para o especialista */
   naoEntendi: 'Essa eu não tenho resposta pronta aqui, e prefiro não arriscar. Um especialista da Vektra te responde com a fonte, pelo WhatsApp, em horário comercial.',

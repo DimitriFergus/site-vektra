@@ -513,47 +513,79 @@
 
 /* uma linha só, com rolagem lateral: em tela baixa as sugestões
    não podem empurrar a conversa para fora da janela */
+/* ---------- Trilha de perguntas ----------
+   As perguntas não caberiam na largura da janela, então a trilha rola
+   para o lado: arraste (que no celular já funciona) ou as duas setas
+   laranja, que aparecem só quando existe pergunta para aquele lado.
+   As setas ficam FORA da área que rola, cada uma no seu espaço, senão
+   elas cobririam o chip que passa por baixo. */
+.bot-trilha{
+  flex:none;display:flex;align-items:center;gap:4px;
+  padding:2px 8px 12px;
+}
+.bot-trilha[hidden]{ display:none }
 .bot-sugestoes{
+  flex:1;min-width:0;
   display:flex;flex-wrap:nowrap;gap:7px;
-  padding:2px 14px 12px;
+  padding:2px 6px;
   overflow-x:auto;scrollbar-width:none;
+  scroll-snap-type:x proximity;
+  overscroll-behavior-x:contain;
 }
 .bot-sugestoes::-webkit-scrollbar{ display:none }
 .bot-sugestoes[hidden]{ display:none }
 .bot-sugestoes button{
-  min-height:38px;padding:8px 13px;border-radius:99px;cursor:pointer;
+  min-height:40px;padding:9px 14px;border-radius:99px;cursor:pointer;
   background:transparent;border:1px solid var(--clay);color:var(--text);
-  flex:none;white-space:nowrap;
+  flex:none;white-space:nowrap;scroll-snap-align:start;
   font-family:var(--font);font-size:13px;font-weight:500;line-height:1.3;
   transition:background .2s ease, color .2s ease;
 }
 .bot-sugestoes button:hover{ background:var(--clay);color:var(--const-ink) }
+.bot-sugestoes button:focus-visible{ outline:2px solid var(--clay);outline-offset:2px }
+/* "Outro assunto" é o caminho para o especialista: fica preenchido */
+.bot-sugestoes button.outro{ background:var(--clay);color:var(--const-ink);font-weight:600 }
+.bot-sugestoes button.outro:hover{ background:var(--clay-forte);color:var(--const-white) }
 
-.bot-form{
-  display:flex;gap:8px;align-items:center;
-  padding:10px 12px calc(12px + env(safe-area-inset-bottom, 0px));
-  border-top:1px solid var(--line-soft);
+.bot-seta{
+  flex:none;
+  width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--clay);color:var(--const-ink);
+  display:grid;place-items:center;
+  box-shadow:0 6px 16px -8px rgba(0,0,0,.5);
+  transition:transform .2s ease, background .2s ease;
 }
-.bot-form input{
+.bot-seta:hover{ transform:scale(1.08);background:var(--clay-forte);color:var(--const-white) }
+.bot-seta:focus-visible{ outline:2px solid var(--clay);outline-offset:2px }
+.bot-seta[hidden]{ display:none }
+
+/* ---------- Passo com resposta escrita (nome da empresa) ---------- */
+.bot-passo{
+  flex:none;
+  padding:4px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+}
+.bot-passo[hidden]{ display:none }
+.bot-passo-form{ display:flex;gap:8px;align-items:center }
+.bot-passo input{
   flex:1;min-width:0;height:46px;
   padding:0 14px;border-radius:12px;
   background:var(--panel);border:1px solid var(--line-soft);color:var(--text);
   font-family:var(--font);font-size:16px;     /* 16px: o iPhone não dá zoom */
 }
-.bot-form input:focus{ outline:none;border-color:var(--clay);box-shadow:0 0 0 3px rgba(193,102,57,.18) }
-.bot-form input::placeholder{ color:var(--text-2);opacity:.8 }
-.bot-form button{
-  flex:none;width:46px;height:46px;border:0;border-radius:12px;cursor:pointer;
+.bot-passo input:focus{ outline:none;border-color:var(--clay);box-shadow:0 0 0 3px rgba(193,102,57,.18) }
+.bot-passo input::placeholder{ color:var(--text-2);opacity:.8 }
+.bot-passo button{
+  flex:none;height:46px;padding:0 18px;border:0;border-radius:12px;cursor:pointer;
   background:var(--clay);color:var(--const-ink);
-  display:grid;place-items:center;
+  font-family:var(--font);font-size:14px;font-weight:600;
 }
+.bot-passo button:hover{ background:var(--clay-forte);color:var(--const-white) }
+
 .bot-rodape{
   margin:0;padding:0 12px 10px;text-align:center;
   font-size:11px;line-height:1.5;color:var(--text-2);
 }
 .bot-rodape a{ color:var(--clay);font-weight:600;white-space:nowrap }
-.bot-form input:disabled,
-.bot-form button:disabled{ opacity:.55;cursor:wait }
 
 /* No celular a janela ocupa a tela e o botão flutuante sai de cima */
 @media (max-width:599px){
@@ -566,6 +598,7 @@
   }
   .bot-aberto .bot-float{ opacity:0;pointer-events:none }
   .bot-sugestoes button{ min-height:44px }
+  .bot-seta{ width:38px;height:38px }
 }
 @media (prefers-reduced-motion:reduce){
   .bot,.bot.aberto{ transition:none }

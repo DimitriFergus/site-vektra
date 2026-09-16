@@ -2,17 +2,20 @@
    VEKTRA - VEKTRABOT
    Chat do botão flutuante, em todas as páginas.
 
-   Versão 3: respostas prontas, sem IA e sem API, custo zero.
+   Versão 4: só escolha, sem IA e sem API, custo zero.
    O que o bot sabe está em assets/js/vektrabot-base.js
    (carregado antes deste arquivo). Aqui fica só o "motor":
    entender a pergunta, escolher a resposta e desenhar o chat.
 
-   Ordem de decisão para cada pergunta:
-   1. Mesma pergunta repetida      -> especialista
-   2. Assunto de ENCAMINHAR        -> especialista (cálculo, lucro,
+   O visitante escolhe a pergunta numa trilha que rola para o lado
+   (não existe campo de digitar). "Outro assunto" coleta empresa,
+   faturamento e funcionários e leva ao WhatsApp com esses dados.
+
+   Ordem de decisão para cada pergunta escolhida:
+   1. Assunto de ENCAMINHAR        -> especialista (cálculo, lucro,
                                       economia, contrato, urgência)
-   3. Resposta pronta reconhecida  -> responde
-   4. Nada reconhecido             -> especialista
+   2. Resposta pronta reconhecida  -> responde
+   3. Nada reconhecido             -> especialista
    ============================================================ */
 (function () {
   'use strict';
@@ -172,21 +175,29 @@
   if (!botao) return;
 
   /* ============================================================
-     CHAT
+     CONVERSA
+     Versão 4: o visitante só escolhe. Não existe campo de mensagem:
+     as perguntas ficam numa trilha que rola para o lado, com setas.
+     Quem não encontra a dúvida toca em "Outro assunto", responde
+     três perguntas sobre a empresa e segue para o WhatsApp com
+     esses dados já escritos na mensagem.
      ============================================================ */
-  var ESPECIALISTA = 'Quero falar com um especialista';
-  var conversa = [];   // { papel: 'visitante' | 'bot', texto, especialista, urgente, link, pergunta }
+  var OUTRO = BASE.outro;
+  var conversa = [];      // { papel: 'visitante' | 'bot', texto, ... }
+  var dados = {};         // Empresa, Faturamento, Funcionários
   var ocupado = false;
   var montado = false;
-  var painel, lista, sugestoes, campo, enviarBtn;
+  var painel, lista, trilha, sugestoes, passoBox, setaEsq, setaDir;
 
   function salvar() {
-    try { sessionStorage.setItem(CHAVE_SESSAO, JSON.stringify(conversa.slice(-30))); } catch (e) {}
+    try {
+      sessionStorage.setItem(CHAVE_SESSAO, JSON.stringify({ conversa: conversa.slice(-30), dados: dados }));
+    } catch (e) {}
   }
   function recuperar() {
     try {
       var s = JSON.parse(sessionStorage.getItem(CHAVE_SESSAO) || 'null');
-      if (Array.isArray(s)) conversa = s;
+      if (s && Array.isArray(s.conversa)) { conversa = s.conversa; dados = s.dados || {}; }
     } catch (e) {}
   }
 
@@ -201,7 +212,7 @@
 
   /* Resposta longa (RET, reforma) não pode chegar rolada até o fim:
      no celular o visitante perderia o começo. A tela para no início
-     da resposta nova, e as sugestões aparecerem depois não mudam isso. */
+     da resposta nova. */
   var ancora = null;
   function rolarPara(bolha) {
     var topo = bolha.getBoundingClientRect().top - lista.getBoundingClientRect().top + lista.scrollTop;
@@ -212,20 +223,36 @@
     else rolarFim();
   }
 
+  /* ---------- mensagem do WhatsApp ---------- */
+  function ultimaDuvida() {
+    for (var i = conversa.length - 1; i >= 0; i--) {
+      var t = conversa[i];
+      if (t.papel === 'visitante' && t.texto !== OUTRO.rotulo && !t.passo) return t.texto;
+    }
+    return '';
+  }
+
   function textoWhats(pergunta, urgente) {
     var linhas = ['Olá! Vim pelo VektraBot do site da Vektra' + (urgente ? ' e o assunto tem prazo.' : '.')];
-    if (pergunta && pergunta !== ESPECIALISTA) linhas.push('Minha dúvida: ' + pergunta);
+    ['Empresa', 'Faturamento', 'Funcionários'].forEach(function (k) {
+      if (dados[k]) linhas.push(k + ': ' + dados[k]);
+    });
+    var duvida = pergunta && pergunta !== OUTRO.rotulo ? pergunta : ultimaDuvida();
+    if (duvida) linhas.push('Minha dúvida: ' + duvida);
     return linhas.join('\n');
   }
 
   function linkWhats(pergunta, urgente) {
     var a = el('a', 'bot-link wa', urgente ? 'Falar agora com a equipe no WhatsApp' : 'Falar com um especialista no WhatsApp');
-    a.href = V.link(textoWhats(pergunta, urgente));
     a.target = '_blank';
     a.rel = 'noopener';
+    a.href = V.link(textoWhats(pergunta, urgente));
+    // monta de novo no clique, para levar o que foi respondido depois
+    a.addEventListener('click', function () { a.href = V.link(textoWhats(pergunta, urgente)); });
     return a;
   }
 
+  /* ---------- mensagens ---------- */
   function desenharDele(m) {
     var bolha = el('div', 'bot-msg dele', m.texto);
     // Segurança: a conversa volta do sessionStorage, que outro script
@@ -245,49 +272,9 @@
     rolarFim();
   }
 
-  /* Sugestões: as iniciais antes da primeira pergunta; depois, as
-     da última resposta. "Falar com especialista" sempre por último. */
-  function trocarSugestoes(opcoes) {
-    sugestoes.innerHTML = '';
-    var lista2 = (opcoes && opcoes.length ? opcoes : []).slice(0, 3);
-    if (lista2.indexOf(ESPECIALISTA) === -1) lista2.push(ESPECIALISTA);
-    lista2.forEach(function (s) {
-      var b = el('button', '', s);
-      b.type = 'button';
-      b.addEventListener('click', function () { enviar(s); });
-      sugestoes.appendChild(b);
-    });
-    sugestoes.hidden = ocupado;
-    sugestoes.scrollLeft = 0;
-    reposicionar();
-  }
-
-  function travar(sim) {
-    ocupado = sim;
-    campo.disabled = sim;
-    enviarBtn.disabled = sim;
-    sugestoes.hidden = sim;
-    if (!sim) reposicionar();
-    if (!sim && window.matchMedia('(pointer: fine)').matches) campo.focus();
-  }
-
-  function ultimaPerguntaDoVisitante() {
-    for (var i = conversa.length - 1; i >= 0; i--) {
-      if (conversa[i].papel === 'visitante') return conversa[i].texto;
-    }
-    return '';
-  }
-
-  function enviar(pergunta) {
-    pergunta = String(pergunta || '').trim();
-    if (!pergunta || ocupado) return;
-
-    var anterior = ultimaPerguntaDoVisitante();
-    ancora = null;
-    conversa.push({ papel: 'visitante', texto: pergunta });
-    desenharMinha(pergunta);
-    travar(true);
-
+  function falar(msg, depois) {
+    ocupado = true;
+    mostrarTrilha(false);
     var digitando = el('div', 'bot-msg dele bot-digitando');
     digitando.setAttribute('aria-label', 'VektraBot está escrevendo');
     digitando.innerHTML = '<i></i><i></i><i></i>';
@@ -296,29 +283,164 @@
 
     setTimeout(function () {
       digitando.remove();
-
-      var r = pergunta === ESPECIALISTA
-        ? { tipo: 'pessoa', resposta: 'Claro. Um especialista da Vektra atende pelo WhatsApp (85) 98992-9146, em horário comercial. Toque abaixo e a sua mensagem já vai pronta.', especialista: true }
-        : responder(pergunta, anterior);
-
-      var msg = {
-        papel: 'bot',
-        texto: r.resposta,
-        especialista: r.especialista,
-        urgente: r.urgente,
-        link: r.link,
-        // na mensagem do WhatsApp vai a pergunta que gerou o encaminhamento
-        pergunta: r.tipo === 'pessoa' || r.tipo === 'obrigado' ? anterior : pergunta,
-        seguir: r.seguir
-      };
       conversa.push(msg);
       ancora = desenharDele(msg);
       salvar();
-      travar(false);
-      trocarSugestoes(r.seguir);
-    }, V.reduced ? 120 : 550);
+      ocupado = false;
+      if (depois) depois();
+    }, V.reduced ? 120 : 520);
   }
 
+  /* ---------- trilha de perguntas, com setas ---------- */
+  function mostrarTrilha(sim) {
+    trilha.hidden = !sim;
+    if (sim) {
+      passoBox.hidden = true;
+      requestAnimationFrame(atualizarSetas);
+    }
+    reposicionar();
+  }
+
+  function atualizarSetas() {
+    var maximo = sugestoes.scrollWidth - sugestoes.clientWidth - 2;
+    /* O encaixe suave da rolagem para a trilha no respiro lateral, não em
+       zero: o começo é "até o respiro", senão a seta da esquerda apareceria
+       de saída, sem ter nada para trás. */
+    var respiro = (parseFloat(getComputedStyle(sugestoes).paddingLeft) || 0) + 4;
+    setaEsq.hidden = maximo <= 0 || sugestoes.scrollLeft <= respiro;
+    setaDir.hidden = maximo <= 0 || sugestoes.scrollLeft >= maximo;
+    trilha.classList.toggle('rola', maximo > 0);
+  }
+
+  function rolarLado(dir) {
+    sugestoes.scrollBy({ left: dir * sugestoes.clientWidth * 0.85, behavior: V.reduced ? 'auto' : 'smooth' });
+  }
+
+  function botaoChip(texto, aoClicar) {
+    var b = el('button', '', texto);
+    b.type = 'button';
+    b.addEventListener('click', function () { if (!ocupado) aoClicar(texto); });
+    return b;
+  }
+
+  /* Perguntas sugeridas: primeiro as ligadas à última resposta,
+     depois o catálogo inteiro, e "Outro assunto" por último. */
+  function trocarSugestoes(seguir) {
+    var vistas = {};
+    var opcoes = [];
+    (seguir || []).concat(BASE.catalogo).forEach(function (t) {
+      if (t && !vistas[t]) { vistas[t] = true; opcoes.push(t); }
+    });
+
+    sugestoes.innerHTML = '';
+    opcoes.forEach(function (t) { sugestoes.appendChild(botaoChip(t, escolher)); });
+    var outro = botaoChip(OUTRO.rotulo, function () { iniciarOutro(); });
+    outro.className = 'outro';
+    sugestoes.appendChild(outro);
+
+    sugestoes.scrollLeft = 0;
+    mostrarTrilha(true);
+  }
+
+  /* ---------- pergunta escolhida ---------- */
+  function escolher(pergunta) {
+    var anterior = ultimaDuvida();
+    ancora = null;
+    conversa.push({ papel: 'visitante', texto: pergunta });
+    desenharMinha(pergunta);
+
+    var r = responder(pergunta, anterior);
+    falar({
+      papel: 'bot',
+      texto: r.resposta,
+      especialista: r.especialista,
+      urgente: r.urgente,
+      link: r.link,
+      pergunta: pergunta,
+      seguir: r.seguir
+    }, function () { trocarSugestoes(r.seguir); });
+  }
+
+  /* ---------- "Outro assunto": três perguntas e o WhatsApp ---------- */
+  function iniciarOutro() {
+    ancora = null;
+    conversa.push({ papel: 'visitante', texto: OUTRO.rotulo });
+    desenharMinha(OUTRO.rotulo);
+    falar({ papel: 'bot', texto: OUTRO.intro }, function () { passo(0); });
+  }
+
+  function passo(i) {
+    if (i >= OUTRO.passos.length) {
+      falar({
+        papel: 'bot',
+        texto: OUTRO.fim,
+        especialista: true,
+        pergunta: ultimaDuvida()
+      }, function () { trocarSugestoes(); });
+      return;
+    }
+
+    var p = OUTRO.passos[i];
+    falar({ papel: 'bot', texto: p.pergunta }, function () {
+      if (p.tipo === 'texto') pedirTexto(p, i);
+      else pedirEscolha(p, i);
+    });
+  }
+
+  function guardar(p, valor, i) {
+    conversa.push({ papel: 'visitante', texto: valor, passo: true });
+    desenharMinha(valor);
+    if (valor.indexOf('Prefiro não informar') === -1) dados[p.chave] = valor;
+    salvar();
+    passo(i + 1);
+  }
+
+  function pedirTexto(p, i) {
+    trilha.hidden = true;
+    passoBox.hidden = false;
+    passoBox.innerHTML = '';
+
+    var form = el('form', 'bot-passo-form');
+    var rotulo = el('label', 'sr-only', p.marcador);
+    rotulo.setAttribute('for', 'botPasso');
+    var campo = el('input');
+    campo.id = 'botPasso';
+    campo.type = 'text';
+    campo.placeholder = p.marcador;
+    campo.maxLength = 80;
+    campo.autocomplete = 'organization';
+    var envia = el('button', '', p.botao || 'Continuar');
+    envia.type = 'submit';
+
+    form.appendChild(rotulo);
+    form.appendChild(campo);
+    form.appendChild(envia);
+    passoBox.appendChild(form);
+    reposicionar();
+    if (window.matchMedia('(pointer: fine)').matches) campo.focus();
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var v = campo.value.trim();
+      if (v.length < 2) { campo.focus(); return; }
+      passoBox.hidden = true;
+      passoBox.innerHTML = '';
+      guardar(p, v, i);
+    });
+  }
+
+  function pedirEscolha(p, i) {
+    sugestoes.innerHTML = '';
+    p.opcoes.forEach(function (o) {
+      sugestoes.appendChild(botaoChip(o, function () { guardar(p, o, i); }));
+    });
+    sugestoes.scrollLeft = 0;
+    mostrarTrilha(true);
+  }
+
+  /* ============================================================
+     JANELA
+     ============================================================ */
   function montar() {
     painel = el('section', 'bot');
     painel.id = 'vektrabot';
@@ -334,30 +456,33 @@
         '</button>' +
       '</header>' +
       '<div class="bot-msgs" aria-live="polite"></div>' +
-      '<div class="bot-sugestoes"></div>' +
-      '<form class="bot-form">' +
-        '<label for="botCampo" class="sr-only">Escreva sua dúvida</label>' +
-        '<input id="botCampo" type="text" placeholder="Escreva sua dúvida" autocomplete="off" maxlength="400">' +
-        '<button type="submit" aria-label="Enviar">' +
-          '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>' +
+      '<div class="bot-trilha">' +
+        '<button type="button" class="bot-seta esq" hidden aria-label="Ver as perguntas anteriores">' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
         '</button>' +
-      '</form>' +
+        '<div class="bot-sugestoes" role="group" aria-label="Perguntas frequentes"></div>' +
+        '<button type="button" class="bot-seta dir" hidden aria-label="Ver mais perguntas">' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+      '</div>' +
+      '<div class="bot-passo" hidden></div>' +
       '<p class="bot-rodape">Respostas automáticas e gerais. Para o seu caso, fale com um especialista.</p>';
 
     document.body.appendChild(painel);
 
     lista = painel.querySelector('.bot-msgs');
+    trilha = painel.querySelector('.bot-trilha');
     sugestoes = painel.querySelector('.bot-sugestoes');
-    campo = painel.querySelector('input');
-    enviarBtn = painel.querySelector('.bot-form button');
+    passoBox = painel.querySelector('.bot-passo');
+    setaEsq = painel.querySelector('.bot-seta.esq');
+    setaDir = painel.querySelector('.bot-seta.dir');
+
+    setaEsq.addEventListener('click', function () { rolarLado(-1); });
+    setaDir.addEventListener('click', function () { rolarLado(1); });
+    sugestoes.addEventListener('scroll', atualizarSetas, { passive: true });
+    window.addEventListener('resize', atualizarSetas, { passive: true });
 
     painel.querySelector('.bot-fechar').addEventListener('click', fechar);
-    painel.querySelector('form').addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      var t = campo.value;
-      campo.value = '';
-      enviar(t);
-    });
     painel.addEventListener('keydown', function (ev) {
       if (ev.key === 'Escape') fechar();
     });
@@ -369,7 +494,7 @@
       else ancora = desenharDele(m);
     });
     var ultima = conversa[conversa.length - 1];
-    trocarSugestoes(ultima && ultima.papel === 'bot' ? ultima.seguir : BASE.sugestoesIniciais);
+    trocarSugestoes(ultima && ultima.papel === 'bot' ? ultima.seguir : null);
     montado = true;
   }
 
@@ -381,8 +506,7 @@
     botao.setAttribute('aria-expanded', 'true');
     botao.setAttribute('aria-label', 'Fechar o VektraBot');
     reposicionar();
-    // no celular o teclado subindo cobre a conversa; só foca com mouse
-    if (window.matchMedia('(pointer: fine)').matches) campo.focus();
+    requestAnimationFrame(atualizarSetas);
   }
 
   function fechar() {
