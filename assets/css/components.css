@@ -276,6 +276,42 @@
 .aviso-ficticio svg{ flex:none;margin-top:2px;color:var(--clay) }
 .aviso-ficticio b{ color:var(--text);font-weight:600 }
 
+/* ============================================================
+   HERO COM FOTO (serviços e dúvidas)
+   A foto aparece só no desktop, ao lado do texto, sempre na
+   proporção original. O fundo dela é transparente (WebP), então
+   ela se adapta ao tema claro e ao escuro.
+   Fica aqui, e não no CSS de uma página, porque duas páginas usam.
+   ============================================================ */
+.hero-duo{ display:grid;gap:32px;align-items:center }
+.hero-foto{
+  display:none;
+  margin:0;position:relative;
+  justify-self:center;
+}
+.hero-foto picture{ display:block }
+.hero-foto img{
+  display:block;width:100%;height:auto;
+  border-radius:20px;
+  -webkit-mask-image:linear-gradient(to bottom, #000 72%, rgba(0,0,0,0) 100%);
+          mask-image:linear-gradient(to bottom, #000 72%, rgba(0,0,0,0) 100%);
+}
+/* leve brilho de marca atrás da foto, igual aos cards */
+.hero-foto::before{
+  content:"";position:absolute;inset:auto -12% -6% -12%;height:62%;
+  background:radial-gradient(60% 60% at 50% 100%, var(--glow-clay), transparent 70%);
+  z-index:-1;pointer-events:none;
+}
+/* Cena com mesa e objetos: aqui o esmaecimento da base cortaria a
+   mesa, então ela fica com a imagem inteira. */
+.hero-foto.cena img{ -webkit-mask-image:none;mask-image:none }
+
+@media (min-width:900px){
+  .hero-duo{ grid-template-columns:1.12fr .88fr;gap:52px }
+  .hero-foto{ display:block;width:min(340px, 100%) }
+  .hero-foto.cena{ width:min(470px, 100%) }
+}
+
 /* ---------- Breakpoints ---------- */
 @media (min-width:600px){
   .form-row{ grid-template-columns:1fr 1fr; gap:0 14px }

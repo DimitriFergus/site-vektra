@@ -28,35 +28,6 @@
 .chip:hover{ border-color:var(--clay);color:var(--text);transform:translateY(-2px) }
 
 /* ============================================================
-   HERO COM FOTO
-   A foto do Sandro aparece só no desktop, ao lado do texto,
-   sempre proporcional (retrato 4:5).
-   O fundo dela é transparente (WebP), e o esmaecimento da base
-   com as bordas arredondadas fazem a foto se fundir aos dois temas.
-   ============================================================ */
-.hero-duo{ display:grid;gap:32px;align-items:center }
-/* No celular a foto aparecia sozinha embaixo do texto, sem contexto:
-   ela existe só no desktop, onde fica ao lado do título. */
-.hero-foto{
-  display:none;
-  margin:0;position:relative;
-  justify-self:center;
-}
-.hero-foto picture{ display:block }
-.hero-foto img{
-  display:block;width:100%;height:auto;
-  border-radius:20px;
-  -webkit-mask-image:linear-gradient(to bottom, #000 72%, rgba(0,0,0,0) 100%);
-          mask-image:linear-gradient(to bottom, #000 72%, rgba(0,0,0,0) 100%);
-}
-/* leve brilho de marca atrás da foto, igual aos cards */
-.hero-foto::before{
-  content:"";position:absolute;inset:auto -12% -6% -12%;height:62%;
-  background:radial-gradient(60% 60% at 50% 100%, var(--glow-clay), transparent 70%);
-  z-index:-1;pointer-events:none;
-}
-
-/* ============================================================
    CARDS DE VÍDEO
    ============================================================ */
 .videos{ display:grid;gap:20px }
@@ -351,9 +322,7 @@ input[type=range]:focus-visible{ box-shadow:0 0 0 3px rgba(193,102,57,.25) }
 }
 @media (min-width:900px){
   .page-hero{ padding:calc(var(--nav-h) + 74px) 0 60px }
-  .hero-duo{ grid-template-columns:1.12fr .88fr;gap:52px }
   .hero-texto h1{ max-width:14ch }
-  .hero-foto{ display:block;width:min(340px, 100%);justify-self:center }
   .sec{ padding:96px 0 }
   .videos{ grid-template-columns:repeat(3,1fr);gap:22px }
   .sim{ grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start }
