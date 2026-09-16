@@ -14,3 +14,6 @@ Thumbs.db
 # Fica só no computador: não é publicado no site nem no GitHub
 teste/
 base-de-conhecimento/
+
+# Foto original do Sandro (1,6 MB): o site publica as versões otimizadas sandro-*.jpg/webp
+assets/img/Sandro.png
