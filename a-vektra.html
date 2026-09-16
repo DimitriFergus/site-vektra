@@ -93,7 +93,7 @@
 <!-- ================= HERO ================= -->
 <section class="page-hero">
   <div class="gridlines" aria-hidden="true"></div>
-  <div class="wrap hero-duo">
+  <div class="wrap hero-duo hero-duo-cena">
     <div class="hero-texto">
     <p class="eyebrow reveal">A Vektra</p>
     <h1 class="reveal" style="--d:60ms">Contabilidade que olha a <span class="hl">obra</span>, não só o CNPJ.</h1>
@@ -109,16 +109,20 @@
     </div>
     </div>
 
-    <figure class="hero-foto marca reveal" style="--d:200ms">
-      <picture>
-        <!-- Quem pede "reduzir animações" no sistema vê o logotipo parado. -->
-        <source media="(prefers-reduced-motion: reduce)" srcset="assets/img/vektra-logo-poster.png">
-        <!-- WebP animado: 60 quadros por segundo, bem mais leve que o GIF. -->
-        <source type="image/webp" srcset="assets/img/vektra-logo.webp">
-        <img src="assets/img/vektra-logo.gif"
-             width="460" height="159" decoding="async" loading="lazy"
-             alt="Animação do logotipo da Vektra Inteligência Contábil">
-      </picture>
+    <figure class="marca-anim reveal" style="--d:200ms" role="img"
+            aria-label="Animação do logotipo da Vektra Inteligência Contábil">
+      <span class="ma-tela">
+        <span class="ma-grupo brand-logo-escuro" aria-hidden="true">
+          <span class="ma-parte ma-simbolo"><img src="assets/img/logo-completo-escuro.png" width="900" height="169" alt=""></span>
+          <span class="ma-parte ma-nome"><img src="assets/img/logo-completo-escuro.png" width="900" height="169" alt=""></span>
+          <span class="ma-parte ma-assin"><img src="assets/img/logo-completo-escuro.png" width="900" height="169" alt=""></span>
+        </span>
+        <span class="ma-grupo brand-logo-claro" aria-hidden="true">
+          <span class="ma-parte ma-simbolo"><img src="assets/img/logo-completo-claro.png" width="900" height="168" alt=""></span>
+          <span class="ma-parte ma-nome"><img src="assets/img/logo-completo-claro.png" width="900" height="168" alt=""></span>
+          <span class="ma-parte ma-assin"><img src="assets/img/logo-completo-claro.png" width="900" height="168" alt=""></span>
+        </span>
+      </span>
     </figure>
   </div>
 </section>
