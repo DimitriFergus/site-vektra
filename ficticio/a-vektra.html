@@ -94,7 +94,8 @@
 <!-- ================= HERO ================= -->
 <section class="page-hero">
   <div class="gridlines" aria-hidden="true"></div>
-  <div class="wrap">
+  <div class="wrap hero-duo">
+    <div class="hero-texto">
     <p class="eyebrow reveal">A Vektra</p>
     <h1 class="reveal" style="--d:60ms">Nasceu de uma obra que deu lucro no papel e <span class="hl">prejuízo no caixa</span>.</h1>
     <p class="reveal" style="--d:120ms">
@@ -107,6 +108,19 @@
       <span class="chip">Atendimento em todo o Brasil</span>
       <span class="chip">100% construção civil</span>
     </div>
+    </div>
+
+    <figure class="hero-foto marca reveal" style="--d:200ms">
+      <picture>
+        <!-- Quem pede "reduzir animações" no sistema vê o logotipo parado. -->
+        <source media="(prefers-reduced-motion: reduce)" srcset="assets/img/vektra-logo-poster.png">
+        <!-- WebP animado: 60 quadros por segundo, bem mais leve que o GIF. -->
+        <source type="image/webp" srcset="assets/img/vektra-logo.webp">
+        <img src="assets/img/vektra-logo.gif"
+             width="460" height="159" decoding="async" loading="lazy"
+             alt="Animação do logotipo da Vektra Inteligência Contábil">
+      </picture>
+    </figure>
   </div>
 </section>
 
