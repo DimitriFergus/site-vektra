@@ -71,6 +71,10 @@ window.VEKTRABOT_BASE = {
   outro: {
     rotulo: 'Outro assunto',
     intro: 'Sem problema, isso o especialista responde melhor que eu. Para ele já chegar com contexto, me diga três coisas rápidas sobre a sua empresa.',
+    /* Depois de qualquer resposta, antes de oferecer o especialista */
+    ponte: 'Para o especialista continuar daqui com o seu caso na mão, me diga três coisas rápidas sobre a sua empresa.',
+    /* Quando os dados já foram informados nesta visita */
+    jaTenho: 'Já estou com os dados da sua empresa. Toque abaixo para falar com um especialista, ou escolha outra pergunta.',
     passos: [
       {
         chave: 'Empresa',

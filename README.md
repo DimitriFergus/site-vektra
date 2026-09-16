@@ -112,12 +112,23 @@ VEKTRA.botResponder('o que é o ret na incorporação')
 3. Se cair na resposta errada, acrescente a frase aos `exemplos` da
    resposta certa.
 
-### "Outro assunto"
+### As três perguntas da empresa
 
-É o último botão da trilha. Ele pergunta nome da empresa (digitado),
-faturamento e número de funcionários (escolha), e só então abre o
-WhatsApp com esses dados escritos na mensagem, junto com a última dúvida
-da conversa. Quem responde "Prefiro não informar" não entra na mensagem.
+**Depois de qualquer resposta**, o bot pergunta nome da empresa
+(digitado), faturamento e número de funcionários (escolha). Só então
+aparece o botão do WhatsApp, com esses dados e a dúvida escritos na
+mensagem. Uma vez respondidas, as perguntas não voltam: as respostas
+seguintes já mostram o botão com os dados.
+
+Duas exceções, de propósito:
+
+- **Urgência** (intimação, fiscalização, certidão travada): o botão
+  aparece na hora, porque tem prazo, e os dados são pedidos depois.
+- **"Prefiro não informar"** não gera linha na mensagem, e aquele campo
+  não é perguntado de novo.
+
+"Outro assunto" é o último botão da trilha e serve para quem não achou a
+dúvida: faz as mesmas três perguntas e leva ao especialista.
 
 Para mudar as perguntas ou as faixas, edite `outro.passos` no
 `vektrabot-base.js`.

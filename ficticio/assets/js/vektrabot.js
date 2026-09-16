@@ -185,9 +185,20 @@
   var OUTRO = BASE.outro;
   var conversa = [];      // { papel: 'visitante' | 'bot', texto, ... }
   var dados = {};         // Empresa, Faturamento, Funcionários
+  var proximaTrilha = null;   // perguntas para retomar depois do formulário
   var ocupado = false;
   var montado = false;
   var painel, lista, trilha, sugestoes, passoBox, setaEsq, setaDir;
+
+  /* Os três dados do formulário: empresa, faturamento e funcionários.
+     Enquanto não estiverem completos, toda resposta termina pedindo eles,
+     e só depois aparece o botão do WhatsApp (com tudo escrito na mensagem).
+     A urgência é a exceção: ali o botão vem na hora, porque tem prazo. */
+  function dadosCompletos() {
+    // "Prefiro não informar" fica gravado como vazio: já foi perguntado,
+    // não volta a ser perguntado e não entra na mensagem do WhatsApp.
+    return OUTRO.passos.every(function (p) { return p.chave in dados; });
+  }
 
   function salvar() {
     try {
@@ -350,15 +361,24 @@
     desenharMinha(pergunta);
 
     var r = responder(pergunta, anterior);
+    var completo = dadosCompletos();
+
     falar({
       papel: 'bot',
       texto: r.resposta,
-      especialista: r.especialista,
+      /* Sem os dados, o botão espera (quem tem prazo não espera).
+         Com os dados na mão, toda resposta oferece o especialista:
+         é o caminho que o visitante deve ter sempre à vista. */
+      especialista: completo || !!r.urgente,
       urgente: r.urgente,
       link: r.link,
       pergunta: pergunta,
       seguir: r.seguir
-    }, function () { trocarSugestoes(r.seguir); });
+    }, function () {
+      if (completo) { trocarSugestoes(r.seguir); return; }
+      proximaTrilha = r.seguir;
+      falar({ papel: 'bot', texto: OUTRO.ponte }, function () { passo(0); });
+    });
   }
 
   /* ---------- "Outro assunto": três perguntas e o WhatsApp ---------- */
@@ -366,6 +386,13 @@
     ancora = null;
     conversa.push({ papel: 'visitante', texto: OUTRO.rotulo });
     desenharMinha(OUTRO.rotulo);
+
+    if (dadosCompletos()) {
+      falar({ papel: 'bot', texto: OUTRO.jaTenho, especialista: true, pergunta: ultimaDuvida() },
+            function () { trocarSugestoes(); });
+      return;
+    }
+    proximaTrilha = null;
     falar({ papel: 'bot', texto: OUTRO.intro }, function () { passo(0); });
   }
 
@@ -376,7 +403,7 @@
         texto: OUTRO.fim,
         especialista: true,
         pergunta: ultimaDuvida()
-      }, function () { trocarSugestoes(); });
+      }, function () { trocarSugestoes(proximaTrilha); proximaTrilha = null; });
       return;
     }
 
@@ -390,7 +417,7 @@
   function guardar(p, valor, i) {
     conversa.push({ papel: 'visitante', texto: valor, passo: true });
     desenharMinha(valor);
-    if (valor.indexOf('Prefiro não informar') === -1) dados[p.chave] = valor;
+    dados[p.chave] = valor.indexOf('Prefiro não informar') === -1 ? valor : '';
     salvar();
     passo(i + 1);
   }
