@@ -25,7 +25,8 @@
   var botao = document.getElementById('botFloat');
   if (!V || !BASE) return;
 
-  var CHAVE_SESSAO = 'vektrabot-v3';
+  /* Chaves que versões antigas do bot gravavam no navegador */
+  var CHAVES_ANTIGAS = ['vektrabot-conversa', 'vektrabot-v3', 'vektrabot-v4'];
   var PONTUACAO_MINIMA = 3;
 
   /* ============================================================
@@ -200,15 +201,16 @@
     return OUTRO.passos.every(function (p) { return p.chave in dados; });
   }
 
-  function salvar() {
+  /* A conversa NÃO é guardada: ela vive só na memória desta página.
+     Recarregar (F5) ou trocar de página começa do zero, sem sobra da
+     visita anterior. Aqui também apagamos o que versões antigas do bot
+     tinham deixado gravado no navegador. */
+  function limparGravado() {
     try {
-      sessionStorage.setItem(CHAVE_SESSAO, JSON.stringify({ conversa: conversa.slice(-30), dados: dados }));
-    } catch (e) {}
-  }
-  function recuperar() {
-    try {
-      var s = JSON.parse(sessionStorage.getItem(CHAVE_SESSAO) || 'null');
-      if (s && Array.isArray(s.conversa)) { conversa = s.conversa; dados = s.dados || {}; }
+      CHAVES_ANTIGAS.forEach(function (k) {
+        sessionStorage.removeItem(k);
+        localStorage.removeItem(k);
+      });
     } catch (e) {}
   }
 
@@ -266,8 +268,7 @@
   /* ---------- mensagens ---------- */
   function desenharDele(m) {
     var bolha = el('div', 'bot-msg dele', m.texto);
-    // Segurança: a conversa volta do sessionStorage, que outro script
-    // poderia alterar. Link só vira botão se for uma página deste site.
+    // Segurança: link só vira botão se for uma página deste site.
     if (m.link && /^[a-z0-9-]+\.html(#[a-z0-9-]+)?$/i.test(String(m.link.href))) {
       var a = el('a', 'bot-link', m.link.texto);
       a.href = m.link.href;
@@ -306,7 +307,6 @@
       digitando.remove();
       conversa.push(msg);
       ancora = desenharDele(msg);
-      salvar();
       ocupado = false;
       if (depois) depois();
     }, tempoDeDigitar(msg.texto));
@@ -428,7 +428,6 @@
     conversa.push({ papel: 'visitante', texto: valor, passo: true });
     desenharMinha(valor);
     dados[p.chave] = valor.indexOf('Prefiro não informar') === -1 ? valor : '';
-    salvar();
     passo(i + 1);
   }
 
@@ -524,14 +523,9 @@
       if (ev.key === 'Escape') fechar();
     });
 
-    recuperar();
+    limparGravado();
     lista.appendChild(el('div', 'bot-msg dele', BASE.abertura));
-    conversa.forEach(function (m) {
-      if (m.papel === 'visitante') desenharMinha(m.texto);
-      else ancora = desenharDele(m);
-    });
-    var ultima = conversa[conversa.length - 1];
-    trocarSugestoes(ultima && ultima.papel === 'bot' ? ultima.seguir : null);
+    trocarSugestoes(null);
     montado = true;
   }
 

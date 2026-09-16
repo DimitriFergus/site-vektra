@@ -133,6 +133,16 @@ dúvida: faz as mesmas três perguntas e leva ao especialista.
 Para mudar as perguntas ou as faixas, edite `outro.passos` no
 `vektrabot-base.js`.
 
+### A conversa não fica guardada
+
+A conversa vive só na memória da página. **Recarregar (F5) ou trocar de
+página começa do zero**, e o bot volta a pedir os dados da empresa. Nada
+é gravado no navegador do visitante, e as chaves que versões antigas
+deixaram são apagadas na abertura.
+
+Se um dia for preciso manter a conversa entre páginas, é só voltar a
+gravar em `sessionStorage` no `vektrabot.js`.
+
 ### O que vai direto para o especialista
 
 A lista `encaminhar` do mesmo arquivo: cálculo e simulação, lucro e
