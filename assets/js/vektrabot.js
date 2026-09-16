@@ -283,6 +283,16 @@
     rolarFim();
   }
 
+  /* Tempo dos três pontinhos antes de cada mensagem.
+     Proporcional ao tamanho do texto, porque mensagem longa precisa de
+     um instante para o visitante perceber que vem coisa nova, e curta
+     não deve fazer ninguém esperar. Nunca passa de 3 segundos. */
+  function tempoDeDigitar(texto) {
+    if (V.reduced) return 320;
+    var t = 450 + String(texto || '').length * 12;
+    return Math.min(3000, Math.max(650, t));
+  }
+
   function falar(msg, depois) {
     ocupado = true;
     mostrarTrilha(false);
@@ -299,7 +309,7 @@
       salvar();
       ocupado = false;
       if (depois) depois();
-    }, V.reduced ? 120 : 520);
+    }, tempoDeDigitar(msg.texto));
   }
 
   /* ---------- trilha de perguntas, com setas ---------- */
