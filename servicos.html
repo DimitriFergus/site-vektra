@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Segurança: só carrega o que é do próprio site, as fontes do Google e os vídeos/mapa permitidos -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://*.google.com https://*.google.com.br https://*.doubleclick.net https://*.googleadservices.com; media-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com https://*.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://*.google.com https://*.google.com.br https://*.doubleclick.net https://*.googleadservices.com https://*.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Serviços · Vektra | Inteligência Contábil</title>
 <meta name="description" content="Planejamento tributário, RET, custo por obra, INSS de obra, ISS e retenção de 11% para construtoras e incorporadoras. Em vídeo, direto ao ponto.">
@@ -12,6 +12,10 @@
 <link rel="icon" href="assets/img/icone-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/img/icone-512.png" sizes="512x512" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/icone-180.png">
+
+<!-- Google tag (gtag.js) - Google Ads AW-18455568117 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18455568117"></script>
+<script defer src="assets/js/gtag.js"></script>
 
 <!-- Define o tema antes da primeira pintura. NÃO adicionar defer/async. -->
 <script src="assets/js/theme-init.js"></script>

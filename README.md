@@ -152,6 +152,39 @@ reconhecida também vai para o WhatsApp, com a dúvida já escrita.
 
 ---
 
+## Google Ads (tag de conversão)
+
+A conta é **AW-18455568117**. A tag está nas 6 páginas da **versão
+oficial**. A versão fictícia (`/ficticio/`) ficou de fora de propósito:
+visita de teste não deve entrar nos dados do anúncio.
+
+| Arquivo | O que tem |
+|---|---|
+| `<head>` de cada página | A biblioteca do Google e a chamada do arquivo abaixo |
+| `assets/js/gtag.js` | A configuração e o evento de clique no WhatsApp |
+
+A configuração fica num arquivo, e não dentro do HTML, porque a
+política de segurança do site não permite script escrito na página. Por
+isso, a política também precisou liberar os domínios do Google
+(`googletagmanager.com`, `doubleclick.net`, `googleadservices.com`,
+`google.com`). Está tudo na linha `Content-Security-Policy` de cada
+página: **script novo de fora continua bloqueado**.
+
+### Para medir conversão (falta o identificador)
+
+Hoje o clique no WhatsApp gera o evento `clique_whatsapp`. Para virar
+conversão no Google Ads:
+
+1. No Google Ads, vá em Ferramentas > Conversões e crie a ação.
+2. Copie o identificador que aparece (algo como `AW-18455568117/AbC-D_efG`).
+3. Em `assets/js/gtag.js`, troque a linha do evento por:
+
+```js
+gtag('event', 'conversion', { send_to: 'AW-18455568117/SEU_ROTULO' });
+```
+
+---
+
 ## Rodando localmente
 
 Abrir o arquivo direto (duplo clique) funciona para quase tudo. Mas o
