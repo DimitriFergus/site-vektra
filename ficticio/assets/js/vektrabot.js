@@ -26,7 +26,11 @@
   if (!V || !BASE) return;
 
   /* Chaves que versões antigas do bot gravavam no navegador */
-  var CHAVES_ANTIGAS = ['vektrabot-conversa', 'vektrabot-v3', 'vektrabot-v4'];
+  /* A conversa não é gravada. Esta lista só existe para apagar o que
+     versões antigas deixaram no navegador (ou o que alguém plante à
+     mão com um nome nosso): nada daqui é lido. */
+  var CHAVES_ANTIGAS = ['vektrabot-conversa', 'vektrabot-v3', 'vektrabot-v4',
+    'vektrabot-v5', 'vektrabot-dados'];
   var PONTUACAO_MINIMA = 3;
 
   /* ============================================================
