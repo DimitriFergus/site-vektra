@@ -389,7 +389,10 @@
 .hero-foto-legenda{
   position:absolute;left:10px;right:10px;bottom:12px;
   padding:13px 16px 15px;border-radius:16px;
-  background:var(--clay);color:var(--const-ink);
+  /* letras brancas, a pedido dele. Sobre o laranja da marca o branco
+     daria contraste 4,01, abaixo do mínimo de 4,5 nos textos menores,
+     então o cartão usa o laranja um tom mais fechado: 4,53. */
+  background:var(--clay-forte);color:var(--const-white);
   box-shadow:0 18px 40px -20px rgba(0,0,0,.75);
   text-align:center;
 }
