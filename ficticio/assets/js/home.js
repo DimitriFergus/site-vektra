@@ -229,30 +229,38 @@
   }
 
   /* ============================================================
-     NÚMEROS QUE CONTAM ATÉ O NOVO VALOR
-     Os dois painéis usam isto quando a pessoa troca de aba, para
-     que a mudança apareça em vez de simplesmente pular.
+     TROCA DE VALOR NOS PAINÉIS
+     Antes o número contava até o novo valor, um quadro por vez. Só
+     que a Poppins não tem dígito de largura fixa (o "1" é bem mais
+     estreito que o "8"), então a cada quadro o número mudava de
+     largura, empurrava o vizinho e a seção inteira tremia. Agora o
+     valor antigo sai de cena e o novo entra no lugar: a mudança
+     continua visível e nada mais se mexe.
      ============================================================ */
   function moeda(v) { return 'R$ ' + Math.round(v).toLocaleString('pt-BR'); }
 
-  function animarNum(el, para, molde) {
-    var de = typeof el._v === 'number' ? el._v : para;
+  var SAIDA = 170;   /* tem que casar com a transição do .num-troca no CSS */
+
+  function trocarNum(el, para, molde) {
+    var de = typeof el._v === 'number' ? el._v : null;
     el._v = para;
 
-    if (reduced || de === para) { el.innerHTML = molde(para); return; }
-    if (el._raf) cancelAnimationFrame(el._raf);
-
-    var duracao = 600, inicio = null;
-
-    function quadro(ts) {
-      if (!inicio) inicio = ts;
-      var p = Math.min((ts - inicio) / duracao, 1);
-      var suave = 1 - Math.pow(1 - p, 3);
-      el.innerHTML = molde(de + (para - de) * suave);
-      if (p < 1) { el._raf = requestAnimationFrame(quadro); }
-      else { el._raf = null; el.innerHTML = molde(para); }
+    if (reduced || de === null || de === para) {
+      el.classList.remove('num-troca');
+      el.innerHTML = molde(para);
+      return;
     }
-    el._raf = requestAnimationFrame(quadro);
+
+    if (el._t) clearTimeout(el._t);
+    el.classList.add('num-troca');
+
+    el._t = setTimeout(function () {
+      el.innerHTML = molde(para);
+      el._t = setTimeout(function () {
+        el.classList.remove('num-troca');
+        el._t = null;
+      }, 20);
+    }, SAIDA);
   }
 
   function pct(v)   { return v.toFixed(1).replace('.', ',') + '%'; }
@@ -322,11 +330,11 @@
       m1Label.textContent = d.label;
       m1Pill.textContent  = d.pill;
 
-      animarNum(m1Val,   d.margem,      pct);
-      animarNum(roiInv,  d.inv,         moeda);
-      animarNum(roiOut,  d.ret,         moeda);
-      animarNum(roiNet,  d.ret - d.inv, moeda);
-      animarNum(roiMult, d.mult,        vezes);
+      trocarNum(m1Val,   d.margem,      pct);
+      trocarNum(roiInv,  d.inv,         moeda);
+      trocarNum(roiOut,  d.ret,         moeda);
+      trocarNum(roiNet,  d.ret - d.inv, moeda);
+      trocarNum(roiMult, d.mult,        vezes);
 
       m1Barras.forEach(function (barra, i) { barra.style.height = d.barras[i] + '%'; });
 
@@ -376,8 +384,8 @@
       m2Badge.classList.toggle('neutro', d.neutro);
       m2Val.classList.toggle('flat', d.saidaNeutra);
 
-      animarNum(m2Mes, d.mes,   porMes);
-      animarNum(m2Val, d.saida, moeda);
+      trocarNum(m2Mes, d.mes,   porMes);
+      trocarNum(m2Val, d.saida, moeda);
 
       m2Linhas.forEach(function (linha) {
         var meu = linha.dataset.reg === chave;

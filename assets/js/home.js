@@ -229,30 +229,38 @@
   }
 
   /* ============================================================
-     NÚMEROS QUE CONTAM ATÉ O NOVO VALOR
-     Os dois painéis usam isto quando a pessoa troca de aba, para
-     que a mudança apareça em vez de simplesmente pular.
+     TROCA DE VALOR NOS PAINÉIS
+     Antes o número contava até o novo valor, um quadro por vez. Só
+     que a Poppins não tem dígito de largura fixa (o "1" é bem mais
+     estreito que o "8"), então a cada quadro o número mudava de
+     largura, empurrava o vizinho e a seção inteira tremia. Agora o
+     valor antigo sai de cena e o novo entra no lugar: a mudança
+     continua visível e nada mais se mexe.
      ============================================================ */
   function moeda(v) { return 'R$ ' + Math.round(v).toLocaleString('pt-BR'); }
 
-  function animarNum(el, para, molde) {
-    var de = typeof el._v === 'number' ? el._v : para;
+  var SAIDA = 170;   /* tem que casar com a transição do .num-troca no CSS */
+
+  function trocarNum(el, para, molde) {
+    var de = typeof el._v === 'number' ? el._v : null;
     el._v = para;
 
-    if (reduced || de === para) { el.innerHTML = molde(para); return; }
-    if (el._raf) cancelAnimationFrame(el._raf);
-
-    var duracao = 600, inicio = null;
-
-    function quadro(ts) {
-      if (!inicio) inicio = ts;
-      var p = Math.min((ts - inicio) / duracao, 1);
-      var suave = 1 - Math.pow(1 - p, 3);
-      el.innerHTML = molde(de + (para - de) * suave);
-      if (p < 1) { el._raf = requestAnimationFrame(quadro); }
-      else { el._raf = null; el.innerHTML = molde(para); }
+    if (reduced || de === null || de === para) {
+      el.classList.remove('num-troca');
+      el.innerHTML = molde(para);
+      return;
     }
-    el._raf = requestAnimationFrame(quadro);
+
+    if (el._t) clearTimeout(el._t);
+    el.classList.add('num-troca');
+
+    el._t = setTimeout(function () {
+      el.innerHTML = molde(para);
+      el._t = setTimeout(function () {
+        el.classList.remove('num-troca');
+        el._t = null;
+      }, 20);
+    }, SAIDA);
   }
 
   function pct(v)   { return v.toFixed(1).replace('.', ',') + '%'; }
@@ -311,7 +319,7 @@
       m1Label.textContent = d.label;
       m1Pill.textContent  = d.pill;
 
-      animarNum(m1Val,   d.margem,      pct);
+      trocarNum(m1Val,   d.margem,      pct);
 
       m1Barras.forEach(function (barra, i) { barra.style.height = d.barras[i] + '%'; });
 
@@ -327,11 +335,11 @@
      ============================================================ */
   var regimes = {
     p32:  { nome: 'Imposto no Presumido 32%',   mes: 41800, badge: 'exemplo', neutro: true,
-            saidaLabel: 'Custo em 12 meses no exemplo',    saida: 501600, saidaNeutra: true },
+            saidaLabel: 'Custo em 12 meses',    saida: 501600, saidaNeutra: true },
     p812: { nome: 'Imposto no Presumido 8/12%', mes: 25900, badge: 'menor no exemplo', neutro: false,
-            saidaLabel: 'Diferença em 12 meses no exemplo', saida: 190800, saidaNeutra: false },
+            saidaLabel: 'Diferença em 12 meses', saida: 190800, saidaNeutra: false },
     ret:  { nome: 'Imposto no RET 4%',          mes: 12100, badge: 'menor no exemplo',  neutro: false,
-            saidaLabel: 'Diferença em 12 meses no exemplo', saida: 356400, saidaNeutra: false }
+            saidaLabel: 'Diferença em 12 meses', saida: 356400, saidaNeutra: false }
   };
 
   var m2Tabs = document.getElementById('m2Tabs');
@@ -358,8 +366,8 @@
       m2Badge.classList.toggle('neutro', d.neutro);
       m2Val.classList.toggle('flat', d.saidaNeutra);
 
-      animarNum(m2Mes, d.mes,   porMes);
-      animarNum(m2Val, d.saida, moeda);
+      trocarNum(m2Mes, d.mes,   porMes);
+      trocarNum(m2Val, d.saida, moeda);
 
       m2Linhas.forEach(function (linha) {
         var meu = linha.dataset.reg === chave;

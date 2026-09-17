@@ -97,8 +97,11 @@
 
   /* ---------- Blocos que quebravam em tela estreita ---------- */
   /* "custo em 12 meses" e o valor brigavam pela mesma linha */
-  .m2-out{ flex-direction:column;align-items:flex-start;gap:8px }
-  .m2-out b{ font-size:26px }
+  /* no celular a linha vira uma coluna: rótulo em cima, valor embaixo,
+     alinhado à esquerda (assim o número cresce para a direita e não
+     empurra nada durante a animação) */
+  .m2-out{ grid-template-columns:1fr;justify-items:start;gap:8px }
+  .m2-out b{ justify-self:start;text-align:left;min-width:0;font-size:26px }
 
   /* três colunas de número não cabem abaixo de 360px */
   .hero-meta{ gap:14px }

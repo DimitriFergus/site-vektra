@@ -312,7 +312,7 @@
   font-size:clamp(24px,5.8vw,40px);font-weight:800;
   line-height:1.1;letter-spacing:-.038em;text-wrap:balance;
 }
-.feat p{ margin:18px 0 0;color:var(--text-2);font-size:16px;font-weight:300;line-height:1.68;max-width:52ch }
+.feat p:not(.mock-label){ margin:18px 0 0;color:var(--text-2);font-size:16px;font-weight:300;line-height:1.68;max-width:52ch }
 .feat-list{ margin:24px 0 0;padding:0;list-style:none;display:grid;gap:12px }
 .feat-list li{ display:flex;gap:12px;align-items:flex-start;font-size:14.5px }
 .feat-list li svg{ flex:none;margin-top:4px;color:var(--clay) }
@@ -344,6 +344,8 @@
 .m1-head b{
   display:block;margin-top:7px;
   font-size:32px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--clay);
+  font-variant-numeric:tabular-nums;
+  transition:opacity .17s ease,transform .17s ease;
 }
 .m1-pill{
   font-size:10px;font-weight:600;padding:6px 10px;white-space:nowrap;
@@ -379,6 +381,7 @@
 .roi-cols{ display:flex;align-items:flex-end;gap:12px }
 .roi-cols > div{ flex:1;min-width:0 }
 .roi-cols b{
+  transition:opacity .17s ease,transform .17s ease;
   display:block;margin-top:6px;
   font-size:19px;font-weight:800;line-height:1;letter-spacing:-.035em;color:var(--text-2);
 }
@@ -395,8 +398,9 @@
   display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;
   font-size:11.5px;color:var(--text-2);
 }
-.roi-foot b{ font-weight:700;color:var(--text) }
+.roi-foot b{ font-weight:700;color:var(--text);transition:opacity .17s ease,transform .17s ease }
 .roi-foot em{
+  transition:opacity .17s ease,transform .17s ease;
   font-style:normal;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   padding:3px 8px;border-radius:99px;
   background:rgba(193,102,57,.16);color:var(--clay);white-space:nowrap;
@@ -407,7 +411,18 @@
 .m2-head b{
   display:block;margin-top:7px;
   font-size:30px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--clay);
+  font-variant-numeric:tabular-nums;
+  transition:opacity .17s ease,transform .17s ease;
 }
+
+/* Valor saindo de cena na troca de aba. Fica junto com os números
+   porque o JS liga e desliga esta classe (ver trocarNum em home.js). */
+.m1-head b.num-troca,
+.m2-head b.num-troca,
+.m2-out b.num-troca,
+.roi-cols b.num-troca,
+.roi-foot b.num-troca,
+.roi-foot em.num-troca{ opacity:0;transform:translateY(5px) }
 .m2-head b small{ font-size:13px;font-weight:600;letter-spacing:-.01em;color:var(--text-2) }
 .m2-badge{
   font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
@@ -428,7 +443,7 @@
   display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px;
   font-size:12px;color:var(--text-2);
 }
-.m2-line .top b{ font-size:12px;font-weight:600;color:var(--text);transition:color .3s ease }
+.m2-line .top b{ font-size:12px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;transition:color .3s ease }
 .m2-line.on .top b{ color:var(--clay) }
 .m2-best{
   font-style:normal;margin-left:6px;padding:2px 6px;border-radius:99px;
@@ -443,11 +458,17 @@
 .m2-out{
   margin-top:16px;padding:15px 16px;
   border:1px dashed var(--line);border-radius:10px;
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;
 }
+/* Os dois rótulos ("Custo em 12 meses" e "Diferença em 12 meses") têm
+   que caber em uma linha em qualquer largura: se um quebrasse em duas, o
+   bloco crescia e empurrava a página na troca de aba. */
+.m2-out .mock-label{ align-self:center }
 .m2-out b{
+  justify-self:end;text-align:right;min-width:8.6ch;
   font-size:24px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--clay);
-  transition:color .3s ease;
+  font-variant-numeric:tabular-nums;
+  transition:color .3s ease,opacity .17s ease,transform .17s ease;
 }
 .m2-out b.flat{ color:var(--text-2) }
 
