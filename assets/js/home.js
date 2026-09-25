@@ -408,20 +408,4 @@
       });
     });
   }
-  /* ============================================================
-     VAGAS DO MÊS
-     8 diagnósticos por mês; pela operação, entra um cliente a cada
-     6 dias. O mês e o número de preenchidas são calculados na hora,
-     então a faixa nunca fica presa num mês que já passou.
-     ============================================================ */
-  var vagas = document.getElementById('vagas');
-  if (vagas) {
-    var TOTAL = 8, hoje = new Date();
-    var feitas = Math.min(TOTAL - 1, 1 + Math.floor((hoje.getDate() - 1) / 6));
-    var restam = TOTAL - feitas;
-    var mes = hoje.toLocaleDateString('pt-BR', { month: 'long' });
-    document.getElementById('vagasSelo').textContent = restam + (restam === 1 ? ' vaga em ' : ' vagas em ') + mes;
-    document.getElementById('vagasFeitas').textContent = feitas;
-    vagas.style.setProperty('--preenchido', (feitas / TOTAL * 100) + '%');
-  }
 })();
