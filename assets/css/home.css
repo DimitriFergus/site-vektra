@@ -812,3 +812,6 @@
 }
 .esteira-trilho .marca-logo:hover img{ filter:none;opacity:1 }
 .tresult-logo img{ height:72px;width:auto;margin-bottom:4px }
+/* logo dourada some no fundo branco quando fica cinza: no tema claro, escurece */
+[data-theme="light"] .marca-logo img.logo-dourada{ filter:grayscale(1) brightness(.5) contrast(1.4) }
+[data-theme="light"] .esteira-trilho .marca-logo:hover img.logo-dourada{ filter:none }
