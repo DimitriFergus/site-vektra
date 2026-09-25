@@ -815,3 +815,15 @@
 /* logo dourada some no fundo branco quando fica cinza: no tema claro, escurece */
 [data-theme="light"] .marca-logo img.logo-dourada{ filter:grayscale(1) brightness(.5) contrast(1.4) }
 [data-theme="light"] .esteira-trilho .marca-logo:hover img.logo-dourada{ filter:none }
+
+/* Cartão de cliente: logo e pessoa lado a lado no topo, depoimento embaixo */
+.tcab{
+  display:flex;align-items:center;gap:16px;
+  padding-bottom:18px;border-bottom:1px solid var(--line-soft);
+}
+.tcab-logo{ flex:none;display:flex;align-items:center }
+.tcab-logo img{ height:64px;width:auto }
+.tcab-texto{ font-size:30px;font-weight:800;letter-spacing:-.04em;color:var(--clay);line-height:1 }
+.tcab-pessoa{ display:flex;flex-direction:column;gap:3px;min-width:0;padding-left:16px;border-left:2px solid var(--clay) }
+.tcab-pessoa b{ font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--text);line-height:1.2 }
+.tcab-pessoa small{ font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--clay) }
