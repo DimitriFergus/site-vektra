@@ -798,3 +798,17 @@
   .ponte-btn{ justify-self:end }
   .sec.sec-colada{ padding-top:56px }
 }
+
+
+/* ============================================================
+   LOGOS DOS CLIENTES
+   Na esteira: cinza, ganha cor ao passar o mouse.
+   No cartão de clientes: colorida.
+   ============================================================ */
+.marca-logo img{
+  height:62px;width:auto;
+  filter:grayscale(1);opacity:.8;
+  transition:filter .3s var(--ease), opacity .3s var(--ease);
+}
+.esteira-trilho .marca-logo:hover img{ filter:none;opacity:1 }
+.tresult-logo img{ height:72px;width:auto;margin-bottom:4px }
