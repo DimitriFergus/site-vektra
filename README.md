@@ -203,6 +203,30 @@ npx serve .
 
 ---
 
+## Publicação no domínio próprio (Hostinger)
+
+O site oficial está em **https://vektracontabil.com**, hospedado na Hostinger
+(plano Unlimited, servidor no Brasil), desde 25/09/2026. O GitHub continua
+guardando o código; a pasta `teste/` segue só no computador para testar
+novidades antes de publicar.
+
+Para publicar uma atualização:
+
+1. Na pasta do projeto: `python publicar/gerar-pacote.py`. Ele cria
+   `vektra-site.zip` na Área de Trabalho, só com o que o site usa.
+2. hPanel > Sites > vektracontabil.com > Arquivos > Gerenciador de arquivos >
+   `public_html` > enviar o zip.
+3. Botão direito no zip > Extract. Nome da pasta: `.` (ponto). Marcar
+   "Sobrescrever arquivos existentes".
+4. Mover o zip para fora da `public_html` (botão direito > Move file > `..`),
+   para ele não ficar baixável.
+
+O `.htaccess` (em `publicar/htaccess.txt`) força HTTPS, bloqueia a listagem
+de pastas e define o cache: páginas sempre atualizadas, CSS e JS por 1 dia,
+imagens por 30 dias.
+
+---
+
 ## Pendências antes de publicar
 
 Dados reais aplicados em 25/09/2026 a partir das respostas do Sandro
@@ -215,7 +239,7 @@ Dados reais aplicados em 25/09/2026 a partir das respostas do Sandro
 - [x] Planos mensais (BASE, OBRA, ESTRATÉGICA, ENTERPRISE)
 - [x] Política de privacidade (`politica-de-privacidade.html`)
 - [ ] Frases de depoimento dos três clientes, com autorização por escrito
-- [ ] Domínio `www.vektracontabil.com.br` apontado para o GitHub Pages
+- [x] Site publicado em https://vektracontabil.com (Hostinger), em 25/09/2026
 - [ ] Formulário gravando também em e-mail e planilha
 - [ ] IDs do GA4 e do Meta Pixel para instalar
 - [ ] Gravar e publicar os 6 vídeos (Alexandre, até 2 meses)
