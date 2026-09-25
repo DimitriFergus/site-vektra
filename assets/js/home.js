@@ -15,6 +15,7 @@
     var alvo     = parseFloat(el.dataset.count);
     var decimais = parseInt(el.dataset.decimals || '0', 10);
     var sufixo   = el.dataset.suffix || '';
+    var prefixo  = el.dataset.prefix || '';
     var duracao  = 1500;
     var inicio   = null;
 
@@ -24,9 +25,9 @@
       if (!inicio) inicio = ts;
       var p = Math.min((ts - inicio) / duracao, 1);
       var suave = 1 - Math.pow(1 - p, 3);          // desacelera no fim
-      el.textContent = fmt(alvo * suave) + sufixo;
+      el.textContent = prefixo + fmt(alvo * suave) + sufixo;
       if (p < 1) requestAnimationFrame(quadro);
-      else el.textContent = fmt(alvo) + sufixo;    // garante o valor exato
+      else el.textContent = prefixo + fmt(alvo) + sufixo;    // garante o valor exato
     }
     requestAnimationFrame(quadro);
   }
@@ -45,7 +46,7 @@
   } else {
     contadores.forEach(function (el) {
       var d = parseInt(el.dataset.decimals || '0', 10);
-      el.textContent = parseFloat(el.dataset.count).toFixed(d).replace('.', ',') + (el.dataset.suffix || '');
+      el.textContent = (el.dataset.prefix || '') + parseFloat(el.dataset.count).toFixed(d).replace('.', ',') + (el.dataset.suffix || '');
     });
   }
 

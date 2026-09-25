@@ -763,3 +763,38 @@
   .final{ padding:110px 0 104px }
   .final-grid{ display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center }
 }
+
+
+/* ============================================================
+   FAIXA DE CHAMADA (entre recursos e clientes)
+   Preenche o respiro entre as duas seções com uma chamada útil.
+   ============================================================ */
+.ponte{
+  position:relative;overflow:hidden;
+  margin-top:8px;padding:30px 26px;
+  border:1px solid var(--line-soft);border-radius:18px;
+  background:var(--card);box-shadow:var(--card-shadow);
+  display:grid;gap:24px;align-items:center;
+}
+/* traço laranja no topo, igual ao dos cards de oferta */
+.ponte::before{
+  content:"";position:absolute;left:0;top:0;height:3px;width:100%;
+  background:linear-gradient(90deg,var(--clay),transparent 70%);
+}
+.ponte .eyebrow{ margin:0 0 10px }
+.ponte h3{ margin:0;font-size:22px;font-weight:700;letter-spacing:-.03em;line-height:1.25 }
+.ponte-texto p:not(.eyebrow){ margin:10px 0 0;font-size:14.5px;font-weight:300;line-height:1.65;color:var(--text-2);max-width:46ch }
+.ponte-numeros{ display:grid;grid-template-columns:repeat(3,1fr);gap:14px }
+.ponte-numeros div{ display:flex;flex-direction:column;gap:4px }
+.ponte-numeros .count{ white-space:nowrap;font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--clay) }
+.ponte-numeros small{ font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2);line-height:1.4 }
+.ponte-btn{ justify-self:start }
+
+/* a seção de clientes começa mais perto da faixa */
+.sec.sec-colada{ padding-top:36px }
+
+@media (min-width:900px){
+  .ponte{ grid-template-columns:1.3fr 1fr auto;gap:36px;padding:34px 36px }
+  .ponte-btn{ justify-self:end }
+  .sec.sec-colada{ padding-top:56px }
+}
