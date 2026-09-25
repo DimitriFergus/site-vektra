@@ -56,8 +56,8 @@
      ============================================================ */
   var termos = [
     'Lucro Presumido 8% / 12%', 'RET 4% · patrimônio de afetação', 'Custo por obra',
-    'CPRB em transição', 'ISS no município da obra', 'CNO por obra', 'EFD-Reinf',
-    'Retenção de 11%', 'Medição x resultado', 'Reforma tributária'
+    'CPRB x folha', 'ISS retido na fonte', 'CNO regularizado', 'EFD-Reinf',
+    'Recuperação de créditos', 'Margem por etapa', 'Defesa em autuação'
   ];
   var trilho = document.getElementById('marqueeTrack');
   if (trilho) {
@@ -169,23 +169,23 @@
      ============================================================ */
   var escopos = {
     construtora: {
-      sub: 'Análise de uma obra, com contrato, orçamento e notas. A devolutiva traz até três pontos que merecem decisão, cada um com o documento que sustenta.',
+      sub: 'Análise completa dos últimos 12 meses de apuração, relatório de oportunidades e proposta de honorários só depois, se fizer sentido para os dois lados.',
       itens: [
-        'Leitura do contrato: natureza da empreitada e presunção',
-        'Custo da obra separado do custo administrativo',
-        'Retenção de 11% e recolhimento vinculado ao CNO',
-        'ISS no município da obra e retenção pelo tomador',
-        'Medição, faturamento e resultado da obra'
+        'Revisão do regime e da presunção aplicada por tipo de contrato',
+        'Levantamento de INSS de obra e ISS retido a maior',
+        'Estrutura de centro de custo por obra e por etapa',
+        'Diagnóstico de CNO, eSocial e EFD-Reinf',
+        'Simulação CPRB x folha para as próximas obras'
       ]
     },
     incorporadora: {
-      sub: 'Análise de um empreendimento: estrutura, regime e o momento certo de cada decisão, antes que a comercialização feche as portas.',
+      sub: 'Análise focada em empreendimentos: viabilidade tributária por torre, patrimônio de afetação e apuração de resultado por unidade vendida.',
       itens: [
-        'Patrimônio de afetação e RET por empreendimento',
-        'Janela de 2029 da transição da reforma para incorporações afetadas',
-        'Permuta de terreno antes de assinar',
-        'CNO, encerramento e certidão para averbação',
-        'Receita reconhecida pelo avanço da obra'
+        'Avaliação de enquadramento no RET (4%) por empreendimento',
+        'Estudo de patrimônio de afetação e SPE por torre',
+        'Apuração de resultado por unidade e por VGV',
+        'Tratamento de permuta, distrato e receita de longo prazo',
+        'Adequação para financiamento e auditoria de banco'
       ]
     }
   };
@@ -264,6 +264,7 @@
   }
 
   function pct(v)   { return v.toFixed(1).replace('.', ',') + '%'; }
+  function vezes(v) { return v.toFixed(1).replace('.', ',') + 'x o investimento'; }
 
   /* Liga os botões de um seletor de abas dos mockups.
      Devolve a função de seleção, para outros elementos (as próprias
@@ -288,17 +289,17 @@
   }
 
   /* ============================================================
-     PAINEL DE MARGEM POR OBRA (mockup 1)
-     Três períodos de um painel ilustrativo. Os números são de
-     exemplo e não representam resultado de cliente.
+     PAINEL DE MARGEM E RETORNO (mockup 1)
+     Três períodos. Quanto mais tempo de acompanhamento, maior a
+     margem e maior o retorno sobre o que se paga à Vektra.
      ============================================================ */
   var periodos = {
     mes: { label: 'Margem consolidada · 1 mês',    margem: 11.2, pill: '▲ 1,4 p.p. vs. anterior',
-           barras: [38, 52, 26, 61, 44, 55] },
+           barras: [38, 52, 26, 61, 44, 55], inv: 2400,  ret: 6800,   mult: 2.8 },
     sem: { label: 'Margem consolidada · 6 meses',  margem: 14.6, pill: '▲ 3,8 p.p. vs. anterior',
-           barras: [44, 63, 30, 76, 53, 68] },
+           barras: [44, 63, 30, 76, 53, 68], inv: 14400, ret: 61200,  mult: 4.3 },
     ano: { label: 'Margem consolidada · 12 meses', margem: 17.4, pill: '▲ 6,1 p.p. vs. anterior',
-           barras: [46, 71, 34, 88, 60, 78] }
+           barras: [46, 71, 34, 88, 60, 78], inv: 28800, ret: 152000, mult: 5.3 }
   };
 
   var m1Tabs = document.getElementById('m1Tabs');
@@ -308,10 +309,20 @@
     var m1Val     = document.getElementById('m1Val');
     var m1Pill    = document.getElementById('m1Pill');
     var m1Barras  = document.querySelectorAll('#m1Bars .bar i');
+    var roiInv    = document.getElementById('roiInv');
+    var roiOut    = document.getElementById('roiOut');
+    var roiNet    = document.getElementById('roiNet');
+    var roiMult   = document.getElementById('roiMult');
+    var roiBarInv = document.getElementById('roiBarInv');
+    var roiBarGan = document.getElementById('roiBarGan');
 
     /* Valores que já estão no HTML, para a primeira animação partir deles */
     var base = periodos.mes;
     m1Val._v   = base.margem;
+    roiInv._v  = base.inv;
+    roiOut._v  = base.ret;
+    roiNet._v  = base.ret - base.inv;
+    roiMult._v = base.mult;
 
     var renderPeriodo = function (chave) {
       var d = periodos[chave];
@@ -320,9 +331,16 @@
       m1Pill.textContent  = d.pill;
 
       trocarNum(m1Val,   d.margem,      pct);
+      trocarNum(roiInv,  d.inv,         moeda);
+      trocarNum(roiOut,  d.ret,         moeda);
+      trocarNum(roiNet,  d.ret - d.inv, moeda);
+      trocarNum(roiMult, d.mult,        vezes);
 
       m1Barras.forEach(function (barra, i) { barra.style.height = d.barras[i] + '%'; });
 
+      var fatia = Math.round(d.inv / d.ret * 100);
+      roiBarInv.style.width = fatia + '%';
+      roiBarGan.style.width = (100 - fatia) + '%';
     };
 
     marcarAbas(m1Tabs, 'per', renderPeriodo);
@@ -334,12 +352,12 @@
      do mês, faixa destacada e o resultado em 12 meses.
      ============================================================ */
   var regimes = {
-    p32:  { nome: 'Imposto no Presumido 32%',   mes: 41800, badge: 'exemplo', neutro: true,
+    p32:  { nome: 'Imposto no Presumido 32%',   mes: 41800, badge: 'cenário atual', neutro: true,
             saidaLabel: 'Custo em 12 meses',    saida: 501600, saidaNeutra: true },
-    p812: { nome: 'Imposto no Presumido 8/12%', mes: 25900, badge: 'menor no exemplo', neutro: false,
-            saidaLabel: 'Diferença em 12 meses', saida: 190800, saidaNeutra: false },
-    ret:  { nome: 'Imposto no RET 4%',          mes: 12100, badge: 'menor no exemplo',  neutro: false,
-            saidaLabel: 'Diferença em 12 meses', saida: 356400, saidaNeutra: false }
+    p812: { nome: 'Imposto no Presumido 8/12%', mes: 25900, badge: '38% mais barato', neutro: false,
+            saidaLabel: 'Economia em 12 meses', saida: 190800, saidaNeutra: false },
+    ret:  { nome: 'Imposto no RET 4%',          mes: 12100, badge: '71% mais barato',  neutro: false,
+            saidaLabel: 'Economia em 12 meses', saida: 356400, saidaNeutra: false }
   };
 
   var m2Tabs = document.getElementById('m2Tabs');
@@ -388,5 +406,21 @@
         }
       });
     });
+  }
+  /* ============================================================
+     VAGAS DO MÊS
+     8 diagnósticos por mês; pela operação, entra um cliente a cada
+     6 dias. O mês e o número de preenchidas são calculados na hora,
+     então a faixa nunca fica presa num mês que já passou.
+     ============================================================ */
+  var vagas = document.getElementById('vagas');
+  if (vagas) {
+    var TOTAL = 8, hoje = new Date();
+    var feitas = Math.min(TOTAL - 1, 1 + Math.floor((hoje.getDate() - 1) / 6));
+    var restam = TOTAL - feitas;
+    var mes = hoje.toLocaleDateString('pt-BR', { month: 'long' });
+    document.getElementById('vagasSelo').textContent = restam + (restam === 1 ? ' vaga em ' : ' vagas em ') + mes;
+    document.getElementById('vagasFeitas').textContent = feitas;
+    vagas.style.setProperty('--preenchido', (feitas / TOTAL * 100) + '%');
   }
 })();

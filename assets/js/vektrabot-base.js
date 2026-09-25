@@ -87,7 +87,7 @@ window.VEKTRABOT_BASE = {
         chave: 'Faturamento',
         pergunta: 'Qual o faturamento anual, mais ou menos?',
         tipo: 'opcoes',
-        opcoes: ['Até R$ 1,5 milhão', 'R$ 1,5 a 4,8 milhões', 'R$ 4,8 a 15 milhões', 'Acima de R$ 15 milhões', 'Prefiro não informar']
+        opcoes: ['Até R$ 1 milhão', 'R$ 1 a 4,8 milhões', 'R$ 4,8 a 15 milhões', 'Acima de R$ 15 milhões', 'Prefiro não informar']
       },
       {
         chave: 'Funcionários',
@@ -212,21 +212,21 @@ window.VEKTRABOT_BASE = {
       id: 'cidade',
       exemplos: ['voces atendem a minha cidade', 'atendem fora de fortaleza', 'atendem em outro estado', 'onde voces ficam', 'atendem online', 'minha obra e em maracanau', 'atendem caucaia'],
       chaves: ['cidade', 'municipio', 'fortaleza', 'regiao', 'onde fica', 'endereco', 'estado', 'maracanau', 'caucaia', 'eusebio', 'aquiraz', 'maranguape', 'pacatuba', 'horizonte', 'itaitinga', 'online', 'remoto', 'distancia'],
-      resposta: 'A Vektra atende Fortaleza e a região metropolitana. Se a sua empresa é daqui, ou se a obra é aqui e a sede é em outro lugar, vale conversar.\nConte o município da obra para o especialista no WhatsApp que ele te orienta.',
+      resposta: 'A Vektra atende construtoras em todo o Brasil. O escritório fica em Fortaleza/CE, na R. P, 150, Altos, Prefeito José Walter, e o atendimento é digital: documentos por canal seguro, reuniões por vídeo e WhatsApp com o contador.\nConte o município da obra para o especialista, porque o ISS muda de cidade para cidade.',
       especialista: true
     },
     {
       id: 'horario',
       exemplos: ['em quanto tempo voces respondem', 'qual o horario de atendimento', 'voces atendem sabado', 'atendem 24 horas', 'demora pra responder'],
       chaves: ['horario', 'quanto tempo respond', 'demora', 'sabado', 'domingo', 'feriado', '24 horas', '24h', 'fim de semana'],
-      resposta: 'A equipe atende pelo WhatsApp em horário comercial. Se você deixar a mensagem com o nome da empresa e o município da obra, o contador já chega sabendo do que se trata.',
+      resposta: 'A equipe atende pelo WhatsApp de segunda a sexta, das 9h às 17h, e o primeiro retorno sai em até 1 dia útil. Se você deixar a mensagem com o nome da empresa e o município da obra, o contador já chega sabendo do que se trata.',
       especialista: true
     },
     {
       id: 'preco',
       exemplos: ['quanto custa', 'qual o valor do servico', 'quanto voces cobram', 'qual o preco da contabilidade', 'quanto e a mensalidade', 'tem tabela de precos', 'queria uma proposta', 'me manda um orcamento'],
       chaves: ['quanto custa', 'preco', 'valor do servico', 'cobram', 'mensalidade', 'honorario', 'tabela', 'proposta', 'orcamento da contabilidade', 'investimento'],
-      resposta: 'Não temos tabela, porque o trabalho muda bastante conforme o número de obras, o regime e o volume de notas. O orçamento sai depois da análise, com o escopo aberto item a item.\nA conversa inicial e a análise de uma obra são sem custo.',
+      resposta: 'São quatro planos mensais: Vektra BASE, 1 salário mínimo (R$ 1.621); Vektra OBRA, 2 salários mínimos (R$ 3.242); Vektra ESTRATÉGICA, 3 salários mínimos (R$ 4.863); e Vektra ENTERPRISE, sob consulta.\nO plano certo sai do diagnóstico, que é gratuito.',
       especialista: true,
       seguir: ['O que é a análise gratuita?', 'O que preciso mandar?']
     },
@@ -234,7 +234,7 @@ window.VEKTRABOT_BASE = {
       id: 'analise',
       exemplos: ['o que e a analise gratuita', 'como funciona a analise', 'como funciona o diagnostico', 'como comeco', 'qual o primeiro passo', 'como funciona o metodo de voces', 'e gratis mesmo'],
       chaves: ['analise', 'diagnostico', 'gratuit', 'gratis', 'sem custo', 'primeiro passo', 'como comec', 'metodo', 'como funciona'],
-      resposta: 'Funciona assim: primeiro uma conversa de 20 minutos sobre uma obra específica sua, sem custo e sem precisar trocar de contador.\nSe fizer sentido para os dois lados, a gente analisa essa obra e devolve até três pontos que merecem decisão, cada um apontando o documento que sustenta a observação. Se não houver nada relevante, a gente diz isso também.',
+      resposta: 'Funciona assim: o diagnóstico é gratuito e sem obrigação. Depois de uma conversa inicial, você envia os documentos e, em até 10 dias úteis, recebe o relatório com cada oportunidade encontrada e a proposta.\nO relatório é seu: dá para implementar com a Vektra, com o seu contador atual ou não implementar.',
       especialista: true,
       link: { href: 'metodo.html', texto: 'Ver o método completo' },
       seguir: ['O que preciso mandar?', 'Preciso trocar de contador?']
@@ -243,7 +243,7 @@ window.VEKTRABOT_BASE = {
       id: 'documentos',
       exemplos: ['o que preciso mandar', 'quais documentos voces precisam', 'o que preciso enviar para a analise', 'precisa de senha', 'tenho que mandar balanco'],
       chaves: ['documento', 'mandar', 'enviar', 'senha', 'acesso ao sistema', 'papelada'],
-      resposta: 'Contrato, orçamento e as notas de uma obra. Só uma obra, para começar. Nada de senha ou acesso a sistema.\nOs documentos são tratados depois, com a equipe, por canal próprio. Aqui no chat não precisa enviar nada.',
+      resposta: 'Os dos últimos 12 meses: contrato social, balancetes, apurações e guias, DCTFWeb e EFD-Reinf, relação de obras com CNO, contratos de venda, folha e notas de subempreitada. Não tem tudo? Começamos com o que existir.\nOs documentos vão por canal seguro, com a equipe. Aqui no chat não precisa enviar nada.',
       especialista: true
     },
     {
@@ -278,7 +278,7 @@ window.VEKTRABOT_BASE = {
       id: 'pequeno',
       exemplos: ['sou pequeno vale a pena', 'minha construtora e pequena', 'tenho so uma obra', 'atendem empresa pequena', 'tem faturamento minimo'],
       chaves: ['pequen', 'porte', 'so uma obra', 'faturamento minimo', 'microempresa', 'comecando agora'],
-      resposta: 'Depende do que você tem hoje: número de obras, tipo de contrato e o que já está organizado. Não existe um corte de faturamento para dizer que vale ou não.\nConte para o especialista quantas obras você tem ativas que ele te ajuda a entender se faz sentido.',
+      resposta: 'A Vektra atende construtoras a partir de R$ 1 milhão de faturamento anual. Abaixo disso, o ganho tributário normalmente não paga uma estrutura especializada, e o especialista diz isso na primeira conversa.\nConte quantas obras você tem ativas que ele te orienta.',
       especialista: true
     },
     {

@@ -205,9 +205,17 @@ npx serve .
 
 ## Pendências antes de publicar
 
+Dados reais aplicados em 25/09/2026 a partir das respostas do Sandro
+(tag `antes-dados-reais` guarda a versão anterior).
+
 - [x] Trocar o número do WhatsApp em `assets/js/config.js`
-- [ ] Trocar CNPJ, CRC e e-mail no rodapé dos dois HTML
-- [ ] Substituir depoimentos e logotipos fictícios por casos reais
-      (ou manter o aviso que já está no rodapé)
-- [ ] Gravar e publicar os 6 vídeos
-- [ ] Revisar a estatística "R$ 4,2 milhões" da home
+- [x] CNPJ, CRC, razão social, endereço, horário e e-mail reais
+- [x] Números reais (30+ obras, 31%, R$ 1,2 milhão, 14 anos) e clientes autorizados
+- [x] História, marcos, missão, visão, propósito e equipe reais
+- [x] Planos mensais (BASE, OBRA, ESTRATÉGICA, ENTERPRISE)
+- [x] Política de privacidade (`politica-de-privacidade.html`)
+- [ ] Frases de depoimento dos três clientes, com autorização por escrito
+- [ ] Domínio `www.vektracontabil.com.br` apontado para o GitHub Pages
+- [ ] Formulário gravando também em e-mail e planilha
+- [ ] IDs do GA4 e do Meta Pixel para instalar
+- [ ] Gravar e publicar os 6 vídeos (Alexandre, até 2 meses)
