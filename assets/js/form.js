@@ -139,6 +139,11 @@
     status.classList.add('ok');
     status.textContent = 'Tudo certo, ' + nome.value.trim().split(' ')[0] + '! Abrindo o WhatsApp…';
 
+    /* Conversão "Cadastro no Formulário" no Meta (sem dados pessoais) */
+    if (window.VEKTRA_META) {
+      window.VEKTRA_META.cadastroFormulario({ faturamento: fat.value, obras: obr.value, regime: reg.value });
+    }
+
     window.open(window.VEKTRA.link(msg), '_blank', 'noopener');
   });
 })();
